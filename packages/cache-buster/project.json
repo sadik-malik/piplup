@@ -1,0 +1,8 @@
+{
+  "name": "@piplup/cache-buster",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/cache-buster/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {}
+}

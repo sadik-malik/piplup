@@ -1,0 +1,23 @@
+{
+  "name": "@piplup/react-cache-buster",
+  "version": "0.0.1-beta.1",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "private": false,
+  "sideEffects": false,
+  "repository": {
+    "url": "https://github.com/sadik-malik/piplup.git",
+    "directory": "packages/react-cache-buster"
+  },
+  "keywords": ["react-cache-buster", "cache buster"],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  }
+}
