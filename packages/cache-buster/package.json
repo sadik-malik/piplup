@@ -8,7 +8,7 @@
   "sideEffects": false,
   "repository": {
     "url": "https://github.com/sadik-malik/piplup.git",
-    "directory": "packages/react-cache-buster"
+    "directory": "packages/cache-buster"
   },
   "keywords": ["react-cache-buster", "cache buster"],
   "exports": {
