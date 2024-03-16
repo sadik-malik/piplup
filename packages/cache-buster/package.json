@@ -1,5 +1,5 @@
 {
-  "name": "@piplup/react-cache-buster",
+  "name": "@piplup/cache-buster",
   "version": "0.0.1-beta.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
