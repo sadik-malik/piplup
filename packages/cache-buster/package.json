@@ -11,9 +11,6 @@
     "directory": "packages/react-cache-buster"
   },
   "keywords": ["react-cache-buster", "cache buster"],
-  "files": [
-    "dist"
-  ],
   "exports": {
     ".": {
       "import": "./dist/index.js",
