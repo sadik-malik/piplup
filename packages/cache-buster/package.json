@@ -1,9 +1,11 @@
 {
   "name": "@piplup/cache-buster",
   "version": "0.0.1-beta.1",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
   "type": "module",
+  "license":"MIT",
+  "description": "React library that helps in busting cache",
   "private": false,
   "sideEffects": false,
   "repository": {
@@ -11,10 +13,16 @@
     "directory": "packages/cache-buster"
   },
   "keywords": ["react-cache-buster", "cache buster"],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./src/index.js",
+      "require": "./src/index.cjs"
     }
   }
 }

@@ -1,6 +1,6 @@
 // @ts-check
 
-import { mkdir, rmdir, writeFile } from 'fs/promises';
+import { mkdir, rm, writeFile } from 'fs/promises';
 import path from 'path';
 import getWorkspaceRoot from './get-workspace-root.mjs';
 
@@ -35,7 +35,7 @@ async function createFile(filePath, content = '') {
 
 async function deleteFolder(folderPath) {
   try {
-    await rmdir(folderPath, { recursive: true });
+    await rm(folderPath, { recursive: true });
     console.log(`Deleted folder: ${folderPath}`);
   } catch (error) {
     console.error(`Error deleting folder ${folderPath}: ${error.message}`);
