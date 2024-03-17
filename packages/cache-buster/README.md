@@ -50,7 +50,7 @@ export default App;
 
 ## Props
 
-- `enabled` (optional): Boolean indicating whether the cache busting functionality should be enabled. Default is `false`.
+- `enabled` (optional): Boolean indicating whether the cache busting functionality should be enabled. Default is `true`.
 - `loading` (optional): React node to be displayed while checking for updates. Default is `null`.
 - `verbose` (optional): Boolean indicating whether verbose logging should be enabled. Default is `false`.
 - `storageKey` (optional): local storage key for storing the unique release ID. Default is `RELEASE`
