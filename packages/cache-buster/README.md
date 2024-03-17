@@ -4,7 +4,7 @@ React library that helps in busting cache by checking changes for a unique relea
 
 ## Installation
 
-You can install the @piplup/cache-buster using:
+You can install @piplup/cache-buster using:
 
 ```bash
 npm install @piplup/cache-buster
