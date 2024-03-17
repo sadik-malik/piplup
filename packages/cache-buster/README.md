@@ -29,19 +29,20 @@ pnpm add @piplup/cache-buster
 }
 ```
 
-2. Wrap your application with CacheBuster
+2. Add CacheBuster to your application
 ```jsx
 import { CacheBuster } from '@piplup/cache-buster';
 
 function App(){
   return (
-    <CacheBuster 
-      loading={null} // Optional: Add a loading component to display loading.
-      verbose={false} // Optional: If true, logs will be visible.
-      enabled={process.env.NODE_ENV === 'production'}
-    >
+    <>
+      <CacheBuster 
+        loading={null} // Optional: Add a loading component to display loading.
+        verbose={false} // Optional: If true, logs will be visible.
+        enabled={process.env.NODE_ENV === 'production'}
+      />
       <YourApp />
-    </CacheBuster>
+    </>
   );
 }
 
@@ -54,7 +55,7 @@ export default App;
 - `loading` (optional): React node to be displayed while checking for updates. Default is `null`.
 - `verbose` (optional): Boolean indicating whether verbose logging should be enabled. Default is `false`.
 - `storageKey` (optional): local storage key for storing the unique release ID. Default is `RELEASE`
-- `children`: The child components to render within the cache buster.
+- `children` (optional): The child components to render within the cache buster.
 
 ## How It Works
 
