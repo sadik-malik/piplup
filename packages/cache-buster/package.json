@@ -1,25 +1,34 @@
 {
   "name": "@piplup/cache-buster",
   "version": "0.0.1-beta.2",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "type": "module",
-  "license":"MIT",
-  "description": "React library that helps in busting cache",
   "private": false,
-  "sideEffects": false,
+  "description": "React library that helps in busting cache",
+  "keywords": [
+    "react-cache-buster",
+    "cache buster"
+  ],
   "repository": {
     "url": "https://github.com/sadik-malik/piplup.git",
     "directory": "packages/cache-buster"
   },
-  "keywords": ["react-cache-buster", "cache buster"],
-  "publishConfig": {
-    "access": "public"
-  },
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "@piplup/cache-buster": "./dist/generate-release-id.cjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
