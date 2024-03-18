@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import crypto from 'crypto';
 import { writeFile } from 'fs/promises';
 import path from 'path';
