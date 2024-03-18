@@ -11,7 +11,7 @@ export type CacheBusterProps = {
   storageKey?: string
 };
 
-function CacheBuster(props: CacheBusterProps): React.ReactNode {
+function CacheBuster(props: CacheBusterProps): React.ReactElement {
   const { enabled = true, loading = null, verbose, children = null, storageKey = FILENAME } = props;
 
   const [isInitialized, setIsInitialized] = React.useState<boolean>(false);
@@ -63,10 +63,10 @@ function CacheBuster(props: CacheBusterProps): React.ReactNode {
   }, [handleNewRelease]);
 
   if (!isInitialized) {
-    return loading;
+    return <>{loading}</>;
   }
 
-  return children;
+  return <>{children}</>;
 }
 
 export default CacheBuster;
