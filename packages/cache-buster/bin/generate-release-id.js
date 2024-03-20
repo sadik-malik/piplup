@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-import crypto from 'crypto';
-import { writeFile } from 'fs/promises';
-import path from 'path';
-import { FILENAME } from './constants';
+const crypto = require('crypto');
+const { writeFile } = require('fs/promises');
+const path = require('path');
+const { FILENAME } = require('./constants');
 
 const generateReleaseId = async () => {
   const args = process.argv.slice(2)
   const publicDirIndex = args.findIndex(arg => arg.startsWith('--publicDir='));
-  
+
   if(publicDirIndex === -1){
     throw new Error('Public directory path not provided. Please add --pubicDir=<public_directory_path> to the script.');
   }
-  
+
   const publicDir = args[publicDirIndex].split('=')[1];
 
   try {

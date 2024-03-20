@@ -1,6 +1,9 @@
 # @piplup/cache-buster
 
-React library that helps in busting cache by checking changes for a unique release ID and reloading the page when a change is detected.
+**Warning:** This package is currently in an experimental phase. Use it in production environments at your own risk.
+
+
+Cache buster library (<1kb) for React that helps in busting cache by checking changes for a unique release ID and calling window.reload when a change is detected in release ID.
 
 ## Installation
 
@@ -23,7 +26,7 @@ pnpm add @piplup/cache-buster
 ```json
 {
   "scripts": {
-    "generate-release-id": "node ./node_modules/@piplup/cache-buster/dist/generate-release-id --publicDir=public",
+    "generate-release-id": "node ./node_modules/@piplup/cache-buster/bin/generate-release-id --publicDir=public",
     "build": "npm run generate-release-id && react-scripts build"
   }
 }

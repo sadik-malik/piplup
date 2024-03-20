@@ -1,6 +1,6 @@
 {
   "name": "@piplup/cache-buster",
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1-beta.5",
   "private": false,
   "description": "React library that helps in busting cache",
   "keywords": [
@@ -23,10 +23,11 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "@piplup/cache-buster": "./dist/generate-release-id.cjs"
+    "@piplup/cache-buster": "./bin/generate-release-id.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "publishConfig": {
     "access": "public"

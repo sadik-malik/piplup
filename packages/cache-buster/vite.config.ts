@@ -40,8 +40,7 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: [
-        'src/index.ts',
-        'src/generate-release-id.ts'
+        'src/index.ts'
       ],
       name: 'react-cache-buster',
       fileName: 'index',
