@@ -1,9 +1,10 @@
 {
-  "name": "@piplup/use-event-listener",
+  "name": "@piplup/use-local-storage",
   "version": "1.0.0",
   "private": false,
   "description": "React hook for reading values from the browser localStorage and listening to changes in it.",
   "keywords": [
+    "@piplup/use-local-storage",
     "useLocalStorage",
     "reactive localStorage",
     "react localStorage"
@@ -20,7 +21,7 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
-    "@piplup/use-event-listener": "^1.0.0"
+    "@piplup/use-event-listener": "^1.1.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

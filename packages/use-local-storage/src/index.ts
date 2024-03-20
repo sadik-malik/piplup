@@ -1,6 +1,6 @@
 export {
-  default, getItem,
+  getItem,
   removeItem,
-  setItem
+  setItem, useLocalStorage
 } from './use-local-storage';
 

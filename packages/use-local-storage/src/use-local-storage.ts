@@ -1,4 +1,4 @@
-import useEventListener from '@piplup/use-event-listener'
+import { useEventListener } from '@piplup/use-event-listener'
 import * as React from 'react'
 
 export function getItem(key: string): null | string {
@@ -25,7 +25,7 @@ export function removeItem(key: string): void {
 }
 
 
-export default function useLocalStorage(
+export function useLocalStorage(
   key: string,
   initialValue: null | string = null
 ): null | string {
