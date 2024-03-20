@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@piplup/cache-buster": ["packages/cache-buster/src/index.ts"],
-      "@piplup/use-event-listener": ["packages/use-event-listener/src/index.ts"]
+      "@piplup/use-event-listener": ["packages/use-event-listener/src/index.ts"],
+      "@piplup/use-local-storage": ["packages/use-local-storage/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

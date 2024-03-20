@@ -5,7 +5,8 @@
   "description": "React hook designed to simplify the process of adding event listeners to various DOM elements in React applications.",
   "keywords": [
     "useEventListener",
-    "event listener react"
+    "event listener react",
+    "@piplup/use-event-listener"
   ],
   "repository": {
     "url": "https://github.com/sadik-malik/piplup.git",
@@ -16,11 +17,15 @@
   "type": "module",
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/react-dom": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
+      "optional": true
+    },
+    "@types/react-dom": {
       "optional": true
     }
   },

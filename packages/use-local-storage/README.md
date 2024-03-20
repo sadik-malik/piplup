@@ -1,0 +1,88 @@
+# @piplup/use-local-storage
+
+`useLocalStorage` - Use your browser localStorage as a reactive storage. It's a hook for reading values from the browser localStorage and listening to changes in it. Any updates made to localStorage using the `setItem` and `removeItem` helper functions will trigger a state update for the useLocalStorage hook.
+
+## Installation
+
+```bash
+npm install @piplup/use-local-storage @piplup/use-event-listener
+
+# or
+
+yarn add @piplup/use-local-storage @piplup/use-event-listener
+
+# or
+
+pnpm add @piplup/use-local-storage @piplup/use-event-listener
+```
+
+## Usage
+
+```jsx
+import * as React from 'react';
+import useLocalStorage from '@piplup/use-local-storage';
+
+function App() {
+  // Usage
+  const [value, setValue] = useLocalStorage('myKey', 'defaultValue');
+
+  return (
+    <div>
+      <p>Stored Value: {value}</p>
+    </div>
+  );
+}
+```
+
+## Dependencies
+`@piplup/use-local-storage` is dependent on [@piplup/use-event-listener](https://github.com/sadik-malik/piplup/blob/main/packages/use-event-listener/README.md). Please ensure you install it as well. 
+
+## API
+
+### `useLocalStorage(key: string, initialValue: null | string = null): null | string`
+
+A hook for reading from and listening to changes in `localStorage`.
+
+- `key`: The key under which to store the value in `localStorage`.
+- `initialValue`: The initial value to be used if no value is stored in `localStorage` under the specified key.
+
+Returns the stored value or `null` if no value is stored.
+
+
+### `getItem(key: string): null | string`
+
+A wrapper around `localStorage.getItem`. On the server, `localStorage` is not available so a `null` value is returned. On the client side, the actual value will be read and returned.
+
+### `setItem(key: string, value: string): void`
+
+A wrapper around `localStorage.setItem`. On the server, `localStorage` is not available so no operation will be performed. On the client side, the value will be set in `localStorage`, and an event will be dispatched which will be helpful for triggering side effects in the `useLocalStorage` hook.
+
+### `removeItem(key: string): void`
+
+A wrapper around `localStorage.removeItem`. On the server, `localStorage` is not available so no operation will be performed. On the client side, the value will be removed from `localStorage`, and an event will be dispatched which will be helpful for triggering side effects in the `useLocalStorage` hook.
+
+## Example
+
+```jsx
+import React from 'react';
+import useLocalStorage from '@piplup/use-local-storage';
+
+function App() {
+  const [value, setValue] = useLocalStorage('myKey', 'defaultValue');
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <p>Stored Value: {value}</p>
+    </div>
+  );
+}
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

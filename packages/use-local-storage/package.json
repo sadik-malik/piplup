@@ -1,15 +1,16 @@
 {
-  "name": "@piplup/cache-buster",
-  "version": "1.0.2",
+  "name": "@piplup/use-event-listener",
+  "version": "1.0.0",
   "private": false,
-  "description": "React library that helps in busting cache",
+  "description": "React hook for reading values from the browser localStorage and listening to changes in it.",
   "keywords": [
-    "react-cache-buster",
-    "cache buster"
+    "useLocalStorage",
+    "reactive localStorage",
+    "react localStorage"
   ],
   "repository": {
     "url": "https://github.com/sadik-malik/piplup.git",
-    "directory": "packages/cache-buster"
+    "directory": "packages/use-local-storage"
   },
   "license": "MIT",
   "sideEffects": false,
@@ -18,7 +19,8 @@
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "@piplup/use-event-listener": "^1.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -36,12 +38,8 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": {
-    "piplup-cache-buster": "./bin/generate-release-id.js"
-  },
   "files": [
-    "dist",
-    "bin"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
