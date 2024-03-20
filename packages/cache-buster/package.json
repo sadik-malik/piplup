@@ -33,7 +33,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "@piplup/cache-buster": "bin/generate-release-id.js"
+    "piplup-cache-buster": "./bin/generate-release-id.js"
   },
   "files": [
     "dist",
