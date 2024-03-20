@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import { FILENAME } from './constants';
 
 export type CacheBusterProps = {
   enabled?: boolean;
@@ -10,6 +9,8 @@ export type CacheBusterProps = {
   children?: React.ReactNode;
   storageKey?: string
 };
+
+const FILENAME = 'RELEASE'
 
 function CacheBuster(props: CacheBusterProps): React.ReactElement {
   const { enabled = true, loading = null, verbose, children = null, storageKey = FILENAME } = props;

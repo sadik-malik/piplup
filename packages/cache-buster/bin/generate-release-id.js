@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
-const crypto = require('crypto');
-const { writeFile } = require('fs/promises');
-const path = require('path');
-const { FILENAME } = require('./constants');
+import crypto from 'crypto';
+import { writeFile } from 'fs/promises';
+import path from 'path';
+
+const FILENAME = 'RELEASE'
+
 
 const generateReleaseId = async () => {
   const args = process.argv.slice(2)

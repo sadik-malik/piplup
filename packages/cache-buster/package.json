@@ -1,6 +1,6 @@
 {
   "name": "@piplup/cache-buster",
-  "version": "0.0.1-beta.5",
+  "version": "0.0.1-beta.6",
   "private": false,
   "description": "React library that helps in busting cache",
   "keywords": [
@@ -14,6 +14,16 @@
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
+  "peerDependencies": {
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -23,7 +33,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "@piplup/cache-buster": "./bin/generate-release-id.js"
+    "@piplup/cache-buster": "bin/generate-release-id.js"
   },
   "files": [
     "dist",
