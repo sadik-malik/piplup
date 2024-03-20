@@ -20,11 +20,11 @@ pnpm add @piplup/use-local-storage @piplup/use-event-listener
 
 ```jsx
 import * as React from 'react';
-import useLocalStorage from '@piplup/use-local-storage';
+import { useLocalStorage } from '@piplup/use-local-storage';
 
 function App() {
   // Usage
-  const [value, setValue] = useLocalStorage('myKey', 'defaultValue');
+  const value = useLocalStorage('myKey', 'defaultValue');
 
   return (
     <div>
@@ -60,28 +60,6 @@ A wrapper around `localStorage.setItem`. On the server, `localStorage` is not av
 ### `removeItem(key: string): void`
 
 A wrapper around `localStorage.removeItem`. On the server, `localStorage` is not available so no operation will be performed. On the client side, the value will be removed from `localStorage`, and an event will be dispatched which will be helpful for triggering side effects in the `useLocalStorage` hook.
-
-## Example
-
-```jsx
-import React from 'react';
-import useLocalStorage from '@piplup/use-local-storage';
-
-function App() {
-  const [value, setValue] = useLocalStorage('myKey', 'defaultValue');
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <p>Stored Value: {value}</p>
-    </div>
-  );
-}
-```
 
 ## License
 
