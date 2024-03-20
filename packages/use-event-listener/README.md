@@ -24,7 +24,7 @@ pnpm add @piplup/use-event-listener
 'use client';
 
 import * as React from 'react';
-import useEventListener from '@piplup/use-event-listener';
+import { useEventListener } from '@piplup/use-event-listener';
 
 function App() {
   const handleResize = (event) => {

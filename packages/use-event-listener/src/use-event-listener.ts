@@ -1,20 +1,20 @@
 import * as React from 'react';
 
-function useEventListener<EventName extends keyof MediaQueryListEventMap>(
+export function useEventListener<EventName extends keyof MediaQueryListEventMap>(
   eventName: EventName,
   handler: (event: MediaQueryListEventMap[EventName]) => void,
   element: React.RefObject<MediaQueryList>,
   options?: AddEventListenerOptions | boolean
 ): void;
 
-function useEventListener<EventName extends keyof WindowEventMap>(
+export function useEventListener<EventName extends keyof WindowEventMap>(
   eventName: EventName,
   handler: (event: WindowEventMap[EventName]) => void,
   element?: undefined,
   options?: AddEventListenerOptions | boolean
 ): void;
 
-function useEventListener<
+export function useEventListener<
   EventName extends keyof HTMLElementEventMap,
   T extends HTMLElement = HTMLDivElement
 >(
@@ -24,14 +24,14 @@ function useEventListener<
   options?: AddEventListenerOptions | boolean
 ): void;
 
-function useEventListener<EventName extends keyof DocumentEventMap>(
+export function useEventListener<EventName extends keyof DocumentEventMap>(
   eventName: EventName,
   handler: (event: DocumentEventMap[EventName]) => void,
   element: React.RefObject<Document>,
   options?: AddEventListenerOptions | boolean
 ): void;
 
-function useEventListener<
+export function useEventListener<
   EventName extends string,
   EventElement extends HTMLElement = HTMLDivElement
 >(
@@ -41,7 +41,7 @@ function useEventListener<
   options?: AddEventListenerOptions | boolean
 ): void;
 
-function useEventListener<
+export function useEventListener<
   EventName extends string,
   EventNameWindow extends keyof WindowEventMap,
   EventNameHTMLElement extends keyof HTMLElementEventMap,
@@ -81,5 +81,3 @@ function useEventListener<
     };
   }, [eventName, element, options]);
 }
-
-export default useEventListener;
