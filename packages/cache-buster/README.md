@@ -1,7 +1,6 @@
 # @piplup/cache-buster
 
-**Warning:** This package is currently in an experimental phase. Use it in production environments at your own risk.
-
+[![npm](https://img.shields.io/npm/v/@piplup/cache-buster)](https://www.npmjs.com/package/@piplup/cache-buster)
 
 Cache buster library (<1kb) for React that helps in busting cache by checking changes for a unique release ID and calling window.reload when a change is detected in release ID.
 
@@ -22,17 +21,21 @@ pnpm add @piplup/cache-buster
 ```
 
 ## Usage
-1. Update your build script
+1. **Update your build script**:
+
+   Include a script to generate a release ID before building your application:
+
 ```json
 {
   "scripts": {
-    "generate-release-id": "node ./node_modules/@piplup/cache-buster/bin/generate-release-id --publicDir=public",
+    "generate-release-id": "piplup-cache-buster --publicDir=public",
     "build": "npm run generate-release-id && react-scripts build"
   }
 }
 ```
 
-2. Add CacheBuster to your application
+2. **Integrate CacheBuster into your application**:
+
 ```jsx
 import { CacheBuster } from '@piplup/cache-buster';
 
