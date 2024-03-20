@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@piplup/cache-buster)](https://www.npmjs.com/package/@piplup/cache-buster)
 
-Cache buster library (<1kb) for React that helps in busting cache by checking changes for a unique release ID and calling window.reload when a change is detected in release ID.
+Cache buster library (<1kb) for React that helps in busting cache by checking changes for a unique release ID and calling window.location.reload when a change is detected in release ID.
 
 ## Installation
 
