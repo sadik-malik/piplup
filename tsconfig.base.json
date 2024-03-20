@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@piplup/cache-buster": ["packages/cache-buster/src/index.ts"]
+      "@piplup/cache-buster": ["packages/cache-buster/src/index.ts"],
+      "@piplup/use-event-listener": ["packages/use-event-listener/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
