@@ -1,0 +1,22 @@
+{
+  "name": "@piplup/react-acl",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/react-acl/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project @piplup/react-acl --web",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/react-acl/src/**/*.ts",
+          "packages/react-acl/src/**/*.tsx",
+          "packages/react-acl/package.json",
+          "packages/react-acl/project.json"
+        ]
+      }
+    }
+  }
+}

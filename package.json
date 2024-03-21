@@ -7,7 +7,9 @@
     "create-playground": "node ./scripts/create-playground.mjs",
     "remove-playground": "rimraf --glob ./apps/playground",
     "playground": "npm run create-playground && nx serve playground",
-    "clean": "rimraf --glob ./packages/*/dist"
+    "clean": "rimraf --glob ./packages/*/dist",
+    "lint": "nx run-many --target=lint --all",
+    "build": "nx run-many --target=build --all"
   },
   "private": true,
   "devDependencies": {

@@ -1,15 +1,16 @@
 {
-  "name": "@piplup/cache-buster",
-  "version": "1.0.2",
+  "name": "@piplup/react-acl",
+  "version": "1.0.0",
   "private": false,
-  "description": "React library that helps in busting cache",
+  "description": "A lightweight React library for managing access control lists (ACL) in your application",
   "keywords": [
-    "react-cache-buster",
-    "cache buster"
+    "react-acl",
+    "react access control",
+    "react permission based access"
   ],
   "repository": {
     "url": "https://github.com/sadik-malik/piplup.git",
-    "directory": "packages/cache-buster"
+    "directory": "packages/react-acl"
   },
   "license": "MIT",
   "sideEffects": false,
@@ -26,12 +27,8 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": {
-    "piplup-cache-buster": "./bin/generate-release-id.js"
-  },
   "files": [
-    "dist",
-    "bin"
+    "dist"  
   ],
   "publishConfig": {
     "access": "public"
