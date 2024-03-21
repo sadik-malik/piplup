@@ -32,7 +32,11 @@ function CacheBuster(props: CacheBusterProps): React.ReactElement {
   );
 
   const handleNewRelease = React.useCallback(() => {
-    if (enabled && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
+      if(!enabled){
+        setIsInitialized(true);
+        return
+      }
       fetch(resourceURL)
         .then((res) => res.text())
         .then((releaseId) => {
