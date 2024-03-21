@@ -4,5 +4,19 @@
   "sourceRoot": "packages/cache-buster/src",
   "projectType": "library",
   "tags": [],
-  "targets": {}
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/cache-buster/bin/*.js",
+          "packages/cache-buster/src/**/*.ts",
+          "packages/cache-buster/src/**/*.tsx",
+          "packages/cache-buster/package.json",
+          "packages/cache-buster/project.json"
+        ]
+      }
+    }
+  }
 }

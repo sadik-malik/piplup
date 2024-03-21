@@ -17,19 +17,9 @@
   "sideEffects": false,
   "type": "module",
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react": "^17.0.0 || ^18.0.0"
   },
-  "peerDependenciesMeta": {
-    "@types/react": {
-      "optional": true
-    },
-    "@types/react-dom": {
-      "optional": true
-    }
-  },
+  "peerDependenciesMeta": {},
   "exports": {
     ".": {
       "import": "./dist/index.js",

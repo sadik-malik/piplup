@@ -4,5 +4,18 @@
   "sourceRoot": "packages/use-event-listener/src",
   "projectType": "library",
   "tags": [],
-  "targets": {}
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/use-event-listener/src/**/*.ts",
+          "packages/use-event-listener/src/**/*.tsx",
+          "packages/use-event-listener/package.json",
+          "packages/use-event-listener/project.json"
+        ]
+      }
+    }
+  }
 }
