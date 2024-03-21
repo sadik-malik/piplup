@@ -49,6 +49,7 @@ async function createProjectStructure() {
   await createFolder(playgroundFolderPath);
   await createFolder(playgroundPublicFolderPath);
   await createFolder(playgroundSrcFolderPath);
+  await createFile(path.resolve(playgroundFolderPath, '.eslintignore'), 'dist');
   await createFile(
     path.resolve(playgroundFolderPath, '.eslintrc.json'),
     `
