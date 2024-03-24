@@ -10,6 +10,14 @@ export type AclProviderProps = {
   roles: (string | number)[];
 };
 
+function hasIntersection(value: unknown, array: unknown[]): boolean {
+  if(Array.isArray(value)){
+    return value.length === 0 ? true: value.some(val => array.some(item => item === val))
+  }else{
+    return typeof value === 'undefined' ? true: array.some(item => item === value)
+  }
+}
+
 export function AclProvider(props: AclProviderProps) {
   const { children, loading, permissions: permissionsProp = [], roles: rolesProp = [] } = props;
 
@@ -25,24 +33,10 @@ export function AclProvider(props: AclProviderProps) {
         return false;
       }
 
-      const rolesArray = Array.isArray(roles) ? roles : [roles];
-      const permissionsArray = Array.isArray(permissions) ? permissions : [permissions];
-
-      const hasRole =
-        rolesArray.length === 0
-          ? true // If no roles are provided, then it means, do not check roles. So, passing true.
-          : rolesArray.some((role) => rolesProp.some((roleProp) => roleProp === role));
-      const hasPermission =
-        permissionsArray.length === 0
-          ? true // If no permissions are provided, then it means, do not check permission. So, passing true.
-          : permissionsArray.some((permission) =>
-              permissionsProp.some((permissionProp) => permissionProp === permission)
-            );
-
-      if (hasRole && hasPermission) {
-        return true;
-      }
-      return false;
+      const hasRole: boolean = hasIntersection(roles, rolesProp)
+      const hasPermission: boolean = hasIntersection(permissions, permissionsProp)
+     
+      return hasRole && hasPermission
     },
     [loading, permissionsProp, rolesProp]
   );
