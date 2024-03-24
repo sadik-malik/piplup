@@ -15,8 +15,8 @@ export function AclProvider(props: AclProviderProps) {
 
   const isAuthorized = React.useCallback(
     ({
-      permissions,
-      roles,
+      permissions = [],
+      roles = [],
     }: {
       permissions?: string | number | (string | number)[];
       roles?: string | number | (string | number)[];
