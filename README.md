@@ -9,6 +9,13 @@ Welcome to @piplup! This repository contains a collection of useful libraries fo
 
 React library that helps in busting cache by checking for updates and reloading the page when a new release is detected.
 
+## [@piplup/vite-plugin-cache-buster](./packages/vite-plugin-cache-buster/README.md)
+
+[![npm](https://img.shields.io/npm/v/@piplup/vite-plugin-cache-buster)](https://www.npmjs.com/package/@piplup/vite-plugin-cache-buster)
+![NPM Downloads](https://img.shields.io/npm/dt/@piplup/vite-plugin-cache-buster)
+
+A Vite plugin to automatically run cache busting during the build process using `@piplup/cache-buster`.
+
 ## [@piplup/use-event-listener](./packages/use-event-listener/README.md)
 
 [![npm](https://img.shields.io/npm/v/@piplup/use-event-listener)](https://www.npmjs.com/package/@piplup/use-event-listener)

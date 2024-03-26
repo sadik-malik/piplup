@@ -1,0 +1,27 @@
+{
+  "name": "@piplup/vite-plugin-cache-buster",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Vite plugin for integrating @piplup/cache-buster with vite",
+  "keywords": [
+    "@piplup/cache-buster vite plugin",
+    "@piplup/vite-plugin-cache-buster",
+    "vite-plugin-cache-buster",
+    "vite cache buster plugin",
+    "cache buster plugin"
+  ],
+  "repository": {
+    "url": "https://github.com/sadik-malik/piplup.git",
+    "directory": "packages/vite-plugin-cache-buster"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "peerDependencies": {
+    "@piplup/cache-buster": "^1.0.2",
+    "vite": "^5.0.0"
+  },
+  "peerDependenciesMeta": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@piplup/vite-plugin-cache-buster",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/vite-plugin-cache-buster/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/vite-plugin-cache-buster/dist",
+        "tsConfig": "packages/vite-plugin-cache-buster/tsconfig.lib.json",
+        "project": "packages/vite-plugin-cache-buster/package.json",
+        "entryFile": "packages/vite-plugin-cache-buster/src/index.ts",
+        "external": ["vite"],
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "format": ["cjs", "esm"],
+        "assets": [
+          {
+            "glob": "packages/vite-plugin-cache-buster/README.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "packages/vite-plugin-cache-buster/LICENSE",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
+}
