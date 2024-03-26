@@ -41,7 +41,7 @@ The plugin accepts the following options:
 You can pass options to the plugin when importing it:
 
 ```javascript
-import vitePluginCacheBuster from '@piplup/vite-plugin-cache-buster';
+import { vitePluginCacheBuster } from '@piplup/vite-plugin-cache-buster';
 
 export default {
   // Other Vite config options...
