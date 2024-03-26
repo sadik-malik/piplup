@@ -21,18 +21,28 @@ pnpm add @piplup/cache-buster
 ```
 
 ## Usage
-1. **Update your build script**:
+1. **Integration with your build process**:
 
-   Include a script to generate a release ID before building your application:
+   Include a script in your package.json to generate a release ID before building your application:
 
 ```json
 {
   "scripts": {
-    "generate-release-id": "piplup-cache-buster --publicDir=public",
-    "build": "npm run generate-release-id && react-scripts build"
+    "build": "piplup-cache-buster --publicDir=public && react-scripts build"
   }
 }
 ```
+  Alternatively, if you are using `vite` to build your react application. You can use `@piplup/vite-plugin-cache-buster` and update your vite configuration file (usually `vite.config.js` or `vite.config.ts`) to the following:
+  
+```javascript
+import { vitePluginCacheBuster } from '@piplup/vite-plugin-cache-buster';
+
+export default {
+  // Other Vite config options...
+  plugins: [vitePluginCacheBuster(), /*...other plugins */],
+};
+```
+
 
 2. **Integrate CacheBuster into your application**:
 
