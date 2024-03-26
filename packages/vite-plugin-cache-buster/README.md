@@ -23,7 +23,7 @@ pnpm add -D @piplup/vite-plugin-cache-buster
 In your Vite configuration file (usually `vite.config.js` or `vite.config.ts`), import and use the plugin:
 
 ```javascript
-import { vitePluginCacheBuster } from 'vite-plugin-cache-buster';
+import { vitePluginCacheBuster } from '@piplup/vite-plugin-cache-buster';
 
 export default {
   // Other Vite config options...
