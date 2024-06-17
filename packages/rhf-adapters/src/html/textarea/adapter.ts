@@ -1,5 +1,4 @@
 import {
-  UseComposeModifierStateResult,
   execSequentially,
   useComposeClassName,
   useComposeModiferState,
@@ -7,6 +6,7 @@ import {
   useComposeStyle,
   useForkRef,
   useTransform,
+  type UseComposeModifierStateResult,
 } from '@piplup/rhf-core';
 import * as React from 'react';
 import {
@@ -24,14 +24,12 @@ export interface HTMLTextareaProps
   extends React.ComponentPropsWithRef<'textarea'>,
     HTMLTextareaPropsOverrides {}
 
+type TransformedValue = string | number | readonly string[] | undefined;
+
 export interface UseHTMLTextareaAdapterProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends string | number | readonly string[] | undefined =
-    | string
-    | number
-    | readonly string[]
-    | undefined
+  TTransformedValue extends TransformedValue = TransformedValue
 > extends Omit<HTMLTextareaProps, 'name' | 'defaultValue' | 'style'>,
     UseControllerProps<TFieldValues, TName> {
   transform?: {
@@ -49,11 +47,7 @@ export interface UseHTMLTextareaAdapterProps<
 export function useHTMLTextareaAdapter<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends string | number | readonly string[] | undefined =
-    | string
-    | number
-    | readonly string[]
-    | undefined
+  TTransformedValue extends TransformedValue = TransformedValue
 >(
   props: UseHTMLTextareaAdapterProps<TFieldValues, TName, TTransformedValue>,
   ref?: HTMLTextareaProps['ref']

@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { FieldPath, type FieldValues } from 'react-hook-form';
-import useHTMLFormHelperTextAdapter, { UseHTMLFormHelperTextProps } from './adapter';
+import { type FieldPath, type FieldValues } from 'react-hook-form';
+import useHTMLFormHelperTextAdapter, { type UseHTMLFormHelperTextProps } from './adapter';
 
 export interface HTMLFormHelperTextElementProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends UseHTMLFormHelperTextProps<TFieldValues, TName> {
-  component?: React.ElementType;
-}
+> extends UseHTMLFormHelperTextProps<TFieldValues, TName> {}
 
 function HTMLFormHelperTextComponent<
   TFieldValues extends FieldValues = FieldValues,
@@ -16,9 +14,9 @@ function HTMLFormHelperTextComponent<
   props: HTMLFormHelperTextElementProps<TFieldValues, TName>,
   ref?: HTMLFormHelperTextElementProps<TFieldValues, TName>['ref']
 ): React.ReactElement {
-  const { verbose: _verbose, component = 'p', ...rest } = props;
+  const { verbose: _verbose, ...rest } = props;
 
-  const { children, ...adapter } = useHTMLFormHelperTextAdapter<TFieldValues, TName>(
+  const adapter = useHTMLFormHelperTextAdapter<TFieldValues, TName>(
     {
       ...rest,
       verbose: false,
@@ -26,7 +24,7 @@ function HTMLFormHelperTextComponent<
     ref
   );
 
-  return React.createElement(component, adapter, children);
+  return <p {...adapter} />;
 }
 
 const HTMLFormHelperTextElement = React.forwardRef(HTMLFormHelperTextComponent);

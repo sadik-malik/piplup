@@ -1,7 +1,7 @@
 import { logger } from '@piplup/rhf-core';
 import * as React from 'react';
 import { type FieldPath, type FieldValues, type PathValue } from 'react-hook-form';
-import useHTMLInputAdapter, { HTMLInputProps, type UseHTMLInputAdapterProps } from './adapter';
+import useHTMLInputAdapter, { type HTMLInputProps, type UseHTMLInputAdapterProps } from './adapter';
 
 export interface HTMLInputElementProps<
   TFieldValues extends FieldValues = FieldValues,
