@@ -10,13 +10,16 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@piplup/cache-buster": ["packages/cache-buster/src/index.ts"],
       "@piplup/react-acl": ["packages/react-acl/src/index.ts"],
+      "@piplup/rhf-adapters": ["packages/rhf-adapters/src/index.ts"],
+      "@piplup/rhf-adapters/html": ["packages/rhf-adapters/src/html/index.ts"],
+      "@piplup/rhf-core": ["packages/rhf-core/src/index.ts"],
       "@piplup/use-event-listener": ["packages/use-event-listener/src/index.ts"],
       "@piplup/use-local-storage": ["packages/use-local-storage/src/index.ts"],
       "@piplup/vite-plugin-cache-buster": ["packages/vite-plugin-cache-buster/src/index.ts"]

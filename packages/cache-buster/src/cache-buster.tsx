@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 
 export type CacheBusterProps = {
@@ -7,10 +5,10 @@ export type CacheBusterProps = {
   loading?: React.ReactNode;
   verbose?: boolean;
   children?: React.ReactNode;
-  storageKey?: string
+  storageKey?: string;
 };
 
-const FILENAME = 'RELEASE'
+const FILENAME = 'RELEASE';
 
 function CacheBuster(props: CacheBusterProps): React.ReactElement {
   const { enabled = true, loading = null, verbose, children = null, storageKey = FILENAME } = props;
@@ -33,17 +31,17 @@ function CacheBuster(props: CacheBusterProps): React.ReactElement {
 
   const handleNewRelease = React.useCallback(() => {
     if (typeof window !== 'undefined') {
-      if(!enabled){
+      if (!enabled) {
         setIsInitialized(true);
-        return
+        return;
       }
       fetch(resourceURL)
         .then((res) => res.text())
         .then((releaseId) => {
           const releaseIdFromStorage = localStorage.getItem(storageKey);
           if (releaseId !== releaseIdFromStorage) {
-            localStorage.setItem(storageKey, releaseId)
-            if(releaseId){
+            localStorage.setItem(storageKey, releaseId);
+            if (releaseId) {
               logger('log', 'New release detected. Reloading page');
               window.location.reload(
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -59,7 +57,7 @@ function CacheBuster(props: CacheBusterProps): React.ReactElement {
         .catch(() => {
           logger('error', 'An error occurred while verifying release id');
           setIsInitialized(true);
-        })
+        });
     }
   }, [resourceURL, enabled, logger, storageKey]);
 

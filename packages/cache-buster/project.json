@@ -1,20 +1,41 @@
 {
   "name": "@piplup/cache-buster",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/cache-buster/src",
+  "sourceRoot": "{projectRoot}/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:packages"],
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "packages/cache-buster/bin/*.js",
-          "packages/cache-buster/src/**/*.ts",
-          "packages/cache-buster/src/**/*.tsx",
-          "packages/cache-buster/package.json",
-          "packages/cache-buster/project.json"
+          "{projectRoot}/src/**/*.ts",
+          "{projectRoot}/package.json",
+          "{projectRoot}/project.json",
+          "rollup.config.cjs"
+        ]
+      }
+    },
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "{projectRoot}/dist",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "project": "{projectRoot}/package.json",
+        "entryFile": "{projectRoot}/src/index.ts",
+        "external": ["react", "react-dom", "react/jsx-runtime"],
+        "format": ["esm", "cjs"],
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "generateExportsField": true,
+        "assets": [
+          {
+            "glob": "{projectRoot}/README.md",
+            "input": ".",
+            "output": "."
+          }
         ]
       }
     }

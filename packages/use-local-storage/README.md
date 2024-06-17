@@ -35,7 +35,8 @@ function App() {
 ```
 
 ## Dependencies
-`@piplup/use-local-storage` is dependent on [@piplup/use-event-listener](https://github.com/sadik-malik/piplup/blob/main/packages/use-event-listener/README.md). Please ensure you install it as well. 
+
+`@piplup/use-local-storage` is dependent on [@piplup/use-event-listener](https://github.com/sadik-malik/piplup/blob/main/packages/use-event-listener/README.md). Please ensure you install it as well.
 
 ## API
 
@@ -47,7 +48,6 @@ A hook for reading from and listening to changes in `localStorage`.
 - `initialValue`: The initial value to be used if no value is stored in `localStorage` under the specified key.
 
 Returns the stored value or `null` if no value is stored.
-
 
 ### `getItem(key: string): null | string`
 

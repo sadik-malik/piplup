@@ -25,11 +25,7 @@
             "checkMissingDependencies": true,
             "checkObsoleteDependencies": true,
             "checkVersionMismatches": true,
-            "ignoredDependencies": [
-              "@nx/rollup",
-              "vite",
-              "@piplup/cache-buster"
-            ]
+            "ignoredDependencies": []
           }
         ]
       }

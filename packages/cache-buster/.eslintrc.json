@@ -25,13 +25,7 @@
             "checkMissingDependencies": true,
             "checkObsoleteDependencies": true,
             "checkVersionMismatches": true,
-            "ignoredDependencies": [
-              "@nx/vite",
-              "@vitejs/plugin-react",
-              "vite",
-              "vite-plugin-dts",
-              "rollup-preserve-directives"
-            ]
+            "ignoredDependencies": ["@types/react"]
           }
         ]
       }

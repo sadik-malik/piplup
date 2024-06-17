@@ -32,24 +32,23 @@ pnpm add @piplup/react-acl
 ```jsx
 import { AclProvider } from '@piplup/react-acl';
 
-<AclProvider
-  loading={false}
-  permissions={['read', 'write']}
-  roles={['admin']}
->
+<AclProvider loading={false} permissions={['read', 'write']} roles={['admin']}>
   {/* Your application components */}
-</AclProvider>
+</AclProvider>;
 ```
 
 ### HasAccess
 
-`HasAccess` is a component that renders its children only if the user has the specified permissions and roles. It takes the following props:
+`HasAccess` is a component that renders its children only if the user's specified permissions and roles match those provided in the AclProvider. It takes the following props:
 
 - `children`: React node(s) to be rendered if the user has access.
 - `loading`: (optional) React node to be rendered while ACL data is loading.
 - `permissions`: (optional) An array of strings representing required permissions.
-- `fallback`: (optional) React node(s) to be rendered if the user does not have access.
 - `roles`: (optional) An array of strings representing required roles.
+- `validationMode`: (optional) An object to customize how roles and permissions are validated:
+  - `roles`: `'all'` | `'any'` (default: `'any'`)
+  - `permissions`: `'all'` | `'any'` (default: `'any'`)
+- `fallback`: (optional) React node(s) to be rendered if the user does not have access.
 
 ```jsx
 import { HasAccess } from '@piplup/react-acl';
@@ -57,11 +56,12 @@ import { HasAccess } from '@piplup/react-acl';
 <HasAccess
   permissions={['read']}
   roles={['admin']}
+  validationMode={{ roles: 'any', permissions: 'all' }}
   loading={<LoadingSpinner />}
   fallback={<AccessDenied />}
 >
   {/* Content accessible by users with 'read' permission and 'admin' role */}
-</HasAccess>
+</HasAccess>;
 ```
 
 ### useAcl
@@ -71,9 +71,13 @@ import { HasAccess } from '@piplup/react-acl';
 Here's a breakdown of what `useAcl` returns:
 
 - **isAuthorized**: A function that checks whether the current user is authorized based on the provided permissions and roles. It takes an object with two optional properties:
+
   - `permissions`: (optional) An array of strings or numbers representing permissions to check. If not provided, the function defaults to `true`, meaning it does not check permissions.
   - `roles`: (optional) An array of strings or numbers representing roles to check. If not provided, the function defaults to `true`, meaning it does not check roles.
-  
+  - `validationMode`: (optional) An object to customize how roles and permissions are validated:
+    - `roles`: `'all'` | `'any'` (default: `'any'`)
+    - `permissions`: `'all'` | `'any'` (default: `'any'`)
+
   It returns a boolean value indicating whether the user is authorized.
 
 ```jsx
@@ -90,14 +94,11 @@ import { AclProvider, HasAccess } from '@piplup/react-acl';
 
 function App() {
   return (
-    <AclProvider
-      loading={false}
-      permissions={['read']}
-      roles={['admin']}
-    >
+    <AclProvider loading={false} permissions={['read']} roles={['admin']}>
       <HasAccess
         permissions={['read']}
         roles={['admin']}
+        validationMode={{ roles: 'any', permissions: 'all' }}
         loading={<LoadingSpinner />}
         fallback={<AccessDenied />}
       >

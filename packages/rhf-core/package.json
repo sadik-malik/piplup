@@ -1,0 +1,43 @@
+{
+  "name": "@piplup/rhf-core",
+  "version": "1.2.0-beta.0",
+  "private": true,
+  "description": "Core library containing hooks and utility functions designed to streamline the integration of react-hook-form with UI frameworks, by managing boilerplate code.",
+  "keywords": [
+    "react-hook-form",
+    "react-hook-form core",
+    "react-hook-form adapters",
+    "react-hook-form mui",
+    "react-hook-form material",
+    "rhf-adapters",
+    "rhf-core"
+  ],
+  "repository": {
+    "url": "https://github.com/sadik-malik/piplup.git",
+    "directory": "packages/rhf-core"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-hook-form": "^7.51.5"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "react": {
+      "optional": false
+    },
+    "react-hook-form": {
+      "optional": false
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

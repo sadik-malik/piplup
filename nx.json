@@ -15,16 +15,6 @@
       }
     },
     {
-      "plugin": "@nx/vite/plugin",
-      "options": {
-        "buildTargetName": "build",
-        "previewTargetName": "preview",
-        "testTargetName": "test",
-        "serveTargetName": "serve",
-        "serveStaticTargetName": "serve-static"
-      }
-    },
-    {
       "plugin": "@nx/cypress/plugin",
       "options": {
         "targetName": "e2e",
@@ -36,6 +26,16 @@
       "options": {
         "buildTargetName": "build"
       }
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static"
+      }
     }
   ],
   "generators": {
@@ -45,14 +45,14 @@
         "linter": "eslint",
         "unitTestRunner": "none"
       },
+      "component": {
+        "style": "css"
+      },
       "application": {
         "babel": true,
         "style": "css",
         "linter": "eslint",
         "bundler": "vite"
-      },
-      "component": {
-        "style": "css"
       }
     }
   },

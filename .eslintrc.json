@@ -7,7 +7,8 @@
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "semi": "off",
-        "react/jsx-no-useless-fragment":"off",
+        "react/jsx-no-useless-fragment": "off",
+        "@typescript-eslint/no-empty-interface": "off",
         "@nx/enforce-module-boundaries": [
           "error",
           {
@@ -26,12 +27,18 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     }
   ]
 }

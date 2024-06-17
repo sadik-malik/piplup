@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 
 export type AclContextType = {
@@ -9,6 +7,10 @@ export type AclContextType = {
   }: {
     permissions?: string | number | (string | number)[];
     roles?: string | number | (string | number)[];
+    validationMode?: {
+      roles?: 'all' | 'any';
+      permissions?: 'all' | 'any';
+    };
   }) => boolean;
   loading: boolean;
 };

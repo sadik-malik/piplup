@@ -1,19 +1,41 @@
 {
   "name": "@piplup/use-event-listener",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/use-event-listener/src",
+  "sourceRoot": "{projectRoot}/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:packages"],
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "packages/use-event-listener/src/**/*.ts",
-          "packages/use-event-listener/src/**/*.tsx",
-          "packages/use-event-listener/package.json",
-          "packages/use-event-listener/project.json"
+          "{projectRoot}/src/**/*.ts",
+          "{projectRoot}/src/**/*.tsx",
+          "{projectRoot}/package.json",
+          "{projectRoot}/project.json"
+        ]
+      }
+    },
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "{projectRoot}/dist",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "project": "{projectRoot}/package.json",
+        "entryFile": "{projectRoot}/src/index.ts",
+        "external": ["react", "react-dom", "react/jsx-runtime"],
+        "format": ["esm", "cjs"],
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "generateExportsField": true,
+        "assets": [
+          {
+            "glob": "{projectRoot}/README.md",
+            "input": ".",
+            "output": "."
+          }
         ]
       }
     }
