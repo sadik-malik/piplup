@@ -1,0 +1,30 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+
+.openSourceLibrariesHeading {
+  font-size: 2rem;
+  padding-bottom: 48px;
+  padding-top: 32px;
+  text-align: center;
+}
+
+.rhfAdaptersTitle {
+  color: #06b6d4;
+}
+
+.cacheBusterTitle {
+  color: #ef4444;
+}
+
+.utilityReactHooks {
+  color: #3b82f6;
+}
