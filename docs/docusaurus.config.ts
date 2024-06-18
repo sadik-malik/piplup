@@ -1,11 +1,13 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
+import { ASSETS, ROUTES } from './src/constants';
 
 const config: Config = {
   title: 'Piplup',
-  tagline: 'Empowering Your React Apps with Essential Libraries and Tools',
-  favicon: 'img/favicon.ico',
+  tagline:
+    "Explore an ever-expanding collection of React components and utilities that are free to use forever. We've developed the core utilities and components for your design system, so you don't have to.",
+  favicon: ASSETS.FAVICON,
 
   // Set the production url of your site here
   url: 'https://piplup.vercel.com',
@@ -35,17 +37,9 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -56,12 +50,12 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/piplup-social-card.jpg',
+    image: ASSETS.SOCIAL_CARD,
     navbar: {
       title: 'Piplup',
       logo: {
         alt: 'Piplup Logo',
-        src: 'img/logo.svg',
+        src: ASSETS.LOGO_SVG,
       },
       items: [
         {
@@ -70,9 +64,9 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        { to: ROUTES.BLOG, label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/sadik-malik/piplup',
+          href: ROUTES.GITHUB_REPO,
           label: 'GitHub',
           position: 'right',
         },

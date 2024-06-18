@@ -16,8 +16,27 @@
   }
 }
 
-.buttons {
+.heroTitle {
+  font-size: 2.25rem;
+}
+
+.heroSubtitle {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.piplupTitle {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin-bottom: 16px;
+}
+
+.piplupTitle > p {
+  margin-bottom: 0;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--ifm-color-primary);
 }

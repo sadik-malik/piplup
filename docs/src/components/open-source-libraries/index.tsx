@@ -1,18 +1,20 @@
 import Link from '@docusaurus/Link';
+import { ROUTES } from '@site/src/constants';
 import Heading from '@theme/Heading';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
 type OpenSourceItem = {
   title: string;
-  titleClassName?: string;
+  color: string;
   description: JSX.Element;
+  href?: string;
 };
 
 const FeatureList: OpenSourceItem[] = [
   {
     title: 'RHF Adapters',
-    titleClassName: styles.rhfAdaptersTitle,
+    color: '#06b6d4',
     description: (
       <>
         Designed to streamline the integration of{' '}
@@ -25,7 +27,8 @@ const FeatureList: OpenSourceItem[] = [
   },
   {
     title: 'Cache Buster',
-    titleClassName: styles.cacheBusterTitle,
+    color: '#ef4444',
+    href: ROUTES.CACHE_BUSTER,
     description: (
       <>
         Automatic browser cache clearance on every release, ensuring your website stays up-to-date
@@ -35,7 +38,7 @@ const FeatureList: OpenSourceItem[] = [
   },
   {
     title: 'Utility Hooks',
-    titleClassName: styles.utilityReactHooks,
+    color: '#3b82f6',
     description: (
       <>
         Simplify your code with our common utility hooks, designed to effectively manage boilerplate
@@ -45,37 +48,33 @@ const FeatureList: OpenSourceItem[] = [
   },
 ];
 
-function OpenSourceLibrary({ title, titleClassName, description }: OpenSourceItem) {
+function OpenSourceLibrary({ title, color, description, href }: OpenSourceItem) {
   return (
-    <div className={clsx('col col--4 margin-bottom--md')}>
-      <div className="card">
+    <div className={'col col--4 margin-bottom--md'}>
+      <Link href={href} className={clsx('card text--no-decoration', styles.card)}>
         <div className="card__body">
           <div className="text--center padding-horiz--md">
-            <Heading as="h3" className={titleClassName}>
+            <Heading
+              as="h3"
+              style={{
+                color,
+              }}
+              className={styles.cardTitle}
+            >
               {title}
             </Heading>
-            <p>{description}</p>
+            <p className={styles.cardDescription}>{description}</p>
           </div>
         </div>
-        <div className="card__footer">
-          <button className="button button--outline button--secondary button--block">
-            Read More
-          </button>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }
 
 export default function OpenSourceLibraries(): JSX.Element {
   return (
-    <section className={styles.features}>
+    <section className={styles.libraries}>
       <div className="container">
-        <div className="row">
-          <div className="col">
-            <h1 className={styles.openSourceLibrariesHeading}>Open Source Libraries</h1>
-          </div>
-        </div>
         <div className="row">
           {FeatureList.map((props, idx) => (
             <OpenSourceLibrary key={idx} {...props} />
