@@ -1,7 +1,7 @@
 export {
-  useHTMLTextareaAdapter,
+  default as useHTMLTextareaAdapter,
   type HTMLTextareaProps,
   type HTMLTextareaPropsOverrides,
   type UseHTMLTextareaAdapterProps,
 } from './adapter';
-export { HTMLTextareaElement, type HTMLTextareaElementProps } from './element';
+export { default as HTMLTextareaElement, type HTMLTextareaElementProps } from './element';

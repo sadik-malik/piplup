@@ -44,7 +44,7 @@ export interface UseHTMLTextareaAdapterProps<
   classes?: Partial<Record<keyof typeof HTMLTextareaClasses, 'string'>>;
 }
 
-export function useHTMLTextareaAdapter<
+export default function useHTMLTextareaAdapter<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   TTransformedValue extends TransformedValue = TransformedValue

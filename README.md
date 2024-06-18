@@ -1,6 +1,6 @@
 # @piplup
 
-Welcome to @piplup! This repository contains a collection of useful libraries for React applications.
+Welcome to @piplup! This repository contains a collection of useful libraries empowering Your React apps with essential libraries and tools.
 
 ## [@piplup/cache-buster](./packages/cache-buster/README.md)
 
