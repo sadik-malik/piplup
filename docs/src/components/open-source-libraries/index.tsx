@@ -37,11 +37,12 @@ const FeatureList: OpenSourceItem[] = [
     ),
   },
   {
-    title: 'Utility Hooks',
+    title: 'React Hooks',
     color: '#3b82f6',
+    href: ROUTES.UTILITY_HOOKS,
     description: (
       <>
-        Simplify your code with our common utility hooks, designed to effectively manage boilerplate
+        Simplify your code with our common React hooks, designed to effectively manage boilerplate
         code and enhance productivity.
       </>
     ),

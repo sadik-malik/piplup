@@ -1,4 +1,5 @@
 import type * as Preset from '@docusaurus/preset-classic';
+import npm2yarn from '@docusaurus/remark-plugin-npm2yarn';
 import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 import { ASSETS, ROUTES } from './src/constants';
@@ -37,6 +38,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          remarkPlugins: [npm2yarn],
         },
         blog: {
           showReadingTime: true,
@@ -75,6 +77,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['powershell'],
     },
   } satisfies Preset.ThemeConfig,
 };

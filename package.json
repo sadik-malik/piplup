@@ -9,7 +9,8 @@
     "clean": "rimraf --glob ./packages/*/dist",
     "lint": "nx run-many --target=lint --all",
     "build:all": "nx run-many --target=build --all",
-    "build:packages": "nx run-many -t build -p tag:scope:packages"
+    "build:packages": "nx run-many -t build -p tag:scope:packages",
+    "docs:start": "cd docs && npm run start"
   },
   "private": true,
   "devDependencies": {

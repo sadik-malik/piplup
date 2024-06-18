@@ -1,7 +1,9 @@
 export const ROUTES = {
   GITHUB_REPO: 'https://github.com/sadik-malik/piplup',
   BLOG: '/blog',
-  CACHE_BUSTER: '/docs/Cache Buster/getting-started',
+  CACHE_BUSTER: '/docs/category/cache-buster',
+  UTILITY_HOOKS: '/docs/category/hooks',
+  LICENSE: '/docs/license',
 } as const;
 
 export const ASSETS = {
