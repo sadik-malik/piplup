@@ -24,6 +24,6 @@ function HTMLButtonComponent<TFieldValues extends FieldValues = FieldValues>(
 
 const HTMLButtonElement = React.forwardRef(HTMLButtonComponent);
 
-HTMLButtonElement.displayName = 'HTMLInputElement';
+HTMLButtonElement.displayName = 'HTMLButtonElement';
 
 export default HTMLButtonElement;
