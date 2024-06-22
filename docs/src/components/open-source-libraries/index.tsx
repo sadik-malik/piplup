@@ -15,6 +15,7 @@ const FeatureList: OpenSourceItem[] = [
   {
     title: 'RHF Adapters',
     color: '#06b6d4',
+    href: ROUTES.RHF_ADAPTERS,
     description: (
       <>
         Designed to streamline the integration of{' '}

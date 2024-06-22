@@ -4,6 +4,7 @@ export const ROUTES = {
   CACHE_BUSTER: '/docs/category/cache-buster',
   UTILITY_HOOKS: '/docs/category/hooks',
   LICENSE: '/docs/license',
+  RHF_ADAPTERS: '/docs/category/rhf-adapters',
 } as const;
 
 export const ASSETS = {

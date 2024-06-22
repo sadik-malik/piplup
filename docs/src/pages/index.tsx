@@ -24,7 +24,6 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout description="Description will go into a meta tag in <head />">
       <HomepageHeader />

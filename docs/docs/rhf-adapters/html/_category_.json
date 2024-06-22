@@ -1,0 +1,8 @@
+{
+  "label": "HTML",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "HTML adapters to connect react-hook-form with the unstyled html elements. Use components pre-configured with adapters or compose your own."
+  }
+}
