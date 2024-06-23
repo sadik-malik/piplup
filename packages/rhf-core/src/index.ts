@@ -8,6 +8,7 @@ export {
   useFieldState,
   useForkRef,
   useFormErrorParser,
+  useFormReset,
   useTransform,
   type ComposeRulesMessages,
   type UseComposeClassNameProps,
@@ -17,6 +18,8 @@ export {
   type UseComposeStyleProps,
   type UseFieldStateProps,
   type UseFieldStateReturn,
+  type UseFormResetProps,
+  type UseFormResetResult,
   type UseTransformProps,
   type UseTransformReturn,
 } from './hooks';

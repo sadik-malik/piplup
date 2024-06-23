@@ -26,18 +26,20 @@ export interface HTMLInputProps
   extends React.ComponentPropsWithRef<'input'>,
     HTMLInputPropsOverrides {}
 
-type TransformedValue = string | number | readonly string[] | undefined;
-
 export interface UseHTMLInputAdapterProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends TransformedValue = TransformedValue
-> extends Omit<HTMLInputProps, 'name' | 'defaultValue' | 'style'>,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<HTMLInputProps, 'name' | 'defaultValue' | 'style' | 'src'>,
     UseControllerProps<TFieldValues, TName> {
   defaultValue?: PathValue<TFieldValues, TName>;
   transform?: {
-    input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
-    output?: (event: React.ChangeEvent<HTMLInputElement>) => PathValue<TFieldValues, TName>;
+    input?: (
+      value: PathValue<TFieldValues, TName>
+    ) => string | number | readonly string[] | undefined;
+    output?: (
+      event: React.ChangeEvent<HTMLInputElement>,
+      previousValue: string | number | readonly string[] | FileList | undefined
+    ) => PathValue<TFieldValues, TName>;
   };
   verbose?: boolean;
   disableOnIsSubmitting?: boolean;
@@ -50,29 +52,29 @@ export interface UseHTMLInputAdapterProps<
 
 export default function useHTMLInputAdapter<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends TransformedValue = TransformedValue
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: UseHTMLInputAdapterProps<TFieldValues, TName, TTransformedValue>,
+  props: UseHTMLInputAdapterProps<TFieldValues, TName>,
   ref?: HTMLInputProps['ref']
 ): HTMLInputProps {
   const {
+    id,
     name,
     control,
     defaultValue,
-    disabled,
+    disabled = false,
     rules,
-    shouldUnregister,
+    shouldUnregister = false,
     onChange,
     onBlur,
-    type,
+    type = 'text',
     transform,
     verbose = true,
     disableOnIsSubmitting = false,
     className,
     style,
     classes,
-    required,
+    required = false,
     messages,
     min,
     minLength,
@@ -80,6 +82,7 @@ export default function useHTMLInputAdapter<
     maxLength,
     title,
     pattern,
+    value: inputValue,
     ...rest
   } = props;
 
@@ -90,6 +93,10 @@ export default function useHTMLInputAdapter<
     )(
       `useHTMLInputAdator with prop \`type="${type}"\` may result in unexpected behaviour. Please use useHTMLButtonAdapter instead.`
     );
+  }
+
+  if (type === 'checkbox' && typeof inputValue === 'undefined') {
+    throw new Error(`\`value\` prop is required when using type as "${type}".`);
   }
 
   const composedRules = useComposeRules<TFieldValues, TName>({
@@ -122,33 +129,50 @@ export default function useHTMLInputAdapter<
 
   const transformHelpers = React.useMemo(
     () => ({
-      input(value: PathValue<TFieldValues, TName>): TTransformedValue {
+      input(
+        value: PathValue<TFieldValues, TName>
+      ): string | number | readonly string[] | undefined {
         if (type === 'file') {
           // In React, an <input type="file" /> is always an uncontrolled component because its value
           // can only be set by a user, and not programmatically.
           // https://legacy.reactjs.org/docs/uncontrolled-components.html#the-file-input-tag
-          return undefined as TTransformedValue;
+          return undefined;
         }
         if (typeof value === 'undefined' || value === null) {
-          return '' as TTransformedValue;
+          return '';
         }
         return value;
       },
-      output(event: React.ChangeEvent<HTMLInputElement>) {
-        switch (type) {
-          case 'file':
-            return event.target.files as PathValue<TFieldValues, TName>;
-          case 'number':
-            return +event.target.value as PathValue<TFieldValues, TName>;
-          default:
-            return event.target.value as PathValue<TFieldValues, TName>;
+      output(
+        event: React.ChangeEvent<HTMLInputElement>,
+        previousValue: string | number | readonly string[] | FileList | undefined
+      ) {
+        if (type === 'checkbox') {
+          const values: string[] = (Array.isArray(previousValue) ? previousValue : []).filter(
+            (value) => value.toString() !== event.target.value.toString()
+          );
+          if (event.target.checked) {
+            values.push(event.target.value);
+          }
+          return values as PathValue<TFieldValues, TName>;
+        } else if (type === 'radio') {
+          return (event.target.checked ? event.target.value : '') as PathValue<TFieldValues, TName>;
+        } else if (type === 'file') {
+          return event.target.files as PathValue<TFieldValues, TName>;
+        } else if (type === 'number') {
+          return +event.target.value as PathValue<TFieldValues, TName>;
         }
+        return event.target.value as PathValue<TFieldValues, TName>;
       },
     }),
     [type]
   );
 
-  const transformed = useTransform<TFieldValues, TName, TTransformedValue>({
+  const transformed = useTransform<
+    TFieldValues,
+    TName,
+    string | number | readonly string[] | undefined
+  >({
     transform: {
       input: typeof transform?.input === 'function' ? transform.input : transformHelpers.input,
       output: typeof transform?.output === 'function' ? transform.output : transformHelpers.output,
@@ -185,7 +209,20 @@ export default function useHTMLInputAdapter<
     style,
   });
 
-  return {
+  const checked = React.useMemo(() => {
+    if (type === 'checkbox') {
+      return Array.isArray(transformed.value)
+        ? transformed.value.includes(inputValue?.toString())
+        : false;
+    }
+    if (type === 'radio') {
+      return transformed.value?.toString() === inputValue?.toString();
+    }
+    return false;
+  }, [type, inputValue, transformed.value]);
+
+  const adapter: HTMLInputProps = {
+    ...rest,
     name: field.name,
     value: transformed.value,
     ref: handleRef,
@@ -202,6 +239,18 @@ export default function useHTMLInputAdapter<
     maxLength,
     pattern,
     title,
-    ...rest,
+    id,
   };
+
+  if (type === 'checkbox' || type === 'radio') {
+    adapter.checked = checked;
+    adapter.value = inputValue;
+  }
+
+  if (type === 'image') {
+    adapter.src = transformed.value?.toString();
+    delete adapter.value;
+  }
+
+  return adapter;
 }

@@ -1,6 +1,6 @@
 import { title } from 'process';
 import { type FieldPath, type FieldValues, type UseControllerProps } from 'react-hook-form';
-import { compact } from '../utils';
+import { compact, hasOwnProperty } from '../utils';
 
 export type ComposeRulesMessages = {
   required?: string;
@@ -9,6 +9,7 @@ export type ComposeRulesMessages = {
   min?: string | ((min: string | number) => string);
   max?: string | ((max: string | number) => string);
   pattern?: string | ((pattern: RegExp, title?: string) => string);
+  email?: string | ((email: string) => string);
 };
 
 const defaultMessages: NonNullable<ComposeRulesMessages> = {
@@ -19,6 +20,7 @@ const defaultMessages: NonNullable<ComposeRulesMessages> = {
   max: (max) => `Value must be ${max} or earlier.`,
   pattern: (_pattern: RegExp, title?: string) =>
     compact(['Please match the requested format.', title]).join(' '),
+  email: 'Entered value does not match email format.',
 };
 
 function getMessage(
@@ -61,6 +63,16 @@ export default function useComposeRules<
 
   if (!rules.required && required) {
     rules.required = messages?.required ?? defaultMessages.required;
+  }
+
+  if (type === 'email' && !hasOwnProperty(rules.validate, 'email')) {
+    rules.validate = {
+      ...rules.validate,
+      email: (value) =>
+        !value ||
+        /\S+@\S+\.\S+/.test(value) ||
+        getMessage(messages?.email ?? defaultMessages?.email, value),
+    };
   }
 
   if (

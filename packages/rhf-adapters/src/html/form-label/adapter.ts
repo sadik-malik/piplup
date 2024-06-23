@@ -3,42 +3,39 @@ import {
   useComposeModiferState,
   useComposeStyle,
   useFieldState,
-  useFormErrorParser,
-  type FormErrorParserFn,
   type UseComposeModifierStateResult,
   type UseFieldStateProps,
 } from '@piplup/rhf-core';
 import * as React from 'react';
 import { FieldPath, type FieldValues } from 'react-hook-form';
-import HTMLFormHelperTextClasses from './classes';
+import HTMLFormLabelClasses from './classes';
 
-export interface HTMLFormHelperTextPropsOverrides {}
+export interface HTMLFormLabelPropsOverrides {}
 
-export interface HTMLFormHelperTextProps
-  extends React.ComponentPropsWithRef<'p'>,
-    HTMLFormHelperTextPropsOverrides {}
+export interface HTMLFormLabelProps
+  extends React.ComponentPropsWithRef<'label'>,
+    HTMLFormLabelPropsOverrides {}
 
-export interface UseHTMLFormHelperTextProps<
+export interface UseHTMLFormLabelProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends Omit<HTMLFormHelperTextProps, 'style' | 'name'>,
+> extends Omit<HTMLFormLabelProps, 'style' | 'name'>,
     UseFieldStateProps<TFieldValues, TName> {
   disabled?: boolean;
   style?:
     | React.CSSProperties
     | ((ownerState: UseComposeModifierStateResult) => React.CSSProperties);
   verbose?: boolean;
-  classes?: Partial<Record<keyof typeof HTMLFormHelperTextClasses, string>>;
-  errorParser?: FormErrorParserFn;
+  classes?: Record<keyof typeof HTMLFormLabelClasses, string>;
 }
 
-export default function useHTMLFormHelperTextAdapter<
+export default function useHTMLFormLabelAdapter<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: UseHTMLFormHelperTextProps<TFieldValues, TName>,
-  ref?: HTMLFormHelperTextProps['ref']
-): HTMLFormHelperTextProps {
+  props: UseHTMLFormLabelProps<TFieldValues, TName>,
+  ref?: HTMLFormLabelProps['ref']
+): HTMLFormLabelProps {
   const {
     control,
     disabled = false,
@@ -47,8 +44,6 @@ export default function useHTMLFormHelperTextAdapter<
     style,
     classes,
     name,
-    errorParser,
-    children,
     ...rest
   } = props;
 
@@ -64,7 +59,7 @@ export default function useHTMLFormHelperTextAdapter<
   });
 
   const composedClassName = useComposeClassName({
-    internalClasses: HTMLFormHelperTextClasses,
+    internalClasses: HTMLFormLabelClasses,
     modifierState,
     classes,
     className,
@@ -75,17 +70,10 @@ export default function useHTMLFormHelperTextAdapter<
     style,
   });
 
-  const errorParserFromContext = useFormErrorParser();
-  const errorMessage = React.useMemo(
-    () => (typeof errorParser === 'function' ? errorParser(error) : errorParserFromContext(error)),
-    [errorParser, errorParserFromContext, error]
-  );
-
   return {
     className: composedClassName,
     style: composedStyle,
     ref,
-    children: errorMessage || children,
     ...rest,
   };
 }

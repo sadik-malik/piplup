@@ -11,7 +11,7 @@ export type UseTransformProps<
   transform?: {
     input?: (value: PathValue<TFieldValues, TName>) => TValue;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    output?: (...event: any[]) => PathValue<TFieldValues, TName>;
+    output?: (...args: any[]) => PathValue<TFieldValues, TName>;
   };
 };
 
@@ -36,10 +36,19 @@ export default function useTransform<
     return typeof input === 'function' ? input(props.value) : props.value;
   }, [props.transform?.input, props.value]);
 
-  const onChange = React.useMemo(() => {
-    const output = props.transform?.output;
-    return typeof output === 'function' ? output(props.onChange) : props.onChange;
-  }, [props.onChange, props.transform?.output]);
+  const onChange = React.useCallback(
+    (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...args: any[]
+    ) => {
+      const output = props.transform?.output;
+      const onChange = props.onChange;
+      return typeof output === 'function'
+        ? onChange(output(...args, value))
+        : onChange(...args, value);
+    },
+    [props.onChange, props.transform?.output, value]
+  );
 
   return {
     value,

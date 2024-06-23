@@ -8,6 +8,24 @@ export {
   type UseHTMLButtonAdapterProps,
 } from './button';
 export {
+  HTMLFormHelperTextClasses,
+  HTMLFormHelperTextElement,
+  useHTMLFormHelperTextAdapter,
+  type HTMLFormHelperTextElementProps,
+  type HTMLFormHelperTextProps,
+  type HTMLFormHelperTextPropsOverrides,
+  type UseHTMLFormHelperTextProps,
+} from './form-helper-text';
+export {
+  HTMLFormLabelClasses,
+  HTMLFormLabelElement,
+  useHTMLFormLabelAdapter,
+  type HTMLFormLabelElementProps,
+  type HTMLFormLabelProps,
+  type HTMLFormLabelPropsOverrides,
+  type UseHTMLFormLabelProps,
+} from './form-label';
+export {
   HTMLInputClasses,
   HTMLInputElement,
   useHTMLInputAdapter,

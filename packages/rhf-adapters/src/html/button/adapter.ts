@@ -2,6 +2,7 @@ import {
   useComposeClassName,
   useComposeModiferState,
   useComposeStyle,
+  useFormReset,
   type UseComposeModifierStateResult,
 } from '@piplup/rhf-core';
 import * as React from 'react';
@@ -23,7 +24,7 @@ export interface UseHTMLButtonAdapterProps<TFieldValues extends FieldValues = Fi
   style?:
     | React.CSSProperties
     | ((ownerState: UseComposeModifierStateResult) => React.CSSProperties);
-  classes?: Record<keyof typeof HTMLButtonClasses, string>;
+  classes?: Partial<Record<keyof typeof HTMLButtonClasses, string>>;
 }
 
 export default function useHTMLButtonAdapter<TFieldValues extends FieldValues = FieldValues>(
@@ -39,6 +40,8 @@ export default function useHTMLButtonAdapter<TFieldValues extends FieldValues = 
     className,
     style,
     classes,
+    type,
+    onClick,
     ...rest
   } = props;
 
@@ -67,11 +70,29 @@ export default function useHTMLButtonAdapter<TFieldValues extends FieldValues = 
     style,
   });
 
+  const reset = useFormReset({
+    control,
+  });
+
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = React.useCallback(
+    (event) => {
+      if (typeof onClick !== 'undefined') {
+        onClick(event);
+      }
+      if (type === 'reset' && !event.defaultPrevented) {
+        reset();
+      }
+    },
+    [type, onClick, reset]
+  );
+
   return {
     disabled: modifierState.disabled,
     className: composedClassName,
     style: composedStyle,
     ref,
+    type,
+    onClick: handleClick,
     ...rest,
   };
 }

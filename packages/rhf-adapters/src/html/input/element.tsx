@@ -1,29 +1,21 @@
 import { logger } from '@piplup/rhf-core';
 import * as React from 'react';
-import { type FieldPath, type FieldValues, type PathValue } from 'react-hook-form';
+import { type FieldPath, type FieldValues } from 'react-hook-form';
 import useHTMLInputAdapter, { type HTMLInputProps, type UseHTMLInputAdapterProps } from './adapter';
 
 export interface HTMLInputElementProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends string | number | readonly string[] | undefined = PathValue<
-    TFieldValues,
-    TName
-  >
-> extends UseHTMLInputAdapterProps<TFieldValues, TName, TTransformedValue> {
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends UseHTMLInputAdapterProps<TFieldValues, TName> {
   verbose?: boolean;
   component?: React.ElementType;
 }
 
 function HTMLInputComponent<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends string | number | readonly string[] | undefined = PathValue<
-    TFieldValues,
-    TName
-  >
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: HTMLInputElementProps<TFieldValues, TName, TTransformedValue>,
+  props: HTMLInputElementProps<TFieldValues, TName>,
   ref?: HTMLInputProps['ref']
 ): React.ReactElement {
   if (props.type === 'button' || props.type === 'reset' || props.type === 'submit') {
@@ -35,7 +27,7 @@ function HTMLInputComponent<
     );
   }
 
-  const adapter = useHTMLInputAdapter<TFieldValues, TName, TTransformedValue>(
+  const adapter = useHTMLInputAdapter<TFieldValues, TName>(
     {
       ...props,
       verbose: false,
@@ -50,4 +42,4 @@ const HTMLInputElement = React.forwardRef(HTMLInputComponent);
 
 HTMLInputElement.displayName = 'HTMLInputElement';
 
-export default HTMLInputElement;
+export default HTMLInputElement as typeof HTMLInputComponent;

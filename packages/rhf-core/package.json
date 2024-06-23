@@ -23,7 +23,7 @@
   ],
   "peerDependencies": {
     "@types/react": "^18.0.0",
-    "react": "^18.0.0 || ^19.0.0",
+    "react": "^18.0.0",
     "react-hook-form": "^7.51.5"
   },
   "peerDependenciesMeta": {
@@ -39,5 +39,6 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "main": "src/index.ts"
 }

@@ -85,10 +85,14 @@ function FormContainerWithUseForm<
   TTransformedValues extends FieldValues | undefined = undefined
 >(props: FormContainerWithUseFormProps<TFieldValues, TContext, TTransformedValues>) {
   const { formProps, onSubmit, onError, errorParser, verbose, children, ...UseFormProps } = props;
-  const formContext = useForm<TFieldValues, TContext, TTransformedValues>(UseFormProps);
+
+  const formContext = useForm<TFieldValues, TContext, TTransformedValues>({
+    ...UseFormProps,
+  });
 
   return (
     <FormContainerWithoutUseForm
+      formProps={formProps}
       formContext={formContext}
       errorParser={errorParser}
       onError={onError}

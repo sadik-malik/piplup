@@ -31,4 +31,4 @@ const HTMLFormHelperTextElement = React.forwardRef(HTMLFormHelperTextComponent);
 
 HTMLFormHelperTextElement.displayName = 'HTMLFormHelperTextElement';
 
-export default HTMLFormHelperTextElement;
+export default HTMLFormHelperTextElement as typeof HTMLFormHelperTextComponent;
