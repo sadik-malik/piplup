@@ -23,7 +23,7 @@ const meta: Meta<typeof HTMLButtonElement> = {
 
   argTypes: {
     type: {
-      control: 'radio',
+      control: 'select',
       options: ['button', 'submit', 'reset'],
       description: 'Type of the button element',
       table: {

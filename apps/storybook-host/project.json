@@ -5,7 +5,13 @@
   "projectType": "library",
   "tags": [],
   "// targets": "to see all targets run: nx show project storybook-host --web",
-  "targets": {},
+  "targets": {
+    "storybook": {
+      "options": {
+        "port": "4401"
+      }
+    }
+  },
   "implicitDependencies": [
     "@piplup/rhf-core",
     "@piplup/rhf-adapters",
