@@ -25,13 +25,17 @@
         "tsConfig": "{projectRoot}/tsconfig.lib.json",
         "project": "{projectRoot}/package.json",
         "entryFile": "{projectRoot}/src/index.ts",
-        "additionalEntryPoints": ["{projectRoot}/src/html/html.ts"],
+        "additionalEntryPoints": [
+          "{projectRoot}/src/mui/material/material.ts",
+          "{projectRoot}/src/mui/x-date-pickers/x-date-pickers.ts"
+        ],
         "external": [
           "react",
           "react-dom",
           "react/jsx-runtime",
           "react-hook-form",
-          "@piplup/rhf-core"
+          "@piplup/rhf-core",
+          "@piplup/utils"
         ],
         "format": ["esm", "cjs"],
         "rollupConfig": "@nx/react/plugins/bundle-rollup",

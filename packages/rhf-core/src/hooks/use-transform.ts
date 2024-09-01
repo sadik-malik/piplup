@@ -1,42 +1,43 @@
 import * as React from 'react';
-import { FieldPath, FieldValues, PathValue, UseControllerReturn } from 'react-hook-form';
+import { useEventCallback } from '@piplup/utils';
+import { type FieldPath, type FieldValues, type PathValue, type UseControllerReturn } from 'react-hook-form';
 
 export type UseTransformProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TValue = unknown
+  TTransformedValue = unknown
 > = {
-  value: UseControllerReturn<TFieldValues, TName>['field']['value'];
   onChange: UseControllerReturn<TFieldValues, TName>['field']['onChange'];
   transform?: {
-    input?: (value: PathValue<TFieldValues, TName>) => TValue;
+    input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     output?: (...args: any[]) => PathValue<TFieldValues, TName>;
   };
+  value: UseControllerReturn<TFieldValues, TName>['field']['value'];
 };
 
 export type UseTransformReturn<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TValue = unknown
+  TTransformedValue = unknown
 > = {
-  value: TValue;
   onChange: UseControllerReturn<TFieldValues, TName>['field']['onChange'];
+  value: TTransformedValue;
 };
 
-export default function useTransform<
+export function useTransform<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TValue = unknown
+  TTransformedValue = unknown
 >(
-  props: UseTransformProps<TFieldValues, TName, TValue>
-): UseTransformReturn<TFieldValues, TName, TValue> {
+  props: UseTransformProps<TFieldValues, TName, TTransformedValue>
+): UseTransformReturn<TFieldValues, TName, TTransformedValue> {
   const value = React.useMemo(() => {
     const input = props.transform?.input;
     return typeof input === 'function' ? input(props.value) : props.value;
   }, [props.transform?.input, props.value]);
 
-  const onChange = React.useCallback(
+  const onChange = useEventCallback(
     (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...args: any[]
@@ -46,12 +47,11 @@ export default function useTransform<
       return typeof output === 'function'
         ? onChange(output(...args, value))
         : onChange(...args, value);
-    },
-    [props.onChange, props.transform?.output, value]
+    }
   );
 
   return {
-    value,
     onChange,
+    value,
   };
 }

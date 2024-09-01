@@ -1,2 +1,2 @@
-export { default as CacheBuster, type CacheBusterProps } from './cache-buster';
+export { type CacheBusterProps, default as CacheBuster } from './cache-buster';
 

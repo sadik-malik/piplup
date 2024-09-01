@@ -5,7 +5,7 @@ const defaultErrorParser: FormErrorParserFn = (error) => {
   return error?.message;
 };
 
-export default function useFormErrorParser(): FormErrorParserFn {
+export function useFormErrorParser(): FormErrorParserFn {
   const context = React.useContext(FormErrorParserContext);
   return React.useMemo(() => (context ? context : defaultErrorParser), [context]);
 }

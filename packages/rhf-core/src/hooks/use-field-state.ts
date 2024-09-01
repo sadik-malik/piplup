@@ -1,6 +1,6 @@
 import {
-  Control,
-  FieldPath,
+  type Control,
+  type FieldPath,
   get,
   useFormState,
   type ControllerFieldState,
@@ -12,8 +12,8 @@ export type UseFieldStateProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = {
   control?: Control<TFieldValues>;
-  name: TName;
   disabled?: boolean;
+  name: TName;
 };
 
 export type UseFieldStateReturn = ControllerFieldState & {
@@ -31,21 +31,30 @@ export type UseFieldStateReturn = ControllerFieldState & {
  * @param {TName} props.name - The name of the field.
  * @returns {UseFieldStateReturn} The state of the field including its validation status, dirtiness, touched state, and errors.
  */
-export default function useFieldState<
+export function useFieldState<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(props: UseFieldStateProps<TFieldValues, TName>): UseFieldStateReturn {
-  const { control, name, disabled } = props;
+  const { control, disabled, name } = props;
 
   const formState = useFormState<TFieldValues>({
     control,
-    name,
     disabled,
+    name,
   });
 
   return Object.defineProperties(
     {},
     {
+      // Added disabled property available in field.disabled in useController
+      disabled: {
+        enumerable: true,
+        get: () => get(formState.disabled || disabled),
+      },
+      error: {
+        enumerable: true,
+        get: () => get(formState.errors, name),
+      },
       invalid: {
         enumerable: true,
         get: () => !!get(formState.errors, name),
@@ -61,15 +70,6 @@ export default function useFieldState<
       isValidating: {
         enumerable: true,
         get: () => !!get(formState.validatingFields, name),
-      },
-      error: {
-        enumerable: true,
-        get: () => get(formState.errors, name),
-      },
-      // Added disabled property available in field.disabled in useController
-      disabled: {
-        enumerable: true,
-        get: () => get(formState.disabled || disabled),
       },
     }
   ) as UseFieldStateReturn;

@@ -18,11 +18,12 @@
       "@piplup/cache-buster": ["packages/cache-buster/src/index.ts"],
       "@piplup/react-acl": ["packages/react-acl/src/index.ts"],
       "@piplup/rhf-adapters": ["packages/rhf-adapters/src/index.ts"],
-      "@piplup/rhf-adapters/html": ["packages/rhf-adapters/src/html/html.ts"],
       "@piplup/rhf-core": ["packages/rhf-core/src/index.ts"],
+      "@piplup/rhf-core/html": ["packages/rhf-core/src/html/html.ts"],
       "@piplup/storybook-host": ["apps/storybook-host/src/index.ts"],
       "@piplup/use-event-listener": ["packages/use-event-listener/src/index.ts"],
       "@piplup/use-local-storage": ["packages/use-local-storage/src/index.ts"],
+      "@piplup/utils": ["packages/utils/src/index.ts"],
       "@piplup/vite-plugin-cache-buster": ["packages/vite-plugin-cache-buster/src/index.ts"]
     }
   },

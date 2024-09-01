@@ -1,19 +1,23 @@
 # @piplup/use-local-storage
 
+## ⚠️ Deprecation Warning
+
+> **Important Notice:** `useLocalStorage` hook has been moved to [@piplup/utils](https://github.com/sadik-malik/piplup/blob/main/packages/utils/README.md), While it may continue to work for existing projects, we recommend migrating to the new package.
+
 `useLocalStorage` - Use your browser localStorage as a reactive storage. It's a hook for reading values from the browser localStorage and listening to changes in it. Any updates made to localStorage using the `setItem` and `removeItem` helper functions will trigger a state update for the useLocalStorage hook.
 
 ## Installation
 
 ```bash
-npm install @piplup/use-local-storage @piplup/use-event-listener
+npm install @piplup/use-local-storage
 
 # or
 
-yarn add @piplup/use-local-storage @piplup/use-event-listener
+yarn add @piplup/use-local-storage
 
 # or
 
-pnpm add @piplup/use-local-storage @piplup/use-event-listener
+pnpm add @piplup/use-local-storage
 ```
 
 ## Usage
@@ -33,10 +37,6 @@ function App() {
   );
 }
 ```
-
-## Dependencies
-
-`@piplup/use-local-storage` is dependent on [@piplup/use-event-listener](https://github.com/sadik-malik/piplup/blob/main/packages/use-event-listener/README.md). Please ensure you install it as well.
 
 ## API
 

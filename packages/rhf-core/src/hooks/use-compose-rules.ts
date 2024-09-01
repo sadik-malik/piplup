@@ -1,36 +1,35 @@
-import { title } from 'process';
+import { compact, hasOwnProperty } from '@piplup/utils';
 import { type FieldPath, type FieldValues, type UseControllerProps } from 'react-hook-form';
-import { compact, hasOwnProperty } from '../utils';
 
 export type ComposeRulesMessages = {
+  email?: ((email: string) => string) | string;
+  max?: ((max: number | string) => string) | string;
+  maxLength?: ((maxLength: number) => string) | string;
+  min?: ((min: number | string) => string) | string;
+  minLength?: ((minLength: number) => string) | string;
+  pattern?: ((pattern: RegExp, title?: string) => string) | string;
   required?: string;
-  minLength?: string | ((minLength: number) => string);
-  maxLength?: string | ((maxLength: number) => string);
-  min?: string | ((min: string | number) => string);
-  max?: string | ((max: string | number) => string);
-  pattern?: string | ((pattern: RegExp, title?: string) => string);
-  email?: string | ((email: string) => string);
 };
 
 const defaultMessages: NonNullable<ComposeRulesMessages> = {
-  required: 'Please fill out this field.',
-  minLength: (minLength) => `Please lengthen this text to ${minLength} characters or more`,
+  email: 'Entered value does not match email format.',
+  max: (max) => `Value must be ${max} or earlier.`,
   maxLength: (maxLength) => `Please shorten this text to ${maxLength} characters or less.`,
   min: (min) => `Value must be ${min} or later.`,
-  max: (max) => `Value must be ${max} or earlier.`,
+  minLength: (minLength) => `Please lengthen this text to ${minLength} characters or more`,
   pattern: (_pattern: RegExp, title?: string) =>
     compact(['Please match the requested format.', title]).join(' '),
-  email: 'Entered value does not match email format.',
+  required: 'Please fill out this field.',
 };
 
 function getMessage(
   messageOrFunction:
-    | string
-    | undefined
     | ((
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...values: any
-      ) => string | undefined),
+      ) => string | undefined)
+    | string
+    | undefined,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ...values: any
 ): string {
@@ -43,23 +42,34 @@ export type UseComposeRulesProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = {
-  rules?: UseControllerProps<TFieldValues, TName>['rules'];
-  required?: boolean;
-  messages?: ComposeRulesMessages;
-  minLength?: number;
-  maxLength?: number;
-  type?: string;
-  min?: number | string;
   max?: number | string;
-  pattern?: string;
+  maxLength?: number;
+  messages?: ComposeRulesMessages;
+  min?: number | string;
+  minLength?: number;
+  pattern?: RegExp | string;
+  required?: boolean;
+  rules?: UseControllerProps<TFieldValues, TName>['rules'];
   title?: string | undefined;
+  type?: string;
 };
 
-export default function useComposeRules<
+export function useComposeRules<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(props: UseComposeRulesProps<TFieldValues, TName>) {
-  const { rules = {}, required, messages, minLength, maxLength, type, min, max, pattern } = props;
+  const {
+    max,
+    maxLength,
+    messages,
+    min,
+    minLength,
+    pattern,
+    required,
+    rules = {},
+    title,
+    type,
+  } = props;
 
   if (!rules.required && required) {
     rules.required = messages?.required ?? defaultMessages.required;
@@ -84,22 +94,22 @@ export default function useComposeRules<
   ) {
     if (!rules.minLength && minLength) {
       rules.minLength = {
-        value: minLength,
         message: getMessage(messages?.minLength ?? defaultMessages?.minLength, minLength),
+        value: minLength,
       };
     }
 
     if (!rules.maxLength && maxLength) {
       rules.maxLength = {
-        value: maxLength,
         message: getMessage(messages?.maxLength ?? defaultMessages?.maxLength, maxLength),
+        value: maxLength,
       };
     }
 
     if (!rules.pattern && pattern) {
       rules.pattern = {
-        value: new RegExp(pattern),
         message: getMessage(messages?.pattern ?? defaultMessages?.pattern, pattern, title),
+        value: pattern instanceof RegExp ? pattern : new RegExp(pattern),
       };
     }
   }
@@ -115,15 +125,15 @@ export default function useComposeRules<
   ) {
     if (!rules.min && min) {
       rules.min = {
-        value: min,
         message: getMessage(messages?.min ?? defaultMessages?.min, min),
+        value: min,
       };
     }
 
     if (!rules.max && max) {
       rules.max = {
-        value: max,
         message: getMessage(messages?.max ?? defaultMessages?.max, max),
+        value: max,
       };
     }
   }

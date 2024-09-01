@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { FieldError, FieldErrors } from 'react-hook-form';
+import { type FieldError, type FieldErrors } from 'react-hook-form';
 
 export type UseComposeModiferStateProps = {
-  error?: FieldError | FieldErrors;
   disabled?: boolean;
-  disableOnIsSubmitting?: boolean;
   disableOnError?: boolean;
+  disableOnIsSubmitting?: boolean;
+  error?: FieldError | FieldErrors;
   isSubmitting?: boolean;
 };
 
 export type UseComposeModifierStateResult = {
-  error: boolean;
   disabled: boolean;
+  error: boolean;
 };
 
 /**
@@ -20,10 +20,10 @@ export type UseComposeModifierStateResult = {
  * @param {UseComposeModiferStateProps} props - Props object containing parameters to determine state modifiers.
  * @returns {UseComposeModifierStateResult} Composed modifier state object containing error and disabled flags.
  */
-export default function useComposeModiferState(
+export function useComposeModiferState(
   props: UseComposeModiferStateProps
 ): UseComposeModifierStateResult {
-  const { disableOnError, disableOnIsSubmitting, disabled, error, isSubmitting } = props;
+  const { disabled, disableOnError, disableOnIsSubmitting, error, isSubmitting } = props;
 
   return React.useMemo<UseComposeModifierStateResult>(() => {
     const hasError = !(
@@ -32,12 +32,12 @@ export default function useComposeModiferState(
       (typeof error === 'object' && Object.keys(error).length === 0)
     );
     return {
-      error: hasError,
       disabled: !!(
         disabled ||
         (disableOnError && hasError) ||
         (disableOnIsSubmitting && isSubmitting)
       ),
+      error: hasError,
     };
   }, [error, disabled, disableOnError, disableOnIsSubmitting, isSubmitting]);
 }

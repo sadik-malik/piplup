@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Control, FieldValues, UseFormReset, useFormContext } from 'react-hook-form';
+import { type Control, type FieldValues, type UseFormReset, useFormContext } from 'react-hook-form';
 
 export type UseFormResetProps<TFieldValues extends FieldValues = FieldValues> = {
   control?: Control<TFieldValues>;
@@ -8,7 +8,7 @@ export type UseFormResetProps<TFieldValues extends FieldValues = FieldValues> = 
 export type UseFormResetResult<TFieldValues extends FieldValues = FieldValues> =
   UseFormReset<TFieldValues>;
 
-export default function useFormReset<TFieldValues extends FieldValues = FieldValues>(
+export function useFormReset<TFieldValues extends FieldValues = FieldValues>(
   props: UseFormResetProps<TFieldValues>
 ): UseFormResetResult<TFieldValues> {
   const methods = useFormContext<TFieldValues>();

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  FieldValues,
+  type FieldValues,
   FormProvider as ReactHookFormProvider,
   SubmitErrorHandler,
   SubmitHandler,
@@ -8,8 +8,7 @@ import {
   useForm,
   type FormProviderProps as ReactHookFormProviderProps,
 } from 'react-hook-form';
-import FormErrorParserContext, { FormErrorParserFn } from './context/form-error-parser-context';
-import logger from './utils/logger';
+import { FormErrorParserContext, FormErrorParserFn } from './context/form-error-parser-context';
 
 interface FormContainerWithoutUseFormProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -29,7 +28,6 @@ interface FormContainerWithoutUseFormProps<
     : never;
   onError?: SubmitErrorHandler<TFieldValues>;
   errorParser?: FormErrorParserFn;
-  verbose?: boolean;
   children: React.ReactNode;
 }
 
@@ -39,15 +37,7 @@ function FormContainerWithoutUseForm<
   TContext = any,
   TTransformedValues extends FieldValues | undefined = undefined
 >(props: FormContainerWithoutUseFormProps<TFieldValues, TContext, TTransformedValues>) {
-  const {
-    formContext,
-    formProps,
-    onSubmit,
-    onError,
-    errorParser,
-    verbose = true,
-    children,
-  } = props;
+  const { formContext, formProps, onSubmit, onError, errorParser, children } = props;
   return (
     <ReactHookFormProvider {...formContext}>
       <FormErrorParserContext.Provider value={errorParser}>
@@ -57,7 +47,7 @@ function FormContainerWithoutUseForm<
           onSubmit={
             typeof onSubmit === 'function'
               ? formContext.handleSubmit(onSubmit, onError)
-              : () => logger('warn', verbose)('Callback `onValid` is missing from FormContainer.')
+              : () => console.warn('Callback `onValid` is missing from FormContainer.')
           }
         >
           {children}
@@ -84,7 +74,7 @@ function FormContainerWithUseForm<
   TContext = any,
   TTransformedValues extends FieldValues | undefined = undefined
 >(props: FormContainerWithUseFormProps<TFieldValues, TContext, TTransformedValues>) {
-  const { formProps, onSubmit, onError, errorParser, verbose, children, ...UseFormProps } = props;
+  const { formProps, onSubmit, onError, errorParser, children, ...UseFormProps } = props;
 
   const formContext = useForm<TFieldValues, TContext, TTransformedValues>({
     ...UseFormProps,
@@ -97,7 +87,6 @@ function FormContainerWithUseForm<
       errorParser={errorParser}
       onError={onError}
       onSubmit={onSubmit}
-      verbose={verbose}
     >
       {children}
     </FormContainerWithoutUseForm>

@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { UseComposeModifierStateResult } from './use-compose-modifier-state';
+import { type UseComposeModifierStateResult } from './use-compose-modifier-state';
 
 export type UseComposeClassNameProps<ModifierState extends UseComposeModifierStateResult> = {
-  modifierState: ModifierState;
-  classes?: Partial<Record<keyof ModifierState | 'root', string | false | undefined | null>>;
-  internalClasses: Record<keyof ModifierState | 'root', string | false | undefined | null>;
+  classes?: Partial<Record<'root' | keyof ModifierState, false | null | string | undefined>>;
   className?: string;
+  composeClassName?: boolean;
+  internalClasses?: Record<'root' | keyof ModifierState, false | null | string | undefined>;
+  modifierState: ModifierState;
 };
 
 /**
@@ -15,24 +16,27 @@ export type UseComposeClassNameProps<ModifierState extends UseComposeModifierSta
  * @param {UseComposeClassNameProps<ModifierState>} options - Options object containing modifier states and class definitions.
  * @returns {string} Composed className string based on the provided options.
  */
-export default function useComposeClassName<ModifierState extends UseComposeModifierStateResult>(
+export function useComposeClassName<ModifierState extends UseComposeModifierStateResult>(
   options: UseComposeClassNameProps<ModifierState>
-): string {
-  const { internalClasses, modifierState, className, classes } = options;
+): string | undefined {
+  const { classes, className, composeClassName = true, internalClasses, modifierState } = options;
 
   return React.useMemo(() => {
-    const output: Array<string | false | undefined | null> = [internalClasses.root, classes?.root];
+    if (!composeClassName) {
+      return className;
+    }
+    const output: Array<false | null | string | undefined> = [internalClasses?.root, classes?.root];
 
     (Object.keys(modifierState) as Array<keyof ModifierState>).forEach((key) => {
       if (!modifierState[key]) {
         return;
       }
-      output.push(internalClasses[key]);
+      output.push(internalClasses?.[key]);
       output.push(classes?.[key]);
     });
 
     output.push(className);
 
     return output.filter(Boolean).join(' ');
-  }, [className, classes, internalClasses, modifierState]);
+  }, [className, classes, internalClasses, modifierState, composeClassName]);
 }

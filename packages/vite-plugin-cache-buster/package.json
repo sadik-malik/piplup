@@ -1,6 +1,6 @@
 {
   "name": "@piplup/vite-plugin-cache-buster",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "private": false,
   "description": "Vite plugin for integrating @piplup/cache-buster with vite",
   "keywords": [
@@ -17,15 +17,11 @@
   "license": "MIT",
   "sideEffects": false,
   "peerDependencies": {
-    "@piplup/cache-buster": "^1.0.2",
     "vite": "^5.0.0"
   },
   "peerDependenciesMeta": {
     "@piplup/cache-buster": {
       "optional": false
-    },
-    "vite": {
-      "optional": true
     }
   },
   "publishConfig": {

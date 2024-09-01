@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { UseComposeModifierStateResult } from './use-compose-modifier-state';
+import { type UseComposeModifierStateResult } from './use-compose-modifier-state';
 
 export type UseComposeStyleProps<ModifierState extends UseComposeModifierStateResult> = {
   modifierState: ModifierState;
-  style?: React.CSSProperties | ((modifierState: ModifierState) => React.CSSProperties);
+  style?: ((modifierState: ModifierState) => React.CSSProperties) | React.CSSProperties;
 };
 
 /**
@@ -13,7 +13,7 @@ export type UseComposeStyleProps<ModifierState extends UseComposeModifierStateRe
  * @param {UseComposeStyleProps<ModifierState>} options - Options object containing modifier states and style definitions.
  * @returns {React.CSSProperties} Computed CSS properties object based on the provided modifierState.
  */
-export default function useComposeStyle<ModifierState extends UseComposeModifierStateResult>(
+export function useComposeStyle<ModifierState extends UseComposeModifierStateResult>(
   options: UseComposeStyleProps<ModifierState>
 ) {
   const { modifierState, style } = options;

@@ -1,10 +1,10 @@
 import { execSync } from 'child_process';
 import path from 'path';
-import type { Logger, Plugin, PluginOption } from 'vite';
+import  { type Logger, type Plugin, type PluginOption } from 'vite';
 
 export type VitePluginCacheBusterOptions = {
-  publicDir?: string;
   debug?: boolean;
+  publicDir?: string;
 };
 
 export default function vitePluginCacheBuster(
@@ -16,13 +16,6 @@ export default function vitePluginCacheBuster(
   let logger: Logger;
 
   const plugin: Plugin = {
-    name: 'vite-plugin-cache-buster',
-    configResolved(config) {
-      enabled = config.isProduction || !!options.debug;
-      command = config.command;
-      publicDir = options.publicDir || path.join('public');
-      logger = config.logger;
-    },
     buildStart() {
       if ((enabled && command === 'build') || command === 'serve') {
         try {
@@ -34,6 +27,13 @@ export default function vitePluginCacheBuster(
         }
       }
     },
+    configResolved(config) {
+      enabled = config.isProduction || !!options.debug;
+      command = config.command;
+      publicDir = options.publicDir || path.join('public');
+      logger = config.logger;
+    },
+    name: 'vite-plugin-cache-buster',
   };
   return [plugin];
 }

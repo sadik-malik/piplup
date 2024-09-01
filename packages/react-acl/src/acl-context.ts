@@ -5,11 +5,11 @@ export type AclContextType = {
     permissions,
     roles,
   }: {
-    permissions?: string | number | (string | number)[];
-    roles?: string | number | (string | number)[];
+    permissions?: (number | string)[] | number | string;
+    roles?: (number | string)[] | number | string;
     validationMode?: {
-      roles?: 'all' | 'any';
       permissions?: 'all' | 'any';
+      roles?: 'all' | 'any';
     };
   }) => boolean;
   loading: boolean;

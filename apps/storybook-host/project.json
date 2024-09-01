@@ -9,7 +9,8 @@
     "storybook": {
       "options": {
         "port": "4401"
-      }
+      },
+      "cache": false
     }
   },
   "implicitDependencies": [

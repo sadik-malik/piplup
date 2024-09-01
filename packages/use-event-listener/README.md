@@ -1,5 +1,9 @@
 # @piplup/use-event-listener
 
+## ⚠️ Deprecation Warning
+
+> **Important Notice:** `useEventListener` hook has been moved to [@piplup/utils](https://github.com/sadik-malik/piplup/blob/main/packages/utils/README.md), While it may continue to work for existing projects, we recommend migrating to the new package.
+
 `useEventListener` is a custom React hook designed to simplify the process of adding event listeners to various DOM elements in React applications.
 
 ## Installation
