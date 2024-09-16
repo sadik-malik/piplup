@@ -7,29 +7,38 @@ import {
   type FieldValues,
 } from 'react-hook-form';
 
+/**
+ * Defines the properties for the `useFieldState` hook.
+ */
 export type UseFieldStateProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = {
+  /** The control object from react-hook-form. */
   control?: Control<TFieldValues>;
+  /** Indicates whether the field is disabled. */
   disabled?: boolean;
+  /** The name of the field. */
   name: TName;
 };
 
+/**
+ * Defines the return type of the `useFieldState` hook.
+ */
 export type UseFieldStateReturn = ControllerFieldState & {
+  /** Indicates whether the field is disabled. */
   disabled: boolean;
+  /** Indicates whether the form is currently being submitted. */
+  isSubmitting: boolean;
 };
 
 /**
  * Hook to get the state of a specific field in a react-hook-form.
- * @see {@link https://github.com/react-hook-form/react-hook-form/blob/master/src/useController.ts} for more information.
  *
- * @template TFieldValues - The type of the field values.
- * @template TName - The name of the field
- * @param {UseFieldStateProps<TFieldValues>} props - The properties for the field state hook.
- * @param {Control<TFieldValues>} [props.control] - The control object from react-hook-form.
- * @param {TName} props.name - The name of the field.
- * @returns {UseFieldStateReturn} The state of the field including its validation status, dirtiness, touched state, and errors.
+ * @see {@link https://github.com/react-hook-form/react-hook-form/blob/master/src/useController.ts#L173} for more information.
+ *
+ * @param props - The properties for the field state hook.
+ * @returns The state of the field including its validation status, dirtiness, touched state, and errors.
  */
 export function useFieldState<
   TFieldValues extends FieldValues = FieldValues,
@@ -46,7 +55,7 @@ export function useFieldState<
   return Object.defineProperties(
     {},
     {
-      // Added disabled property available in field.disabled in useController
+      // Added `disabled` and `isSubmitting` property which is not present in `fieldState` object in react-hook-form
       disabled: {
         enumerable: true,
         get: () => get(formState.disabled || disabled),
@@ -62,6 +71,10 @@ export function useFieldState<
       isDirty: {
         enumerable: true,
         get: () => !!get(formState.dirtyFields, name),
+      },
+      isSubmitting: {
+        enumerable: true,
+        get: () => !!get(formState.isSubmitting, name),
       },
       isTouched: {
         enumerable: true,

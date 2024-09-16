@@ -1,21 +1,60 @@
 import * as React from 'react';
-import { FormHelperText, FormHelperTextProps } from '@mui/material';
-import { FieldPath, FieldValues } from 'react-hook-form';
-import { useMuiFormHelperTextAdapter, UseMuiFormHelperTextProps } from './adapter';
+import { FormHelperText, type FormHelperTextProps } from '@mui/material';
+import { type FieldValues } from 'react-hook-form';
+import { useMuiFormHelperTextAdapter, type UseMuiFormHelperTextProps } from './adapter';
 
-export interface MuiFormHelperTextElementProps<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends UseMuiFormHelperTextProps<TFieldValues, TName> {}
+export interface MuiFormHelperTextElementProps<TFieldValues extends FieldValues = FieldValues>
+  extends Omit<FormHelperTextProps, 'style'>,
+    Omit<
+      UseMuiFormHelperTextProps<TFieldValues>,
+      'classes' | 'composeClassName' | 'composeHelperText' | 'internalClasses'
+    > {}
 
-function MuiFormHelperTextComponent<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
->(props: MuiFormHelperTextElementProps<TFieldValues, TName>, ref?: FormHelperTextProps['ref']) {
-  const adapter = useMuiFormHelperTextAdapter<TFieldValues, TName>(props, ref);
-  return <FormHelperText {...adapter} />;
+function MuiFormHelperTextComponent<TFieldValues extends FieldValues = FieldValues>(
+  props: MuiFormHelperTextElementProps<TFieldValues>,
+  ref?: FormHelperTextProps['ref']
+) {
+  const {
+    classes,
+    className,
+    control,
+    disabled,
+    disableOnError,
+    disableOnIsSubmitting,
+    error,
+    errorParser,
+    exact,
+    helperText,
+    name,
+    style,
+    ...rest
+  } = props;
+
+  const adapter = useMuiFormHelperTextAdapter(
+    {
+      classes,
+      className,
+      composeClassName: false,
+      composeHelperText: true,
+      control,
+      disabled,
+      disableOnError,
+      disableOnIsSubmitting,
+      error,
+      errorParser,
+      exact,
+      helperText,
+      name,
+      style,
+    },
+    ref
+  );
+
+  return <FormHelperText aria-disabled={adapter.disabled} {...rest} {...adapter} />;
 }
 
-export const MuiFormHelperTextElement = React.forwardRef(MuiFormHelperTextComponent);
+export const MuiFormHelperTextElement = React.forwardRef(
+  MuiFormHelperTextComponent
+) as typeof MuiFormHelperTextComponent & { displayName?: string };
 
 MuiFormHelperTextElement.displayName = 'MuiFormHelperTextElement';

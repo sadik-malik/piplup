@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { type FieldError } from 'react-hook-form';
+import { type FieldErrors, type FieldError, type FieldValues } from 'react-hook-form';
 
-export type FormErrorParserFn = (error?: FieldError) => React.ReactNode;
+export type FormErrorParserFn<TFieldValues extends FieldValues = FieldValues> = (
+  error?: FieldError | FieldErrors<TFieldValues>
+) => React.ReactNode;
 
 export const FormErrorParserContext = React.createContext<FormErrorParserFn | null | undefined>(
   null

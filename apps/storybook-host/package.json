@@ -9,6 +9,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
+  "dependencies": {
+    "@piplup/rhf-core": "2.0.0",
+    "@piplup/rhf-adapters": "2.0.0"
+  },
   "author": "",
   "license": "ISC"
 }

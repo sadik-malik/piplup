@@ -1,24 +1,28 @@
 import type * as React from 'react';
-import { type TextFieldProps } from '@mui/material';
-import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core/html';
-import { type ExtractRef } from '@piplup/utils';
+import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 
-export type UseMuiTextFieldAdapterProps<
+export interface UseMuiTextFieldAdapterProps<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = TextFieldProps
-> = UseHtmlInputAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps>;
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<
+    UseHtmlInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+    'internalClasses'
+  > {}
 
 export function useMuiTextFieldAdapter<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = TextFieldProps
+  RefType = unknown
 >(
-  props: UseMuiTextFieldAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps>,
-  ref?: ExtractRef<ComponentProps>
+  props: UseMuiTextFieldAdapterProps<TTransformedValue, TFieldValues, TName>,
+  ref?: React.Ref<RefType>
 ) {
-  return useHtmlInputAdapter<TFieldValues, TName, TTransformedValue, ComponentProps>(props, ref);
+  const adapter = useHtmlInputAdapter<TTransformedValue, TFieldValues, TName, RefType>(props, ref);
+  return {
+    ...adapter,
+    classes: props.classes,
+  };
 }

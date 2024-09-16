@@ -1,33 +1,26 @@
 import * as React from 'react';
-import { type SelectProps } from '@mui/material';
-import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core/html';
-import { type ExtractRef } from '@piplup/utils';
+import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 
-export type UseMuiSelectAdapterProps<
+export interface UseMuiSelectAdapterProps<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = SelectProps
-> = UseHtmlInputAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps> & {
-  checked?: never;
-  classes?: 'classes' extends keyof ComponentProps ? ComponentProps['classes'] : never;
-  indeterminate?: never;
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends UseControllerAdapterProps<TTransformedValue, TFieldValues, TName> {
   multiple?: boolean;
-  src?: never;
-  type?: never;
-};
+}
 
 export function useMuiSelectAdapter<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = SelectProps
+  RefType = unknown
 >(
-  props: UseMuiSelectAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps>,
-  ref?: ExtractRef<ComponentProps>
+  props: UseMuiSelectAdapterProps<TTransformedValue, TFieldValues, TName>,
+  ref?: React.Ref<RefType>
 ) {
   const { multiple } = props;
+
   const transformHelpers = React.useMemo(
     () => ({
       input(value: PathValue<TFieldValues, TName>): TTransformedValue {
@@ -42,7 +35,8 @@ export function useMuiSelectAdapter<
     }),
     [multiple]
   );
-  const adapter = useHtmlInputAdapter<TFieldValues, TName, TTransformedValue, ComponentProps>(
+
+  const adapter = useControllerAdapter<TTransformedValue, TFieldValues, TName, RefType>(
     {
       ...props,
       transform: {
@@ -52,5 +46,8 @@ export function useMuiSelectAdapter<
     },
     ref
   );
-  return adapter;
+  return {
+    ...adapter,
+    classes: props.classes,
+  };
 }

@@ -4,20 +4,95 @@ import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiSelectAdapter, type UseMuiSelectAdapterProps } from './adapter';
 
 export interface MuiSelectElementProps<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown
-> extends UseMuiSelectAdapterProps<TFieldValues, TName, TTransformedValue> {}
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<SelectProps, 'defaultValue' | 'name' | 'style'>,
+    Omit<
+      UseMuiSelectAdapterProps<TTransformedValue, TFieldValues, TName>,
+      | 'classes'
+      | 'composeClassName'
+      | 'composeHelperText'
+      | 'composeHelperText'
+      | 'errorParser'
+      | 'helperText'
+      | 'internalClasses'
+      | 'onBlur'
+      | 'onChange'
+    > {}
 
 function MuiSelectComponent<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown
->(props: MuiSelectElementProps<TFieldValues, TName, TTransformedValue>, ref?: SelectProps['ref']) {
-  const adapter = useMuiSelectAdapter<TFieldValues, TName, TTransformedValue>(props, ref);
-  return <Select {...adapter} />;
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>(props: MuiSelectElementProps<TTransformedValue, TFieldValues, TName>, ref?: SelectProps['ref']) {
+  const {
+    classes,
+    className,
+    control,
+    defaultValue,
+    disabled,
+    disableOnError,
+    disableOnIsSubmitting,
+    error,
+    max,
+    maxLength,
+    messages,
+    min,
+    minLength,
+    multiple,
+    name,
+    onBlur,
+    onChange,
+    pattern,
+    required,
+    rules,
+    shouldUnregister,
+    style,
+    title,
+    transform,
+    ...rest
+  } = props;
+
+  const { helperText: _helperText, ...adapter } = useMuiSelectAdapter(
+    {
+      classes,
+      className,
+      composeClassName: false,
+      composeHelperText: false,
+      control,
+      defaultValue,
+      disabled,
+      disableOnError,
+      disableOnIsSubmitting,
+      error,
+      max,
+      maxLength,
+      messages,
+      min,
+      minLength,
+      multiple,
+      name,
+      onBlur,
+      onChange,
+      pattern,
+      required,
+      rules,
+      shouldUnregister,
+      style,
+      title,
+      transform,
+    },
+    ref
+  );
+
+  return <Select aria-disabled={adapter.disabled} {...rest} {...adapter} />;
 }
 
-export const MuiSelectElement = React.forwardRef(MuiSelectComponent);
+export const MuiSelectElement = React.forwardRef(
+  MuiSelectComponent
+) as typeof MuiSelectComponent & {
+  displayName?: string;
+};
 
 MuiSelectElement.displayName = 'MuiSelectElement';

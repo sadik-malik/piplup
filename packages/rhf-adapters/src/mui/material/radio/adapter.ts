@@ -1,39 +1,34 @@
-import { type RadioProps } from '@mui/material';
-import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core/html';
-import { type ExtractRef } from '@piplup/utils';
-import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
+import type * as React from 'react';
+import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core';
+import { type FieldPath, type FieldValues } from 'react-hook-form';
 
 export type UseMuiRadioAdapterProps<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = RadioProps
-> = UseHtmlInputAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps> & {
-  transform?: {
-    input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
-    output?: (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ...args: any[]
-    ) => PathValue<TFieldValues, TName>;
-  };
-  type?: never;
-  value?: TTransformedValue;
-};
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> = Omit<UseHtmlInputAdapterProps<TTransformedValue, TFieldValues, TName>, 'type'>;
 
 export function useMuiRadioAdapter<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = RadioProps
+  RefType = unknown
 >(
-  props: UseMuiRadioAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps>,
-  ref?: ExtractRef<ComponentProps>
+  props: UseMuiRadioAdapterProps<TTransformedValue, TFieldValues, TName>,
+  ref?: React.Ref<RefType>
 ) {
-  return useHtmlInputAdapter<TFieldValues, TName, TTransformedValue, ComponentProps>(
+  const {
+    src: _src,
+    title: _title,
+    type: _type,
+    ...adapter
+  } = useHtmlInputAdapter<TTransformedValue, TFieldValues, TName, RefType>(
     {
       ...props,
       type: 'radio',
     },
     ref
   );
+
+  return adapter;
 }

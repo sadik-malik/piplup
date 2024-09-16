@@ -4,16 +4,67 @@ import { type FieldValues } from 'react-hook-form';
 import { useMuiButtonAdapter, type UseMuiButtonAdapterProps } from './adapter';
 
 export interface MuiButtonElementProps<TFieldValues extends FieldValues = FieldValues>
-  extends UseMuiButtonAdapterProps<TFieldValues, ButtonProps> {}
+  extends Omit<ButtonProps, 'name' | 'style'>,
+    Omit<
+      UseMuiButtonAdapterProps<TFieldValues>,
+      | 'classes'
+      | 'composeClassName'
+      | 'composeHelperText'
+      | 'errorParser'
+      | 'helperText'
+      | 'internalClasses'
+      | 'onClick'
+    > {}
 
 function MuiButtonComponent<TFieldValues extends FieldValues = FieldValues>(
   props: MuiButtonElementProps<TFieldValues>,
   ref?: ButtonProps['ref']
 ) {
-  const adapter = useMuiButtonAdapter<TFieldValues, ButtonProps>(props, ref);
-  return <Button {...adapter} />;
+  const {
+    classes,
+    className,
+    control,
+    disabled,
+    disableOnError,
+    disableOnIsSubmitting,
+    error,
+    exact,
+    name,
+    onClick,
+    style,
+    type,
+    ...rest
+  } = props;
+
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useMuiButtonAdapter(
+    {
+      classes,
+      className,
+      composeClassName: false,
+      composeHelperText: false,
+      control,
+      disabled,
+      disableOnError,
+      disableOnIsSubmitting,
+      error,
+      exact,
+      name,
+      onClick,
+      style,
+      type,
+    },
+    ref
+  );
+
+  return <Button aria-disabled={adapter.disabled} {...rest} {...adapter} />;
 }
 
-export const MuiButtonElement = React.forwardRef(MuiButtonComponent);
+export const MuiButtonElement = React.forwardRef(
+  MuiButtonComponent
+) as typeof MuiButtonComponent & { displayName?: string };
 
 MuiButtonElement.displayName = 'MuiButtonElement';

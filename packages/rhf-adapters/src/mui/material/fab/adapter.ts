@@ -1,16 +1,17 @@
-import { type FabProps } from '@mui/material';
-import { useHtmlButtonAdapter, type UseHtmlButtonAdapterProps } from '@piplup/rhf-core/html';
-import { type ExtractRef } from '@piplup/utils';
+import type * as React from 'react';
+import { useHtmlButtonAdapter, type UseHtmlButtonAdapterProps } from '@piplup/rhf-core';
 import { type FieldValues } from 'react-hook-form';
 
-export type UseMuiFabAdapterProps<
-  TFieldValues extends FieldValues = FieldValues,
-  ComponentProps extends React.ComponentPropsWithRef<'button'> = FabProps
-> = UseHtmlButtonAdapterProps<TFieldValues, ComponentProps>;
+export type UseMuiFabAdapterProps<TFieldValues extends FieldValues = FieldValues> =
+  UseHtmlButtonAdapterProps<TFieldValues>;
 
-export function useMuiFabAdapter<
-  TFieldValues extends FieldValues = FieldValues,
-  ComponentProps extends React.ComponentPropsWithRef<'button'> = FabProps
->(props: UseMuiFabAdapterProps<TFieldValues, ComponentProps>, ref?: ExtractRef<ComponentProps>) {
-  return useHtmlButtonAdapter<TFieldValues, ComponentProps>(props, ref);
+export function useMuiFabAdapter<TFieldValues extends FieldValues = FieldValues, RefType = unknown>(
+  props: UseMuiFabAdapterProps<TFieldValues>,
+  ref?: React.Ref<RefType>
+) {
+  const adapter = useHtmlButtonAdapter<TFieldValues, RefType>(props, ref);
+  return {
+    ...adapter,
+    classes: props.classes,
+  };
 }

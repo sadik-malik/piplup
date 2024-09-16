@@ -1,19 +1,68 @@
 import * as React from 'react';
 import { type FieldValues } from 'react-hook-form';
 import { useHtmlButtonAdapter, type UseHtmlButtonAdapterProps } from './adapter';
+import { HtmlButtonClasses } from './classes';
 
 export interface HtmlButtonElementProps<TFieldValues extends FieldValues = FieldValues>
-  extends UseHtmlButtonAdapterProps<TFieldValues> {}
+  extends Omit<React.ComponentProps<'button'>, 'name' | 'style'>,
+    Omit<
+      UseHtmlButtonAdapterProps<TFieldValues>,
+      'composeClassName' | 'composeHelperText' | 'helperText' | 'internalClasses' | 'onClick'
+    > {}
 
 function HtmlButtonComponent<TFieldValues extends FieldValues = FieldValues>(
   props: HtmlButtonElementProps<TFieldValues>,
   ref?: React.Ref<HTMLButtonElement>
 ): React.ReactElement {
-  const adapter = useHtmlButtonAdapter<TFieldValues>(props, ref);
+  const {
+    classes,
+    className,
+    control,
+    disabled,
+    disableOnError,
+    disableOnIsSubmitting,
+    error,
+    errorParser,
+    exact,
+    name,
+    onClick,
+    style,
+    type,
+    ...rest
+  } = props;
 
-  return <button {...adapter} />;
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useHtmlButtonAdapter<TFieldValues, HTMLButtonElement>(
+    {
+      classes,
+      className,
+      composeClassName: true,
+      composeHelperText: false,
+      control,
+      disabled,
+      disableOnError,
+      disableOnIsSubmitting,
+      error,
+      errorParser,
+      exact,
+      helperText: undefined,
+      internalClasses: HtmlButtonClasses,
+      name,
+      onClick,
+      style,
+      type,
+    },
+    ref
+  );
+
+  return <button aria-disabled={adapter.disabled} {...rest} {...adapter} />;
 }
 
-export const HtmlButtonElement = React.forwardRef(HtmlButtonComponent);
+export const HtmlButtonElement = React.forwardRef(
+  HtmlButtonComponent
+) as typeof HtmlButtonComponent & { displayName?: string };
 
 HtmlButtonElement.displayName = 'HtmlButtonElement';

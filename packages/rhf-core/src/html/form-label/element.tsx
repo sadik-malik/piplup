@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useHtmlFormLabelAdapter, type UseHtmlFormLabelProps } from './adapter';
+import { HtmlFormLabelClasses } from './classes';
 
 export interface HtmlFormLabelElementProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends UseHtmlFormLabelProps<React.ComponentPropsWithRef<'label'>, TFieldValues, TName> {}
+> extends Omit<React.ComponentProps<'label'>, 'style'>,
+    Omit<
+      UseHtmlFormLabelProps<TFieldValues, TName>,
+      'composeClassName' | 'composeHelperText' | 'helperText' | 'internalClasses'
+    > {}
 
 function HtmlFormLabelComponent<
   TFieldValues extends FieldValues = FieldValues,
@@ -14,15 +19,34 @@ function HtmlFormLabelComponent<
   props: HtmlFormLabelElementProps<TFieldValues, TName>,
   ref?: React.Ref<HTMLLabelElement>
 ): React.ReactElement {
-  const adapter = useHtmlFormLabelAdapter<
-    React.ComponentPropsWithRef<'label'>,
-    TFieldValues,
-    TName
-  >(props, ref);
+  const {
+    className,
+    disabled,
+    ref: adapterRef,
+    style,
+  } = useHtmlFormLabelAdapter(
+    {
+      ...props,
+      composeClassName: true,
+      composeHelperText: false,
+      internalClasses: HtmlFormLabelClasses,
+    },
+    ref
+  );
 
-  return <label {...adapter} />;
+  return (
+    <label
+      aria-disabled={disabled}
+      {...props}
+      className={className}
+      ref={adapterRef}
+      style={style}
+    />
+  );
 }
 
-export const HtmlFormLabelElement = React.forwardRef(HtmlFormLabelComponent);
+export const HtmlFormLabelElement = React.forwardRef(
+  HtmlFormLabelComponent
+) as typeof HtmlFormLabelComponent & { displayName?: string };
 
 HtmlFormLabelElement.displayName = 'HtmlFormLabelElement';

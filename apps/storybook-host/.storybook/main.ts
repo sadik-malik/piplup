@@ -7,13 +7,14 @@ import { mergeConfig } from 'vite';
 const config: StorybookConfig = {
   addons: [
     getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-actions'),
     getAbsolutePath('@storybook/addon-interactions'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
-  stories: ['../../../packages/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
   viteFinal: async (config) =>
     mergeConfig(config, {
       plugins: [nxViteTsPaths()],
@@ -26,6 +27,6 @@ export default config;
 // Check https://storybook.js.org/docs/react/builders/vite#configuration
 // and https://nx.dev/recipes/storybook/custom-builder-configs
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string): string {
   return dirname(require.resolve(join(value, 'package.json')));
 }

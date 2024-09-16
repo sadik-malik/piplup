@@ -4,10 +4,21 @@ import { type FieldPath, type FieldValues, type PathValue } from 'react-hook-for
 import { useMuiRadioGroupAdapter, type UseMuiRadioGroupAdapterProps } from './adapter';
 
 export interface MuiRadioGroupElementProps<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown
-> extends UseMuiRadioGroupAdapterProps<TFieldValues, TName, TTransformedValue> {
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<RadioGroupProps, 'defaultValue' | 'name' | 'style'>,
+    Omit<
+      UseMuiRadioGroupAdapterProps<TTransformedValue, TFieldValues, TName>,
+      | 'classes'
+      | 'composeClassName'
+      | 'composeHelperText'
+      | 'errorParser'
+      | 'helperText'
+      | 'internalClasses'
+      | 'onBlur'
+      | 'onChange'
+    > {
   transform?: {
     input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
     output?: (
@@ -16,22 +27,79 @@ export interface MuiRadioGroupElementProps<
       previousValue: TTransformedValue
     ) => PathValue<TFieldValues, TName>;
   };
-  onChange?: RadioGroupProps['onChange'];
-  onBlur?: RadioGroupProps['onBlur'];
 }
 
 function MuiRadioGroupComponent<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: MuiRadioGroupElementProps<TFieldValues, TName, TTransformedValue>,
+  props: MuiRadioGroupElementProps<TTransformedValue, TFieldValues, TName>,
   ref?: RadioGroupProps['ref']
 ): React.ReactElement {
-  const adapter = useMuiRadioGroupAdapter(props, ref);
-  return <RadioGroup {...adapter} />;
+  const {
+    classes,
+    className,
+    control,
+    defaultValue,
+    disabled,
+    disableOnError,
+    disableOnIsSubmitting,
+    error,
+    max,
+    maxLength,
+    messages,
+    min,
+    minLength,
+    name,
+    onBlur,
+    onChange,
+    pattern,
+    required,
+    rules,
+    shouldUnregister,
+    style,
+    title,
+    transform,
+    ...rest
+  } = props;
+
+  const { helperText: _helperText, ...adapter } = useMuiRadioGroupAdapter(
+    {
+      classes,
+      className,
+      composeClassName: false,
+      composeHelperText: false,
+      control,
+      defaultValue,
+      disabled,
+      disableOnError,
+      disableOnIsSubmitting,
+      error,
+      max,
+      maxLength,
+      messages,
+      min,
+      minLength,
+      name,
+      onBlur,
+      onChange,
+      pattern,
+      required,
+      rules,
+      shouldUnregister,
+      style,
+      title,
+      transform,
+    },
+    ref
+  );
+
+  return <RadioGroup aria-disabled={adapter.disabled} {...rest} {...adapter} />;
 }
 
-export const MuiRadioGroupElement = React.forwardRef(MuiRadioGroupComponent);
+export const MuiRadioGroupElement = React.forwardRef(
+  MuiRadioGroupComponent
+) as typeof MuiRadioGroupComponent & { displayName?: string };
 
 MuiRadioGroupElement.displayName = 'MuiRadioGroupElement';

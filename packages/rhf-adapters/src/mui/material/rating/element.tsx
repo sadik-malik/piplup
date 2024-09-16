@@ -3,26 +3,95 @@ import { Rating, type RatingProps } from '@mui/material';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiRatingAdapter, type UseMuiRatingAdapterProps } from './adapter';
 
-type TransformedValue = number | null | undefined;
-
 export interface MuiRatingElementProps<
+  TTransformedValue extends null | number,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends TransformedValue = TransformedValue
-> extends UseMuiRatingAdapterProps<TFieldValues, TName, TTransformedValue, RatingProps> {}
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<RatingProps, 'defaultValue' | 'name' | 'style'>,
+    Omit<
+      UseMuiRatingAdapterProps<TTransformedValue, TFieldValues, TName>,
+      | 'classes'
+      | 'composeClassName'
+      | 'composeHelperText'
+      | 'errorParser'
+      | 'helperText'
+      | 'internalClasses'
+      | 'max'
+      | 'onBlur'
+      | 'onChange'
+    > {}
 
 function MuiRatingComponent<
+  TTransformedValue extends null | number,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends TransformedValue = TransformedValue
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: MuiRatingElementProps<TFieldValues, TName, TTransformedValue>,
+  props: MuiRatingElementProps<TTransformedValue, TFieldValues, TName>,
   ref?: RatingProps['ref']
 ): React.ReactElement {
-  const adapter = useMuiRatingAdapter(props, ref);
-  return <Rating {...adapter} />;
+  const {
+    classes,
+    className,
+    control,
+    defaultValue,
+    disabled,
+    disableOnError,
+    disableOnIsSubmitting,
+    error,
+    max,
+    maxLength,
+    messages,
+    min,
+    minLength,
+    name,
+    onBlur,
+    onChange,
+    pattern,
+    required,
+    rules,
+    shouldUnregister,
+    style,
+    title,
+    transform,
+    ...rest
+  } = props;
+
+  const { helperText: _helperText, ...adapter } = useMuiRatingAdapter(
+    {
+      classes,
+      className,
+      composeClassName: false,
+      composeHelperText: false,
+      control,
+      defaultValue,
+      disabled,
+      disableOnError,
+      disableOnIsSubmitting,
+      error,
+      max,
+      maxLength,
+      messages,
+      min,
+      minLength,
+      name,
+      onBlur,
+      onChange,
+      pattern,
+      required,
+      rules,
+      shouldUnregister,
+      style,
+      title,
+      transform,
+    },
+    ref
+  );
+
+  return <Rating aria-disabled={adapter.disabled} {...rest} {...adapter} />;
 }
 
-export const MuiRatingElement = React.forwardRef(MuiRatingComponent);
+export const MuiRatingElement = React.forwardRef(
+  MuiRatingComponent
+) as typeof MuiRatingComponent & { displayName?: string };
 
 MuiRatingElement.displayName = 'MuiRatingElement';

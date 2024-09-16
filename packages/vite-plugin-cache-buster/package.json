@@ -19,11 +19,6 @@
   "peerDependencies": {
     "vite": "^5.0.0"
   },
-  "peerDependenciesMeta": {
-    "@piplup/cache-buster": {
-      "optional": false
-    }
-  },
   "publishConfig": {
     "access": "public"
   }

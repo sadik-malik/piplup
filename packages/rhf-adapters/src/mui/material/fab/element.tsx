@@ -4,16 +4,58 @@ import { type FieldValues } from 'react-hook-form';
 import { useMuiFabAdapter, type UseMuiFabAdapterProps } from './adapter';
 
 export interface MuiFabElementProps<TFieldValues extends FieldValues = FieldValues>
-  extends UseMuiFabAdapterProps<TFieldValues, FabProps> {}
+  extends Omit<FabProps, 'name' | 'onClick' | 'style'>,
+    Omit<
+      UseMuiFabAdapterProps<TFieldValues>,
+      'classes' | 'composeClassName' | 'composeHelperText' | 'helperText' | 'internalClasses'
+    > {}
 
 function MuiFabComponent<TFieldValues extends FieldValues = FieldValues>(
   props: MuiFabElementProps<TFieldValues>,
   ref?: FabProps['ref']
 ) {
-  const adapter = useMuiFabAdapter<TFieldValues, FabProps>(props, ref);
-  return <Fab {...adapter} />;
+  const {
+    classes,
+    className,
+    control,
+    disabled,
+    disableOnError,
+    disableOnIsSubmitting,
+    error,
+    errorParser,
+    exact,
+    name,
+    onClick,
+    style,
+    type,
+    ...rest
+  } = props;
+
+  const adapter = useMuiFabAdapter(
+    {
+      classes,
+      className,
+      composeClassName: false,
+      composeHelperText: false,
+      control,
+      disabled,
+      disableOnError,
+      disableOnIsSubmitting,
+      error,
+      errorParser,
+      exact,
+      name,
+      onClick,
+      style,
+      type,
+    },
+    ref
+  );
+  return <Fab aria-disabled={adapter.disabled} {...rest} {...adapter} />;
 }
 
-export const MuiFabElement = React.forwardRef(MuiFabComponent);
+export const MuiFabElement = React.forwardRef(MuiFabComponent) as typeof MuiFabComponent & {
+  displayName?: string;
+};
 
 MuiFabElement.displayName = 'MuiFabElement';

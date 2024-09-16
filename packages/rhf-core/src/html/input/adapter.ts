@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { execSequentially, useForkRef, type ExtractRef } from '@piplup/utils';
-import { useController, type FieldPath, type FieldValues, type PathValue } from 'react-hook-form';
-import { HtmlInputClasses } from './classes';
-import { useComposeClassName } from '../../hooks/use-compose-class-name';
-import { useComposeModiferState } from '../../hooks/use-compose-modifier-state';
-import { useComposeRules } from '../../hooks/use-compose-rules';
-import { useComposeStyle } from '../../hooks/use-compose-style';
-import { useTransform } from '../../hooks/use-transform';
-import { type StandardFieldAdapterProps } from '../../types';
+import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
+import {
+  useControllerAdapter,
+  type UseControllerAdapterProps,
+} from '../../hooks/use-controller-adapter';
 
 function isEqualRadioOrCheckboxValue(a: unknown, b: unknown) {
   if (typeof a === 'object' && b !== null) {
@@ -17,21 +13,13 @@ function isEqualRadioOrCheckboxValue(a: unknown, b: unknown) {
   return String(a) === String(b);
 }
 
-interface HtmlInputBaseProps<
+export interface UseHtmlInputAdapterProps<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown
-> extends StandardFieldAdapterProps<TFieldValues, TName, TTransformedValue> {
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends UseControllerAdapterProps<TTransformedValue, TFieldValues, TName> {
   checked?: (values: TTransformedValue) => boolean;
-  children?: ((value: TTransformedValue) => React.ReactNode) | React.ReactNode;
-  classes?: Partial<Record<keyof typeof HtmlInputClasses, 'string'>>;
   indeterminate?: (values: TTransformedValue) => boolean;
-  max?: number | string;
-  maxLength?: number;
-  min?: number | string;
-  minLength?: number;
-  pattern?: RegExp | string;
-  title?: string;
   type?:
     | 'checkbox'
     | 'color'
@@ -50,101 +38,27 @@ interface HtmlInputBaseProps<
     | 'text'
     | 'time'
     | 'url'
-    | 'week';
+    | 'week'
+    | string;
   value?: TTransformedValue;
 }
 
-export type UseHtmlInputAdapterProps<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = React.ComponentPropsWithRef<'input'>
-> = HtmlInputBaseProps<TFieldValues, TName, TTransformedValue> &
-  Omit<
-    ComponentProps,
-    | 'checked'
-    | 'defaultChecked'
-    | 'defaultValue'
-    | 'indeterminate'
-    | 'name'
-    | 'pattern'
-    | 'src'
-    | 'style'
-  >;
-
 export function useHtmlInputAdapter<
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = unknown,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = React.ComponentPropsWithRef<'input'>
+  RefType = unknown
 >(
-  props: UseHtmlInputAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps>,
-  ref?: ExtractRef<ComponentProps>
+  props: UseHtmlInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+  ref?: React.Ref<RefType>
 ) {
-  const {
-    checked,
-    children,
-    classes,
-    className,
-    composeClassName = true,
-    control,
-    defaultValue,
-    disabled = false,
-    disableOnIsSubmitting = false,
-    indeterminate,
-    max,
-    maxLength,
-    messages,
-    min,
-    minLength,
-    name,
-    onBlur,
-    onChange,
-    pattern,
-    required = false,
-    rules,
-    shouldUnregister = false,
-    style,
-    title,
-    transform,
-    type = 'text',
-    value: inputValue,
-    ...rest
-  } = props;
+  const { checked, indeterminate, messages, pattern, type, value } = props;
 
   React.useMemo(() => {
-    if (type === 'checkbox' && typeof inputValue === 'undefined') {
+    if (type === 'checkbox' && typeof value === 'undefined') {
       throw new Error(`\`value\` prop is required when using type as "${type}".`);
     }
-  }, [inputValue, type]);
-
-  const composedRules = useComposeRules<TFieldValues, TName>({
-    max,
-    maxLength,
-    messages,
-    min,
-    minLength,
-    pattern,
-    required,
-    rules,
-    title,
-    type,
-  });
-
-  const {
-    field,
-    fieldState: { error },
-    formState: { isSubmitting },
-  } = useController({
-    control,
-    defaultValue,
-    disabled,
-    name,
-    rules: composedRules,
-    shouldUnregister,
-  });
-
-  const handleRef = useForkRef(field.ref, ref);
+  }, [value, type]);
 
   const transformHelpers = React.useMemo(
     () => ({
@@ -166,10 +80,10 @@ export function useHtmlInputAdapter<
         switch (type) {
           case 'checkbox': {
             const values = (Array.isArray(previousValue) ? previousValue : []).filter(
-              (previousVal) => previousVal !== inputValue
+              (previousVal) => previousVal !== value
             );
-            if (checked) {
-              values.push(inputValue);
+            if (event.target.checked) {
+              values.push(value);
             }
             return values as PathValue<TFieldValues, TName>;
           }
@@ -193,116 +107,64 @@ export function useHtmlInputAdapter<
         }
       },
     }),
-    [type, checked, inputValue]
+    [type, value]
   );
 
-  const transformed = useTransform<TFieldValues, TName, TTransformedValue>({
-    onChange: field.onChange,
-    transform: {
-      input: typeof transform?.input === 'function' ? transform.input : transformHelpers.input,
-      output: typeof transform?.output === 'function' ? transform.output : transformHelpers.output,
+  const adapter = useControllerAdapter(
+    {
+      ...props,
+      ...(type === 'email' && {
+        messages: {
+          pattern: 'Please enter an email address.',
+          ...messages,
+        },
+        pattern: pattern ?? /\S+@\S+\.\S+/,
+      }),
+      transform: {
+        ...transformHelpers,
+        ...props.transform,
+      },
     },
-    value: field.value,
-  });
-
-  const handleChange = React.useMemo(
-    () => execSequentially(transformed.onChange, onChange),
-    [onChange, transformed.onChange]
+    ref
   );
-  const handleBlur = React.useMemo(
-    () => execSequentially(field.onBlur, onBlur),
-    [field.onBlur, onBlur]
-  );
-
-  const modifierState = useComposeModiferState({
-    disabled: field.disabled,
-    disableOnIsSubmitting,
-    error,
-    isSubmitting,
-  });
-
-  const composedClassName = useComposeClassName({
-    classes,
-    className,
-    composeClassName,
-    internalClasses: HtmlInputClasses,
-    modifierState: modifierState,
-  });
-
-  const composedStyle = useComposeStyle({
-    modifierState,
-    style,
-  });
 
   const isChecked = React.useMemo(() => {
     if (typeof checked === 'function') {
-      return checked(transformed.value);
+      return checked(adapter.value);
     }
 
     if (type === 'radio') {
-      return isEqualRadioOrCheckboxValue(transformed.value, inputValue);
+      return isEqualRadioOrCheckboxValue(adapter.value, value);
     }
 
-    return Array.isArray(transformed.value)
-      ? transformed.value.some((value) => {
-          return isEqualRadioOrCheckboxValue(value, inputValue);
+    return Array.isArray(adapter.value)
+      ? adapter.value.some((val) => {
+          return isEqualRadioOrCheckboxValue(val, value);
         })
       : false;
-  }, [type, inputValue, transformed.value, checked]);
+  }, [type, value, adapter.value, checked]);
 
   const isIndeterminate = React.useMemo(() => {
     if (typeof indeterminate === 'function') {
-      return indeterminate(transformed.value);
+      return indeterminate(adapter.value);
     }
     return indeterminate;
-  }, [indeterminate, transformed.value]);
+  }, [indeterminate, adapter.value]);
 
-  const adapter = {
-    ...rest,
-    children: typeof children === 'function' ? children(transformed.value) : children,
-    className: composedClassName,
-    disabled: modifierState.disabled,
-    name: field.name,
-    onBlur: handleBlur,
-    onChange: handleChange,
-    ref: handleRef,
-    required,
-    style: composedStyle,
-    title,
+  return {
+    ...adapter,
     type,
-    value: transformed.value,
+    ...(type === 'image' && {
+      src: adapter.value?.toString(),
+    }),
+    ...(type === 'checkbox' && {
+      indeterminate: isIndeterminate,
+    }),
+    ...((type === 'checkbox' || type === 'radio') && {
+      checked: isChecked,
+      ...(typeof value !== 'undefined' && {
+        value,
+      }),
+    }),
   };
-
-  if (type === 'checkbox' || type === 'radio') {
-    if (typeof inputValue !== 'undefined') {
-      adapter.value = inputValue;
-    }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    adapter.checked = isChecked;
-    if (type === 'checkbox') {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      adapter.indeterminate = isIndeterminate;
-    }
-  }
-
-  if (type === 'image') {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    adapter.src = transformed.value?.toString();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    delete adapter.value;
-  }
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  if (typeof adapter.defaultChecked !== 'undefined') {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    delete adapter.defaultChecked;
-  }
-
-  return adapter;
 }

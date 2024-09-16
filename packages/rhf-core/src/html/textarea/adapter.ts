@@ -1,36 +1,42 @@
-import { type ExtractRef } from '@piplup/utils';
+import type React from 'react';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '../input';
 
 type TransformedValue = number | readonly string[] | string | undefined;
 
-export type UseHtmlTextareaAdapterProps<
-  TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+export interface UseHtmlTextareaAdapterProps<
   TTransformedValue = TransformedValue,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = React.ComponentPropsWithRef<'textarea'>
-> = UseHtmlInputAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps> & {
-  checked?: never;
-  indeterminate?: never;
-  type?: never;
-};
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<
+    UseHtmlInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+    'checked' | 'indeterminate' | 'type' | 'value'
+  > {}
 
 export function useHtmlTextareaAdapter<
+  TTransformedValue = TransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue = TransformedValue,
-  ComponentProps extends React.ComponentPropsWithRef<React.ElementType> = React.ComponentPropsWithRef<'textarea'>
+  RefType = unknown
 >(
-  props: UseHtmlTextareaAdapterProps<TFieldValues, TName, TTransformedValue, ComponentProps>,
-  ref?: ExtractRef<ComponentProps>
+  props: UseHtmlTextareaAdapterProps<TTransformedValue, TFieldValues, TName>,
+  ref?: React.Ref<RefType>
 ) {
-  return useHtmlInputAdapter<TFieldValues, TName, TTransformedValue, ComponentProps>(
+  const {
+    checked: _checked,
+    indeterminate: _indeterminate,
+    src: _src,
+    ...adapter
+  } = useHtmlInputAdapter<TTransformedValue, TFieldValues, TName>(
     {
       ...props,
       checked: undefined,
       indeterminate: undefined,
       type: 'text',
+      value: undefined,
     },
     ref
   );
+
+  return adapter;
 }

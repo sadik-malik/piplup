@@ -1,36 +1,118 @@
 import * as React from 'react';
-import { PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
+import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from './adapter';
-
-type TransformedValue = string | number | readonly string[] | undefined;
+import { HtmlInputClasses } from './classes';
 
 export interface HtmlInputElementProps<
+  TTransformedValue extends number | readonly string[] | string | undefined,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends TransformedValue = TransformedValue
-> extends UseHtmlInputAdapterProps<TFieldValues, TName, TTransformedValue> {
-  transform?: {
-    input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
-    output?: (
-      event: React.ChangeEvent<HTMLInputElement>,
-      value: TTransformedValue
-    ) => PathValue<TFieldValues, TName>;
-  };
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<
+      React.ComponentProps<'input'>,
+      'checked' | 'defaultValue' | 'indeterminate' | 'name' | 'pattern' | 'style' | 'value'
+    >,
+    Omit<
+      UseHtmlInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+      | 'composeClassName'
+      | 'composeHelperText'
+      | 'helperText'
+      | 'internalClasses'
+      | 'onBlur'
+      | 'onChange'
+      | 'type'
+    > {
+  defaultChecked?: never;
 }
 
 function HtmlInputComponent<
+  TTransformedValue extends number | readonly string[] | string | undefined,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  TTransformedValue extends TransformedValue = TransformedValue
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: HtmlInputElementProps<TFieldValues, TName, TTransformedValue>,
+  props: HtmlInputElementProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<HTMLInputElement>
 ): React.ReactElement {
-  const adapter = useHtmlInputAdapter<TFieldValues, TName, TTransformedValue>(props, ref);
+  const {
+    checked,
+    classes,
+    className,
+    control,
+    defaultValue,
+    disabled,
+    disableOnError,
+    disableOnIsSubmitting,
+    error,
+    errorParser,
+    indeterminate,
+    max,
+    maxLength,
+    messages,
+    min,
+    minLength,
+    name,
+    onBlur,
+    onChange,
+    pattern,
+    required,
+    rules,
+    shouldUnregister,
+    style,
+    title,
+    transform,
+    type,
+    value,
+    ...rest
+  } = props;
 
-  return <input {...adapter} />;
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useHtmlInputAdapter(
+    {
+      checked,
+      classes,
+      className,
+      composeClassName: true,
+      composeHelperText: false,
+      control,
+      defaultValue,
+      disabled,
+      disableOnError,
+      disableOnIsSubmitting,
+      error,
+      errorParser,
+      helperText: undefined,
+      indeterminate,
+      internalClasses: HtmlInputClasses,
+      max,
+      maxLength,
+      messages,
+      min,
+      minLength,
+      name,
+      onBlur,
+      onChange,
+      pattern,
+      required,
+      rules,
+      shouldUnregister,
+      style,
+      title,
+      transform,
+      type,
+      value,
+    },
+    ref
+  );
+
+  return <input aria-disabled={adapter.disabled} {...rest} {...adapter} />;
 }
 
-export const HtmlInputElement = React.forwardRef(HtmlInputComponent);
+export const HtmlInputElement = React.forwardRef(
+  HtmlInputComponent
+) as typeof HtmlInputComponent & {
+  displayName?: string;
+};
 
 HtmlInputElement.displayName = 'HtmlInputElement';

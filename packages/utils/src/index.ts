@@ -10,6 +10,3 @@ export { useEventListener } from './hooks/use-event-listener';
 export { useForkRef } from './hooks/use-fork-ref';
 export { useIsomorphicEffect } from './hooks/use-isomorphic-effect';
 export { getItem, removeItem, setItem, useLocalStorage } from './hooks/use-local-storage';
-
-// Types
-export { type ExtractRef } from './types';
