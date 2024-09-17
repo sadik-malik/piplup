@@ -61,11 +61,11 @@ function MuiCheckboxComponent<
     ...rest
   } = props;
 
-  const { helperText: _helperText, ...adapter } = useMuiCheckboxAdapter<
-    TTransformedValue,
-    TFieldValues,
-    TName
-  >(
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useMuiCheckboxAdapter<TTransformedValue, TFieldValues, TName>(
     {
       checked,
       classes,

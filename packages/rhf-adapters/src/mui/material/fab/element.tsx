@@ -31,7 +31,11 @@ function MuiFabComponent<TFieldValues extends FieldValues = FieldValues>(
     ...rest
   } = props;
 
-  const adapter = useMuiFabAdapter(
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useMuiFabAdapter(
     {
       classes,
       className,

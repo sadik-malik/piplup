@@ -29,12 +29,6 @@ export {
   type UseMuiFilledInputAdapterProps,
 } from './filled-input';
 export {
-  MuiFormControlElement,
-  type MuiFormControlElementProps,
-  useMuiFormControlAdapter,
-  type UseMuiFormControlAdapterProps,
-} from './form-control';
-export {
   MuiFormHelperTextElement,
   type MuiFormHelperTextElementProps,
   useMuiFormHelperTextAdapter,
@@ -64,6 +58,12 @@ export {
   useMuiInputBaseAdapter,
   type UseMuiInputBaseAdapterProps,
 } from './input-base';
+export {
+  MuiInputLabelElement,
+  type MuiInputLabelElementProps,
+  useMuiInputLabelAdapter,
+  type UseMuiInputLabelAdapterProps,
+} from './input-label';
 export {
   MuiOutlinedInputElement,
   type MuiOutlinedInputElementProps,
