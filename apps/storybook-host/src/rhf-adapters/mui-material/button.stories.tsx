@@ -42,10 +42,7 @@ export const BasicButton: Story = {
 };
 
 export const SubmitButton: Story = {
-  args: {
-    type: 'submit',
-  },
-  render(props) {
+  render() {
     return (
       <FormContainer
         onSubmit={() => {
@@ -53,11 +50,11 @@ export const SubmitButton: Story = {
         }}
       >
         <Stack direction="row" spacing={2}>
-          <MuiButtonElement {...props}>Submit</MuiButtonElement>
-          <MuiButtonElement {...props} variant="contained">
+          <MuiButtonElement type="submit">Submit</MuiButtonElement>
+          <MuiButtonElement type="submit" variant="contained">
             Submit
           </MuiButtonElement>
-          <MuiButtonElement {...props} variant="outlined">
+          <MuiButtonElement type="submit" variant="outlined">
             Submit
           </MuiButtonElement>
         </Stack>
@@ -117,7 +114,9 @@ export const ButtonGroupStory: Story = {
           <MuiTextFieldElement name="password" placeholder="password" type="password" required />
           <ButtonGroup aria-label="Button group" fullWidth>
             <MuiButtonElement type="reset">Reset</MuiButtonElement>
-            <MuiButtonElement variant="contained">Submit</MuiButtonElement>
+            <MuiButtonElement type="submit" variant="contained">
+              Submit
+            </MuiButtonElement>
           </ButtonGroup>
         </Stack>
       </FormContainer>

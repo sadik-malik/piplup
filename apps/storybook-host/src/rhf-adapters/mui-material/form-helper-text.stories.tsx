@@ -1,8 +1,9 @@
-import { FormControl, InputLabel, Stack } from '@mui/material';
+import { FormControl, Stack } from '@mui/material';
 import {
   MuiInputElement,
   MuiButtonElement,
   MuiFormHelperTextElement,
+  MuiInputLabelElement,
 } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer, type FormContainerProps } from '@piplup/rhf-core';
 import { action } from '@storybook/addon-actions';
@@ -33,20 +34,22 @@ export const BasicFormHelperText: Story = {
       onSubmit(values) {
         action('onSubmit')(values);
       },
-      values: {
-        checkbox: [],
-      },
+      values: {},
     };
     return (
       <FormContainer {...containerProps}>
         <Stack direction="column" spacing={2}>
-          <FormControl variant="standard" disabled>
-            <InputLabel htmlFor="username">Username</InputLabel>
+          <FormControl variant="standard" required>
+            <MuiInputLabelElement htmlFor="username" name="username">
+              Username
+            </MuiInputLabelElement>
             <MuiInputElement defaultValue="John Doe" id="username" name="username" />
             <MuiFormHelperTextElement name="username">Enter your username</MuiFormHelperTextElement>
           </FormControl>
-          <FormControl variant="standard" disabled>
-            <InputLabel htmlFor="email">Email</InputLabel>
+          <FormControl variant="standard">
+            <MuiInputLabelElement htmlFor="email" name="email">
+              Email
+            </MuiInputLabelElement>
             <MuiInputElement id="email" name="email" type="email" />
             <MuiFormHelperTextElement name="email">
               Enter your registered email address

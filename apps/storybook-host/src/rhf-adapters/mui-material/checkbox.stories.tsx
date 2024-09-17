@@ -1,6 +1,12 @@
-import { Box, FormControl, FormControlLabel, FormGroup, FormLabel } from '@mui/material';
-import { MuiCheckboxElement } from '@piplup/rhf-adapters/mui-material';
+import { Box, FormControl, FormControlLabel, FormGroup } from '@mui/material';
+import {
+  MuiCheckboxElement,
+  MuiButtonElement,
+  MuiFormHelperTextElement,
+  MuiFormLabelElement,
+} from '@piplup/rhf-adapters/mui-material';
 import { FormContainer, type FormContainerProps } from '@piplup/rhf-core';
+import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof MuiCheckboxElement> = {
@@ -26,10 +32,11 @@ export const BasicCheckboxes: Story = {
   render() {
     const containerProps: Partial<FormContainerProps> = {
       onSubmit(values) {
-        alert(JSON.stringify(values));
+        action('onSubmit')(values);
       },
       values: {
-        checkbox: ['checked', 'disabled-checked'],
+        checkboxes: ['checked'],
+        'checkboxes-disabled': ['disabled-checked'],
       },
     };
 
@@ -38,27 +45,30 @@ export const BasicCheckboxes: Story = {
         <div>
           <MuiCheckboxElement
             inputProps={{ 'aria-label': 'checkbox' }}
-            name="checkbox"
+            name="checkboxes"
             value="default"
           />
           <MuiCheckboxElement
             inputProps={{ 'aria-label': 'checkbox checked' }}
-            name="checkbox"
+            name="checkboxes"
             value="checked"
           />
           <MuiCheckboxElement
             inputProps={{ 'aria-label': 'checkbox disabled' }}
-            name="checkbox"
+            name="checkboxes-disabled"
             value="disabled"
             disabled
           />
           <MuiCheckboxElement
             inputProps={{ 'aria-label': 'Checkbox disabled and checked' }}
-            name="checkbox"
+            name="checkboxes-disabled"
             value="disabled-checked"
             disabled
           />
         </div>
+        <MuiButtonElement sx={{ mt: 2 }} type="submit" variant="contained">
+          Submit
+        </MuiButtonElement>
       </FormContainer>
     );
   },
@@ -69,7 +79,7 @@ export const Indeterminate: Story = {
     const checkboxes = ['1', '2'];
     const containerProps: Partial<FormContainerProps> = {
       onSubmit(values) {
-        alert(JSON.stringify(values));
+        action('onSubmit')(values);
       },
       values: {
         checkbox: ['1'],
@@ -121,6 +131,9 @@ export const Indeterminate: Story = {
             label="Child 2"
           />
         </Box>
+        <MuiButtonElement sx={{ mt: 2 }} type="submit" variant="contained">
+          Submit
+        </MuiButtonElement>
       </FormContainer>
     );
   },
@@ -131,10 +144,7 @@ export const CheckboxGroup: Story = {
   render() {
     const containerProps: Partial<FormContainerProps> = {
       onSubmit(values) {
-        alert(JSON.stringify(values));
-      },
-      values: {
-        checkbox: [],
+        action('onSubmit')(values);
       },
     };
     return (
@@ -142,11 +152,13 @@ export const CheckboxGroup: Story = {
         <Box sx={{ display: 'flex' }}>
           <FormControl
             component="fieldset"
-            // TODO: replace this with FormControlElement
-            sx={{ m: 3 }}
+            name="assign_responsibility"
             variant="standard"
+            required
           >
-            <FormLabel component="legend">Assign responsibility</FormLabel>
+            <MuiFormLabelElement component="legend" name="assign_responsibility">
+              Assign responsibility
+            </MuiFormLabelElement>
             <FormGroup>
               <FormControlLabel
                 control={<MuiCheckboxElement name="assign_responsibility" value="gilad" />}
@@ -161,10 +173,14 @@ export const CheckboxGroup: Story = {
                 label="Antoine Llorca"
               />
             </FormGroup>
-            {/** TODO: add FormHelperTextElement here */}
-            {/* <FormHelperText>Be careful</FormHelperText> */}
+            <MuiFormHelperTextElement name="assign_responsibility">
+              Be careful
+            </MuiFormHelperTextElement>
           </FormControl>
         </Box>
+        <MuiButtonElement sx={{ mt: 2 }} type="submit" variant="contained">
+          Submit
+        </MuiButtonElement>
       </FormContainer>
     );
   },
