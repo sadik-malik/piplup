@@ -1,20 +1,23 @@
 import * as React from 'react';
 import { FormHelperText, type FormHelperTextProps } from '@mui/material';
-import { type FieldValues } from 'react-hook-form';
+import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiFormHelperTextAdapter, type UseMuiFormHelperTextProps } from './adapter';
 
-export interface MuiFormHelperTextElementProps<TFieldValues extends FieldValues = FieldValues>
-  extends Omit<FormHelperTextProps, 'style'>,
+export interface MuiFormHelperTextElementProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> extends Omit<FormHelperTextProps, 'style'>,
     Omit<
-      UseMuiFormHelperTextProps<TFieldValues>,
+      UseMuiFormHelperTextProps<TFieldValues, TName>,
       'classes' | 'composeClassName' | 'composeHelperText' | 'internalClasses'
     > {}
 
-function MuiFormHelperTextComponent<TFieldValues extends FieldValues = FieldValues>(
-  props: MuiFormHelperTextElementProps<TFieldValues>,
-  ref?: FormHelperTextProps['ref']
-) {
+function MuiFormHelperTextComponent<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>(props: MuiFormHelperTextElementProps<TFieldValues, TName>, ref?: FormHelperTextProps['ref']) {
   const {
+    children,
     classes,
     className,
     control,
@@ -23,8 +26,6 @@ function MuiFormHelperTextComponent<TFieldValues extends FieldValues = FieldValu
     disableOnIsSubmitting,
     error,
     errorParser,
-    exact,
-    helperText,
     name,
     style,
     ...rest
@@ -32,6 +33,7 @@ function MuiFormHelperTextComponent<TFieldValues extends FieldValues = FieldValu
 
   const adapter = useMuiFormHelperTextAdapter(
     {
+      children,
       classes,
       className,
       composeClassName: false,
@@ -42,8 +44,6 @@ function MuiFormHelperTextComponent<TFieldValues extends FieldValues = FieldValu
       disableOnIsSubmitting,
       error,
       errorParser,
-      exact,
-      helperText,
       name,
       style,
     },

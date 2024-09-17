@@ -85,6 +85,9 @@ export function useHtmlInputAdapter<
             if (event.target.checked) {
               values.push(value);
             }
+            if (values.length === 0) {
+              return undefined as PathValue<TFieldValues, TName>;
+            }
             return values as PathValue<TFieldValues, TName>;
           }
           case 'radio': {
