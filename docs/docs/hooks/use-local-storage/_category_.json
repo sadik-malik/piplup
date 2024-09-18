@@ -1,8 +1,0 @@
-{
-  "label": "useLocalStorage",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "Leverage your browser's localStorage as a reactive storage solution with the useLocalStorage hook. This hook enables you to read and monitor values in localStorage, automatically updating the state whenever changes occur."
-  }
-}

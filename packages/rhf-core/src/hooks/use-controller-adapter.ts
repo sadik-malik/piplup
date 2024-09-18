@@ -197,7 +197,6 @@ export function useControllerAdapter<
 
   const composedHelperText = useComposeHelperText<TFieldValues>({
     composeHelperText,
-    error,
     errorParser,
     fieldError,
     helperText,

@@ -55,7 +55,7 @@ function MuiFabComponent<TFieldValues extends FieldValues = FieldValues>(
     },
     ref
   );
-  return <Fab aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Fab {...rest} {...adapter} />;
 }
 
 export const MuiFabElement = React.forwardRef(MuiFabComponent) as typeof MuiFabComponent & {

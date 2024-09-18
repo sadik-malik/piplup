@@ -55,7 +55,7 @@ function MuiInputLabelComponent<
     ref
   );
 
-  return <InputLabel aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <InputLabel {...rest} {...adapter} />;
 }
 
 export const MuiInputLabelElement = React.forwardRef(

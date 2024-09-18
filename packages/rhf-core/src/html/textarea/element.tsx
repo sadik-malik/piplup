@@ -88,7 +88,7 @@ function HtmlTextareaComponent<
     ref
   );
 
-  return <textarea aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <textarea {...rest} {...adapter} />;
 }
 
 export const HtmlTextareaElement = React.forwardRef(HtmlTextareaComponent);

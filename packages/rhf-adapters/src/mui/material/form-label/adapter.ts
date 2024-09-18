@@ -1,3 +1,4 @@
+import { useFormControl } from '@mui/material';
 import { useHtmlFormLabelAdapter, type UseHtmlFormLabelProps } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 
@@ -11,7 +12,25 @@ export function useMuiFormLabelAdapter<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown
 >(props: UseMuiFormLabelAdapterProps<TFieldValues, TName>, ref?: React.Ref<RefType>) {
-  const adapter = useHtmlFormLabelAdapter(props, ref);
+  const { disabled: disabledProp, ...rest } = props;
+
+  const muiFormControl = useFormControl();
+
+  let disabled = disabledProp;
+  if (muiFormControl) {
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
+  }
+
+  const adapter = useHtmlFormLabelAdapter(
+    {
+      ...rest,
+      disabled,
+    },
+    ref
+  );
+
   return {
     ...adapter,
     classes: props.classes,

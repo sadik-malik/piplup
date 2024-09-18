@@ -97,7 +97,7 @@ function MuiOutlinedInputComponent<
     ref
   );
 
-  return <OutlinedInput aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <OutlinedInput {...rest} {...adapter} />;
 }
 
 export const MuiOutlinedInputElement = React.forwardRef(

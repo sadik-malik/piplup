@@ -97,7 +97,7 @@ function MuiFilledInputComponent<
     ref
   );
 
-  return <FilledInput aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <FilledInput {...rest} {...adapter} />;
 }
 
 export const MuiFilledInputElement = React.forwardRef(

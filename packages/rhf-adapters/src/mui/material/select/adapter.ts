@@ -49,5 +49,6 @@ export function useMuiSelectAdapter<
   return {
     ...adapter,
     classes: props.classes,
+    multiple,
   };
 }

@@ -56,7 +56,11 @@ function MuiRatingComponent<
     ...rest
   } = props;
 
-  const { helperText: _helperText, ...adapter } = useMuiRatingAdapter(
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useMuiRatingAdapter(
     {
       classes,
       className,
@@ -87,7 +91,7 @@ function MuiRatingComponent<
     ref
   );
 
-  return <Rating aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Rating {...rest} {...adapter} />;
 }
 
 export const MuiRatingElement = React.forwardRef(

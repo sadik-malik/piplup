@@ -64,7 +64,11 @@ function MuiRadioGroupComponent<
     ...rest
   } = props;
 
-  const { helperText: _helperText, ...adapter } = useMuiRadioGroupAdapter(
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useMuiRadioGroupAdapter(
     {
       classes,
       className,
@@ -95,7 +99,7 @@ function MuiRadioGroupComponent<
     ref
   );
 
-  return <RadioGroup aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <RadioGroup {...rest} {...adapter} />;
 }
 
 export const MuiRadioGroupElement = React.forwardRef(

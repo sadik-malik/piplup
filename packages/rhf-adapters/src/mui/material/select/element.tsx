@@ -86,7 +86,7 @@ function MuiSelectComponent<
     ref
   );
 
-  return <Select aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Select {...rest} {...adapter} />;
 }
 
 export const MuiSelectElement = React.forwardRef(

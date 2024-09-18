@@ -84,7 +84,6 @@ export function useFormStateAdapter<
 
   const composedHelperText = useComposeHelperText<TFieldValues>({
     composeHelperText,
-    error: modifierState.error,
     errorParser,
     fieldError: errors,
     helperText,

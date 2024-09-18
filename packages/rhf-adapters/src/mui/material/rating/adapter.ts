@@ -25,12 +25,18 @@ export function useMuiRatingAdapter<
   const transformHelpers = React.useMemo(
     () => ({
       input(value: PathValue<TFieldValues, TName>): TTransformedValue {
+        if (typeof value === 'undefined') {
+          return null as TTransformedValue;
+        }
         return value;
       },
       output(
         _event: React.ChangeEvent<HTMLInputElement>,
         value: TTransformedValue
       ): PathValue<TFieldValues, TName> {
+        if (typeof value === 'undefined') {
+          return null as PathValue<TFieldValues, TName>;
+        }
         return value as PathValue<TFieldValues, TName>;
       },
     }),

@@ -120,7 +120,7 @@ function MuiAutocompleteComponent<
     ref
   );
 
-  return <Autocomplete aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Autocomplete {...rest} {...adapter} />;
 }
 
 export const MuiAutocompleteElement = React.forwardRef(

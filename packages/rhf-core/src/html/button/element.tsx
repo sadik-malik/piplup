@@ -58,7 +58,7 @@ function HtmlButtonComponent<TFieldValues extends FieldValues = FieldValues>(
     ref
   );
 
-  return <button aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <button {...rest} {...adapter} />;
 }
 
 export const HtmlButtonElement = React.forwardRef(

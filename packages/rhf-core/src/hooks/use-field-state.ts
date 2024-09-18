@@ -58,7 +58,10 @@ export function useFieldState<
       // Added `disabled` and `isSubmitting` property which is not present in `fieldState` object in react-hook-form
       disabled: {
         enumerable: true,
-        get: () => get(formState.disabled || disabled),
+        get: () =>
+          typeof formState.disabled === 'boolean' || typeof disabled === 'boolean'
+            ? formState.disabled || disabled
+            : undefined,
       },
       error: {
         enumerable: true,

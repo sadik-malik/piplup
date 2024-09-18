@@ -100,7 +100,6 @@ function MuiTextFieldComponent<
 
   return (
     <TextField
-      aria-disabled={adapter.disabled}
       {...rest}
       {...adapter}
       slotProps={{

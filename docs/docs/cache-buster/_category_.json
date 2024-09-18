@@ -1,8 +1,0 @@
-{
-  "label": "Cache Buster",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "@piplup/cache-buster is a lightweight library for managing access control lists (ACL) in your React application."
-  }
-}

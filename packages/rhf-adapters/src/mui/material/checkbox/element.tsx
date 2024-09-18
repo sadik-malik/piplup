@@ -99,7 +99,7 @@ function MuiCheckboxComponent<
     ref
   );
 
-  return <Checkbox aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Checkbox {...rest} {...adapter} />;
 }
 
 export const MuiCheckboxElement = React.forwardRef(

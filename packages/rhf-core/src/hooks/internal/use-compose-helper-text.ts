@@ -33,11 +33,6 @@ export type UseComposeHelperTextProps<TFieldValues extends FieldValues = FieldVa
   composeHelperText?: boolean;
 
   /**
-   * Flag indicating if there is an error present.
-   */
-  error?: boolean;
-
-  /**
    * Custom error parser function for formatting error messages.
    * If not provided, the default error parser is used.
    */
@@ -69,7 +64,6 @@ export function useComposeHelperText<TFieldValues extends FieldValues = FieldVal
 ): React.ReactNode {
   const {
     composeHelperText,
-    error,
     errorParser = defaultErrorParser,
     fieldError,
     helperText,
@@ -93,15 +87,13 @@ export function useComposeHelperText<TFieldValues extends FieldValues = FieldVal
         Object.entries(errors).filter(([key]) => name.some((fieldName) => fieldName === key))
       ) as FieldErrors<TFieldValues>;
     } else {
-      errors = (fieldError as FieldErrors<TFieldValues>)[
-        name as FieldPath<TFieldValues>
-      ] as FieldError;
+      errors = fieldError as FieldError;
     }
   }
 
-  const errorMessage = typeof errorParser === 'function' ? parser(errors) : undefined;
+  const errorMessage = typeof parser === 'function' ? parser(errors) : undefined;
 
-  if (error && errorMessage) {
+  if (errors && errorMessage) {
     return errorMessage;
   }
 

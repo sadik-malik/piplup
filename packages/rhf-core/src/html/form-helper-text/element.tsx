@@ -54,7 +54,7 @@ function HtmlFormHelperTextComponent<
     ref
   );
 
-  return <p aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <p {...rest} {...adapter} />;
 }
 
 export const HtmlFormHelperTextElement = React.forwardRef(

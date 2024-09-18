@@ -86,7 +86,7 @@ function MuiSliderComponent<
     ref
   );
 
-  return <Slider aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Slider {...rest} {...adapter} />;
 }
 
 export const MuiSliderElement = React.forwardRef(

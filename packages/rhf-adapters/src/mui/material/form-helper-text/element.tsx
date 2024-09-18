@@ -50,7 +50,7 @@ function MuiFormHelperTextComponent<
     ref
   );
 
-  return <FormHelperText aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <FormHelperText {...rest} {...adapter} />;
 }
 
 export const MuiFormHelperTextElement = React.forwardRef(

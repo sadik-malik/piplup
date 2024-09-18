@@ -60,7 +60,7 @@ function MuiButtonComponent<TFieldValues extends FieldValues = FieldValues>(
     ref
   );
 
-  return <Button aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Button {...rest} {...adapter} />;
 }
 
 export const MuiButtonElement = React.forwardRef(

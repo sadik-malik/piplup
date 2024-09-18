@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useFormControl } from '@mui/material';
 import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues, type PathValue } from 'react-hook-form';
 
@@ -17,17 +18,36 @@ export function useMuiRadioGroupAdapter<
   props: UseMuiRadioGroupAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>
 ) {
-  const { transform } = props;
+  const { disabled: disabledProp, required: requiredProp, transform, ...rest } = props;
+
+  const muiFormControl = useFormControl();
+
+  let required = requiredProp;
+  let disabled = disabledProp;
+  if (muiFormControl) {
+    if (typeof required === 'undefined') {
+      required = muiFormControl.required;
+    }
+    if (typeof disabled === 'undefined') {
+      disabled = muiFormControl.disabled;
+    }
+  }
 
   const transformHelpers = React.useMemo(
     () => ({
       input(value: PathValue<TFieldValues, TName>): TTransformedValue {
+        if (typeof value === 'undefined') {
+          return null as TTransformedValue;
+        }
         return value;
       },
       output(
         _event: React.ChangeEvent<HTMLInputElement>,
         value: string
       ): PathValue<TFieldValues, TName> {
+        if (typeof value === 'undefined' || value === '') {
+          return null as PathValue<TFieldValues, TName>;
+        }
         return value as PathValue<TFieldValues, TName>;
       },
     }),
@@ -41,7 +61,9 @@ export function useMuiRadioGroupAdapter<
     RefType
   >(
     {
-      ...props,
+      ...rest,
+      disabled,
+      required,
       transform: {
         ...transformHelpers,
         ...transform,

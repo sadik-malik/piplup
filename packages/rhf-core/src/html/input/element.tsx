@@ -106,7 +106,7 @@ function HtmlInputComponent<
     ref
   );
 
-  return <input aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <input {...rest} {...adapter} />;
 }
 
 export const HtmlInputElement = React.forwardRef(

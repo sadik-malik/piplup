@@ -55,7 +55,7 @@ function MuiFormLabelComponent<
     ref
   );
 
-  return <FormLabel aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <FormLabel {...rest} {...adapter} />;
 }
 
 export const MuiFormLabelElement = React.forwardRef(

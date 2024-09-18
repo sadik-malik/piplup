@@ -61,7 +61,11 @@ function MuiRadioComponent<
     ...rest
   } = props;
 
-  const { helperText: _helperText, ...adapter } = useMuiRadioAdapter(
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useMuiRadioAdapter(
     {
       checked,
       classes,
@@ -95,7 +99,7 @@ function MuiRadioComponent<
     ref
   );
 
-  return <Radio aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Radio {...rest} {...adapter} />;
 }
 
 export const MuiRadioElement = React.forwardRef(MuiRadioComponent) as typeof MuiRadioComponent & {

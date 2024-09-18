@@ -97,7 +97,7 @@ function MuiInputBaseComponent<
     ref
   );
 
-  return <InputBase aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <InputBase {...rest} {...adapter} />;
 }
 
 export const MuiInputBaseElement = React.forwardRef(

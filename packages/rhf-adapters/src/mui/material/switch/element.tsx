@@ -86,7 +86,7 @@ function MuiSwitchComponent<
     ref
   );
 
-  return <Switch aria-disabled={adapter.disabled} {...rest} {...adapter} />;
+  return <Switch {...rest} {...adapter} />;
 }
 
 export const MuiSwitchElement = React.forwardRef(
