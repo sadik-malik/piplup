@@ -2,6 +2,24 @@
 
 This package contains a set of utility functions and React hooks designed to simplify common tasks and enhance your development experience. Below is an overview of each helper function and hook, along with usage examples.
 
+## Installation
+
+```bash
+npm install @piplup/utils
+```
+
+or
+
+```bash
+yarn add @piplup/utils
+```
+
+or
+
+```bash
+pnpm add @piplup/utils
+```
+
 ## Table of Contents
 
 - [Helpers](#helpers)
