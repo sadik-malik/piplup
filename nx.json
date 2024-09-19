@@ -53,6 +53,14 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["default", "^default"]
+    },
+    "nx-release-publish": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default"],
+      "cache": false,
+      "options": {
+        "packageRoot": "{projectRoot}/dist"
+      }
     }
   }
 }

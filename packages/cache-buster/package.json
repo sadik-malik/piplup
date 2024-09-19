@@ -16,10 +16,6 @@
   "bin": {
     "piplup-cache-buster": "./bin/generate-release-id.js"
   },
-  "files": [
-    "dist",
-    "bin"
-  ],
   "peerDependencies": {
     "@types/react": "^18.0.0",
     "react": "^18.0.0"

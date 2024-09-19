@@ -19,9 +19,6 @@
   },
   "license": "MIT",
   "sideEffects": false,
-  "files": [
-    "dist"
-  ],
   "peerDependencies": {
     "@types/react": "^18.0.0",
     "react": "^18.0.0"

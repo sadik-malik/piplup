@@ -15,9 +15,6 @@
   },
   "license": "MIT",
   "sideEffects": false,
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@piplup/utils": "^2.0.0"
   },

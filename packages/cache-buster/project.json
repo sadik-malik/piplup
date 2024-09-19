@@ -35,6 +35,11 @@
             "glob": "{projectRoot}/README.md",
             "input": ".",
             "output": "."
+          },
+          {
+            "glob": "{projectRoot}/bin/generate-release-id.js",
+            "input": ".",
+            "output": "./bin"
           }
         ]
       }
