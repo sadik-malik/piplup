@@ -52,7 +52,31 @@ export function useHtmlInputAdapter<
   props: UseHtmlInputAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>
 ) {
-  const { checked, indeterminate, messages, pattern, type, value } = props;
+  const {
+    checked,
+    indeterminate,
+    messages: messagesProp,
+    pattern: patternProp,
+    type,
+    value,
+  } = props;
+
+  let pattern = patternProp;
+  let messages = messagesProp;
+  if (typeof pattern === 'undefined') {
+    if (type === 'email') {
+      pattern = /\S+@\S+\.\S+/;
+      messages = {
+        pattern: 'Please enter an email address.',
+        ...messages,
+      };
+    } else if (type === 'url') {
+      messages = {
+        pattern: 'Please enter a valid url.',
+        ...messages,
+      };
+    }
+  }
 
   React.useMemo(() => {
     if (type === 'checkbox' && typeof value === 'undefined') {
@@ -116,13 +140,8 @@ export function useHtmlInputAdapter<
   const adapter = useControllerAdapter(
     {
       ...props,
-      ...(type === 'email' && {
-        messages: {
-          pattern: 'Please enter an email address.',
-          ...messages,
-        },
-        pattern: pattern ?? /\S+@\S+\.\S+/,
-      }),
+      messages,
+      pattern,
       transform: {
         ...transformHelpers,
         ...props.transform,

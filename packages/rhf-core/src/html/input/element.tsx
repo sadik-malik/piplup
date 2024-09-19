@@ -9,7 +9,14 @@ export interface HtmlInputElementProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
       React.ComponentProps<'input'>,
-      'checked' | 'defaultValue' | 'indeterminate' | 'name' | 'pattern' | 'style' | 'value'
+      | 'checked'
+      | 'defaultChecked'
+      | 'defaultValue'
+      | 'indeterminate'
+      | 'name'
+      | 'pattern'
+      | 'style'
+      | 'value'
     >,
     Omit<
       UseHtmlInputAdapterProps<TTransformedValue, TFieldValues, TName>,
@@ -20,9 +27,7 @@ export interface HtmlInputElementProps<
       | 'onBlur'
       | 'onChange'
       | 'type'
-    > {
-  defaultChecked?: never;
-}
+    > {}
 
 function HtmlInputComponent<
   TTransformedValue extends number | readonly string[] | string | undefined,

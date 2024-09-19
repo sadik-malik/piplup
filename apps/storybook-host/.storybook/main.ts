@@ -6,9 +6,7 @@ import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   addons: [getAbsolutePath('@storybook/addon-essentials')],
-  docs: {
-    autodocs: 'tag',
-  },
+  docs: {},
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},

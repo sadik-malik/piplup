@@ -2,10 +2,8 @@ import type React from 'react';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '../input';
 
-type TransformedValue = number | readonly string[] | string | undefined;
-
 export interface UseHtmlTextareaAdapterProps<
-  TTransformedValue = TransformedValue,
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
@@ -14,7 +12,7 @@ export interface UseHtmlTextareaAdapterProps<
   > {}
 
 export function useHtmlTextareaAdapter<
-  TTransformedValue = TransformedValue,
+  TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown

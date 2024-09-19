@@ -1,6 +1,7 @@
 import { Box, MenuItem, textFieldClasses } from '@mui/material';
 import { MuiTextFieldElement } from '@piplup/rhf-adapters/mui-material';
-import { FormContainer, type FormContainerProps } from '@piplup/rhf-core';
+import { FormContainer } from '@piplup/rhf-core';
+import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryObj } from '@storybook/react';
 import markdown from './textfield.md?raw';
 
@@ -60,13 +61,8 @@ type Story = StoryObj<typeof MuiTextFieldElement>;
 
 export const BasicTextField: Story = {
   render(props) {
-    const containerProps: Partial<FormContainerProps> = {
-      onSubmit(values) {
-        alert(JSON.stringify(values));
-      },
-    };
     return (
-      <FormContainer {...containerProps}>
+      <FormContainer onError={action('onError')} onSubmit={action('onSubmit')}>
         <Box
           sx={{
             '& > :not(style)': { m: 1, width: '25ch' },
@@ -93,13 +89,8 @@ export const BasicTextField: Story = {
 
 export const Multiline: Story = {
   render() {
-    const containerProps: Partial<FormContainerProps> = {
-      onSubmit(values) {
-        alert(JSON.stringify(values));
-      },
-    };
     return (
-      <FormContainer {...containerProps}>
+      <FormContainer onError={action('onError')} onSubmit={action('onSubmit')}>
         <Box
           sx={{
             [`& .${textFieldClasses.root}`]: { m: 1, width: '25ch' },
@@ -201,13 +192,8 @@ const currencies = [
 
 export const Select: Story = {
   render() {
-    const containerProps: Partial<FormContainerProps> = {
-      onSubmit(values) {
-        alert(JSON.stringify(values));
-      },
-    };
     return (
-      <FormContainer {...containerProps}>
+      <FormContainer onError={action('onError')} onSubmit={action('onSubmit')}>
         <Box
           sx={{
             [`& .${textFieldClasses.root}`]: { m: 1, width: '25ch' },
