@@ -1,5 +1,5 @@
-# @piplup/rhf-adapters
+# @piplup/rhf-core
 
-ℹ️ **Under Development**: This library is currently under active development and not released. Stay tuned for updates!
+This package contains a set of useful components, hooks and adapter for integrating libraries like mui with react-hook-form.
 
-A library designed to streamline the integration of react-hook-form with UI frameworks by managing boilerplate code.
+Refer to [storybook](https://piplup.vercel.app) examples for list of available components and its usage.

@@ -1,9 +1,14 @@
 # @piplup/rhf-core
 
-ℹ️ **Under Development**: This library is currently under active development and not released. Stay tuned for updates!
+This package contains a set of useful components, hooks and adapter for integrating native html components and custom components with react-hook-form.
 
-This library was generated with [Nx](https://nx.dev).
+## Table of Contents
 
-## Running unit tests
-
-Run `nx test @piplup/rhf-core` to execute the unit tests via [Vitest](https://vitest.dev/).
+- [Hooks](#hooks)
+  - [useFieldState](https://github.com/sadik-malik/piplup/blob/main/packages/rhf-core/src/hooks/use-field-state-adapter.ts)
+  - [useFormReset](https://github.com/sadik-malik/piplup/blob/main/packages/rhf-core/src/hooks/use-form-reset.ts)
+  - [useControllerAdapter](https://github.com/sadik-malik/piplup/blob/main/packages/rhf-core/src/hooks/use-controller-adapter.ts)
+  - [useFieldStateAdapter](https://github.com/sadik-malik/piplup/blob/main/packages/rhf-core/src/hooks/use-field-state-adapter.ts)
+  - [useFormStateAdapter](https://github.com/sadik-malik/piplup/blob/main/packages/rhf-core/src/hooks/use-form-state-adapter.ts)
+- [HTML Components](https://piplup.vercel.app)
+  - Refer to [storybook](https://piplup.vercel.app) examples for list of available components and its usage.

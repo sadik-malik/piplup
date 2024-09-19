@@ -21,7 +21,7 @@ import {
 } from './internal/use-compose-modifier-state';
 import { useComposeRules, type UseComposeRulesProps } from './internal/use-compose-rules';
 import { useComposeStyle, type UseComposeStyleProps } from './internal/use-compose-style';
-import { useTransform } from './use-transform';
+import { useTransform } from './internal/use-transform';
 
 /**
  * Type for the props of the controller adapter hook.
