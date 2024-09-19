@@ -1,6 +1,6 @@
 import { MuiInputBaseElement } from '@piplup/rhf-adapters/mui-material';
 import { type Meta } from '@storybook/react';
-import markdown from './input-base.md';
+import markdown from './input-base.md?raw';
 
 const meta: Meta<typeof MuiInputBaseElement> = {
   args: {},

@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf --glob ./packages/*/dist",
+    "clean": "rimraf --glob ./packages/*/dist ./apps/storybook-host/storybook-static",
     "lint": "nx run-many --target=lint --all",
     "build:all": "nx run-many --target=build --all",
     "build:packages": "nx run-many -t build -p tag:scope:packages",
-    "storybook:start": "nx storybook storybook-host --no-open"
+    "storybook:start": "nx storybook storybook-host --no-open",
+    "storybook:build": "nx build-storybook storybook-host",
+    "reset": "nx reset"
   },
   "private": true,
   "devDependencies": {
