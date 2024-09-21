@@ -3,6 +3,6 @@
 const isCi = process.env.CI !== undefined;
 
 if (!isCi) {
-  const husky = await import('husky');
-  husky.install();
+  const { default: husky } = await import('husky');
+  husky();
 }

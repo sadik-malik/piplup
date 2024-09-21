@@ -9,7 +9,8 @@
     "build:packages": "nx run-many -t build -p tag:scope:packages",
     "storybook:start": "nx storybook storybook-host --no-open",
     "storybook:build": "nx build-storybook storybook-host",
-    "reset": "nx reset"
+    "reset": "nx reset",
+    "prepare": "node ./scripts/prepare.mjs"
   },
   "private": true,
   "devDependencies": {
