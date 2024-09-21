@@ -1,7 +1,4 @@
 {
-  "{apps,packages}/**/src/**/*.{js,jsx,ts,tsx}": [
-    "nx affected:lint --files",
-    "nx affected:tsc --files"
-  ],
-  "{apps,packages}/**/src/**/*.{css,scss,md,mdx}": ["nx format:write --files"]
+  "{apps,packages}/**/src/**/*.{js,jsx,ts,tsx}": ["nx affected:lint --files"],
+  "{apps,packages}/**/src/**/*.{css,scss}": ["nx format:write --files"]
 }

@@ -1,0 +1,74 @@
+import { Meta, Title, Subtitle } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+![alt Piplup](/assets/logo-with-text.svg 'Piplup')
+
+# Introduction
+
+Piplup hosts collections of open-source React libraries that aim to handle the boilerplate code
+React developers typically write. It includes a comprehensive collection of components, hooks and
+helper functions that aims to help developer ship their code faster.
+
+## Open Source libraries
+
+<div className='open-source-libraries'>
+  <div className="open-source-library">
+    ### @piplup/rhf-core 
+        
+    Core package exposing powerful hooks and adapters that simplify integrating `react-hook-form` with any custom component.
+
+  </div>
+  <div className="open-source-library">
+    ### @piplup/rhf-adapters
+
+    Built on top of `@piplup/rhf-core`, this package exposes adapters and pre-configured components that seamlessly integrate libraries like `@mui/material` with `react-hook-form`.
+
+  </div>
+  <div className="open-source-library">
+    ### @piplup/utils
+
+    A collection of frequently used utility hooks and helper functions, making your development process more efficient and streamlined.
+
+  </div>
+  <div className="open-source-library">
+    ### @piplup/cache-buster
+
+    A lightweight package for React applications designed to handle cache invalidation for web assets.
+
+  </div>
+  <div className="open-source-library">
+    ### @piplup/react-acl
+
+    A lightweight React library for managing access control in your application.
+
+  </div>
+</div>
+<style>
+{`
+  #open-source-libraries {
+    margin-bottom: 24px;
+    margin-top: 36px;
+  }
+  .open-source-libraries {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 24px;
+  }
+  @media (min-width: 786px){
+    .open-source-libraries {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+  .open-source-library {
+    padding: 24px 32px;
+    box-shadow: rgb(255, 255, 255) 0px 2px 0px inset, rgba(232, 234, 238, 0.3) 0px -2px 0px inset, rgba(223, 226, 231, 0.5) 0px 1px 2px 0px;
+    background-color: #f9fffb;
+    border-radius: 12px;
+    border: 1px solid rgb(227 255 239);
+    box-sizing: border-box;
+  }
+`}
+</style>
