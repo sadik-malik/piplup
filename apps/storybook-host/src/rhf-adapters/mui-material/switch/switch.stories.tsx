@@ -1,5 +1,5 @@
 import { MuiButtonElement, MuiSwitchElement } from '@piplup/rhf-adapters/mui-material';
-import { FormContainer, type FormContainerProps } from '@piplup/rhf-core';
+import { FormContainer } from '@piplup/rhf-core';
 import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryObj } from '@storybook/react';
 import markdown from './switch.md?raw';
@@ -25,18 +25,15 @@ type Story = StoryObj<typeof MuiSwitchElement>;
 
 export const BasicSwitches: Story = {
   render() {
-    const containerProps: Partial<FormContainerProps> = {
-      defaultValues: {
-        checked: true,
-        'checked-disabled': true,
-      },
-      onSubmit(values) {
-        action('onSubmit')(values);
-      },
-    };
-
     return (
-      <FormContainer {...containerProps}>
+      <FormContainer
+        defaultValues={{
+          checked: true,
+          'checked-disabled': true,
+        }}
+        onError={action('onError')}
+        onSubmit={action('onSubmit')}
+      >
         <div>
           <MuiSwitchElement inputProps={{ 'aria-label': 'Switch demo' }} name="checked" />
           <MuiSwitchElement inputProps={{ 'aria-label': 'Switch demo' }} name="unchecked" />

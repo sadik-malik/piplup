@@ -55,7 +55,11 @@ function MuiSwitchComponent<
     ...rest
   } = props;
 
-  const { helperText: _helperText, ...adapter } = useMuiSwitchAdapter(
+  const {
+    error: _error,
+    helperText: _helperText,
+    ...adapter
+  } = useMuiSwitchAdapter(
     {
       classes,
       className,

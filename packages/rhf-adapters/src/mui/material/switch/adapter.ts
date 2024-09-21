@@ -31,7 +31,12 @@ export function useMuiSwitchAdapter<
     []
   );
 
-  const adapter = useControllerAdapter<TTransformedValue, TFieldValues, TName, RefType>(
+  const { value, ...adapter } = useControllerAdapter<
+    TTransformedValue,
+    TFieldValues,
+    TName,
+    RefType
+  >(
     {
       ...props,
       transform: {
@@ -44,6 +49,7 @@ export function useMuiSwitchAdapter<
 
   return {
     ...adapter,
+    checked: value,
     classes: props.classes,
   };
 }
