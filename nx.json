@@ -50,16 +50,24 @@
   },
   "targetDefaults": {
     "@nx/rollup:rollup": {
-      "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["default", "^default"]
     },
     "nx-release-publish": {
       "dependsOn": ["^build"],
-      "inputs": ["default", "^default"],
-      "cache": false,
       "options": {
         "packageRoot": "{projectRoot}/dist"
+      }
+    }
+  },
+  "release": {
+    "projects": ["*"],
+    "version": {
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "workspaceChangelog": {
+        "createRelease": "github"
       }
     }
   }
