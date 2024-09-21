@@ -1,5 +1,7 @@
 # @piplup/rhf-adapters
 
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@piplup/rhf-adapters)
+
 This package contains a set of useful components, hooks and adapter for integrating libraries like mui with react-hook-form.
 
 ## Installation

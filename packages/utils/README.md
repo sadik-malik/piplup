@@ -1,5 +1,7 @@
 # @piplup/utils
 
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@piplup/utils)
+
 This package contains a set of utility functions and React hooks designed to simplify common tasks and enhance your development experience. Below is an overview of each helper function and hook, along with usage examples.
 
 ## Installation

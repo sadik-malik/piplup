@@ -1,5 +1,7 @@
 # @piplup/use-event-listener
 
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@piplup/use-event-listener)
+
 ## ⚠️ Deprecation Warning
 
 > **Important Notice:** `useEventListener` hook has been moved to [@piplup/utils](https://github.com/sadik-malik/piplup/blob/main/packages/utils/README.md), While it may continue to work for existing projects, we recommend migrating to the new package.
@@ -33,15 +35,11 @@ import { useEventListener } from '@piplup/use-event-listener';
 function App() {
   const handleResize = (event) => {
     console.log('Window has been resized!', event);
-  }
+  };
 
   useEventListener('resize', handleResize);
 
-  return (
-    <div>
-      useEventListener Demo
-    </div>
-  );
+  return <div>useEventListener Demo</div>;
 }
 ```
 

@@ -1,5 +1,7 @@
 # @piplup/vite-plugin-cache-buster
 
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@piplup/vite-plugin-cache-buster)
+
 A Vite plugin to automatically run cache busting during the build process using `@piplup/cache-buster`.
 
 ## Installation

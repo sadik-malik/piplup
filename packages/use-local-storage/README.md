@@ -1,5 +1,7 @@
 # @piplup/use-local-storage
 
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@piplup/use-local-storage)
+
 ## ⚠️ Deprecation Warning
 
 > **Important Notice:** `useLocalStorage` hook has been moved to [@piplup/utils](https://github.com/sadik-malik/piplup/blob/main/packages/utils/README.md), While it may continue to work for existing projects, we recommend migrating to the new package.

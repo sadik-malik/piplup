@@ -1,5 +1,7 @@
 # @piplup/rhf-core
 
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@piplup/rhf-core)
+
 This package contains a set of useful components, hooks and adapter for integrating native html components and custom components with react-hook-form.
 
 ## Installation
