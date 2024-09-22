@@ -61,19 +61,10 @@
     }
   },
   "release": {
-    "projects": ["*"],
+    "projects": ["*", "!storybook-host"],
+    "projectsRelationship": "independent",
     "version": {
       "conventionalCommits": true
-    },
-    "changelog": {
-      "workspaceChangelog": {
-        "createRelease": "github",
-        "renderOptions": {
-          "authors": false,
-          "commitReferences": false,
-          "versionTitleDate": false
-        }
-      }
     }
   }
 }
