@@ -2,6 +2,7 @@
   "name": "@piplup/vite-plugin-cache-buster",
   "version": "1.1.0",
   "private": false,
+  "homepage": "https://www.piplupjs.com",
   "description": "Vite plugin for integrating @piplup/cache-buster with vite",
   "keywords": [
     "@piplup/cache-buster vite plugin",

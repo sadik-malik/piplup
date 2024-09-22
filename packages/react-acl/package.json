@@ -8,6 +8,7 @@
     "react access control",
     "react permission based access"
   ],
+  "homepage": "https://www.piplupjs.com",
   "repository": {
     "url": "https://github.com/sadik-malik/piplup.git",
     "directory": "packages/react-acl"

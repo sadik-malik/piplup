@@ -7,6 +7,7 @@
     "react-cache-buster",
     "cache buster"
   ],
+  "homepage": "https://www.piplupjs.com",
   "repository": {
     "url": "https://github.com/sadik-malik/piplup.git",
     "directory": "packages/cache-buster"

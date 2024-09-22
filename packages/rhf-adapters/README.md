@@ -24,4 +24,4 @@ pnpm add @piplup/rhf-adapters @piplup/rhf-core react-hook-form
 
 ## Components & Usage
 
-Refer to [storybook](https://piplup-x.vercel.app) examples for list of available components and its usage.
+Refer to [storybook](https://www.piplupjs.com) examples for list of available components and its usage.
