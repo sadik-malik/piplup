@@ -42,11 +42,28 @@ export const BasicLoadingButton: Story = {
         onError={action('onError')}
       >
         <Stack direction="column" maxWidth={250} spacing={2}>
-          <MuiTextFieldElement name="email" placeholder="email" type="email" required />
-          <MuiTextFieldElement name="password" placeholder="password" type="password" required />
+          <MuiTextFieldElement
+            name="email"
+            placeholder="email"
+            type="email"
+            disableOnIsSubmitting
+            required
+          />
+          <MuiTextFieldElement
+            name="password"
+            placeholder="password"
+            type="password"
+            disableOnIsSubmitting
+            required
+          />
         </Stack>
         <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-          <MuiLoadingButtonElement loading={false} type="reset" variant="outlined">
+          <MuiLoadingButtonElement
+            loading={false}
+            type="reset"
+            variant="outlined"
+            disableOnIsSubmitting
+          >
             Reset
           </MuiLoadingButtonElement>
           <MuiLoadingButtonElement type="submit" variant="contained">
