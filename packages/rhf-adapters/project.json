@@ -25,14 +25,18 @@
         "tsConfig": "{projectRoot}/tsconfig.lib.json",
         "project": "{projectRoot}/package.json",
         "entryFile": "{projectRoot}/src/index.ts",
-        "additionalEntryPoints": ["{projectRoot}/src/mui/material/mui-material.ts"],
+        "additionalEntryPoints": [
+          "{projectRoot}/src/mui/material/mui-material.ts",
+          "{projectRoot}/src/mui/lab/mui-lab.ts"
+        ],
         "external": [
           "react",
           "react-dom",
           "react/jsx-runtime",
           "react-hook-form",
+          "@piplup/rhf-core",
           "@mui/material",
-          "@piplup/rhf-core"
+          "@mui/lab"
         ],
         "format": ["esm", "cjs"],
         "rollupConfig": "@nx/react/plugins/bundle-rollup",
