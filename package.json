@@ -2,6 +2,7 @@
   "name": "@piplup/monorepo",
   "version": "0.0.1",
   "license": "MIT",
+  "homepage": "https://www.piplupjs.com/",
   "scripts": {
     "clean": "rimraf --glob ./packages/*/dist ./apps/storybook-host/storybook-static",
     "lint": "nx run-many --target=lint --all",

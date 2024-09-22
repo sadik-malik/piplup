@@ -2,6 +2,7 @@
   "name": "@piplup/use-local-storage",
   "version": "1.1.0",
   "private": false,
+  "homepage": "https://www.piplupjs.com",
   "description": "React hook for reading values from the browser localStorage and listening to changes in it.",
   "keywords": [
     "@piplup/use-local-storage",

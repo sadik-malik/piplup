@@ -2,6 +2,7 @@
   "name": "@piplup/utils",
   "version": "2.1.0",
   "private": false,
+  "homepage": "https://www.piplupjs.com",
   "description": "A collection of utility hooks and functions crafted to power up the packages within Piplup.",
   "keywords": [
     "@piplup/use-local-storage",
