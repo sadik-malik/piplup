@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://www.piplupjs.com/",
   "scripts": {
-    "clean": "rimraf --glob ./packages/*/dist ./apps/storybook-host/storybook-static",
+    "clean": "rimraf --glob ./packages/*/dist ./apps/storybook-host/storybook-static ./build-storybook.log",
     "lint": "nx run-many --target=lint --all",
     "build:all": "nx run-many --target=build --all",
     "build:packages": "nx run-many -t build -p tag:scope:packages",
@@ -51,6 +51,7 @@
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "7.16.0",
     "@typescript-eslint/parser": "7.16.0",
+    "chromatic": "^11.10.2",
     "core-js": "^3.36.1",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.0.0",

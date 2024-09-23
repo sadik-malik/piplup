@@ -44,4 +44,6 @@ Thumbs.db
 apps/playground
 
 
+#Storybook
 storybook-static
+build-storybook.log
