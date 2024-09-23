@@ -2,25 +2,37 @@ import * as React from 'react';
 import { AclContext, type AclContextType } from './acl-context';
 
 export type AclProviderProps = {
+  /**
+   * React child components to be rendered inside the AclProvider.
+   */
   children: React.ReactNode;
+  /**
+   * Indicates the application permissions are being initialized.
+   */
   loading: boolean;
-  permissions: (string | number)[];
-  roles: (string | number)[];
+  /**
+   * Permissions array for ACL checks
+   */
+  permissions: (number | string)[];
+  /**
+   * Roles array for ACL checks
+   */
+  roles: (number | string)[];
 };
 
 function hasIntersection(value: unknown, array: unknown[]): boolean {
   if (Array.isArray(value)) {
-    return value.length === 0 ? true : value.some((val) => array.some((item) => item === val));
+    return value.length === 0 ? false : value.some((val) => array.some((item) => item === val));
   } else {
-    return typeof value === 'undefined' ? true : array.some((item) => item === value);
+    return typeof value === 'undefined' ? false : array.some((item) => item === value);
   }
 }
 
 function hasUnion(value: unknown, array: unknown[]): boolean {
   if (Array.isArray(value)) {
-    return value.length === 0 ? true : value.every((val) => array.some((item) => item === val));
+    return value.length === 0 ? false : value.every((val) => array.some((item) => item === val));
   } else {
-    return typeof value === 'undefined' ? true : array.some((item) => item === value);
+    return typeof value === 'undefined' ? false : array.some((item) => item === value);
   }
 }
 
@@ -32,15 +44,15 @@ export function AclProvider(props: AclProviderProps) {
       permissions = [],
       roles = [],
       validationMode = {
-        roles: 'any',
         permissions: 'any',
+        roles: 'any',
       },
     }: {
-      permissions?: string | number | (string | number)[];
-      roles?: string | number | (string | number)[];
+      permissions?: (number | string)[] | number | string;
+      roles?: (number | string)[] | number | string;
       validationMode?: {
-        roles?: 'all' | 'any';
         permissions?: 'all' | 'any';
+        roles?: 'all' | 'any';
       };
     }): boolean => {
       if (loading) {
