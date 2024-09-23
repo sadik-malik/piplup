@@ -22,17 +22,17 @@ export type AclProviderProps = {
 
 function hasIntersection(value: unknown, array: unknown[]): boolean {
   if (Array.isArray(value)) {
-    return value.length === 0 ? false : value.some((val) => array.some((item) => item === val));
+    return value.length === 0 ? true : value.some((val) => array.some((item) => item === val));
   } else {
-    return typeof value === 'undefined' ? false : array.some((item) => item === value);
+    return typeof value === 'undefined' ? true : array.some((item) => item === value);
   }
 }
 
 function hasUnion(value: unknown, array: unknown[]): boolean {
   if (Array.isArray(value)) {
-    return value.length === 0 ? false : value.every((val) => array.some((item) => item === val));
+    return value.length === 0 ? true : value.every((val) => array.some((item) => item === val));
   } else {
-    return typeof value === 'undefined' ? false : array.some((item) => item === value);
+    return typeof value === 'undefined' ? true : array.some((item) => item === value);
   }
 }
 
