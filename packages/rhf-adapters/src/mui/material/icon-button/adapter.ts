@@ -1,5 +1,5 @@
 import type * as React from 'react';
-import { useHtmlButtonAdapter, type UseHtmlButtonAdapterProps } from '@piplup/rhf-core';
+import { useHtmlButtonAdapter, type UseHtmlButtonAdapterProps } from '@piplup/rhf-core/html';
 import { type FieldValues } from 'react-hook-form';
 
 export interface UseMuiIconButtonAdapterProps<TFieldValues extends FieldValues = FieldValues>

@@ -25,6 +25,7 @@
         "tsConfig": "{projectRoot}/tsconfig.lib.json",
         "project": "{projectRoot}/package.json",
         "entryFile": "{projectRoot}/src/index.ts",
+        "additionalEntryPoints": ["{projectRoot}/src/html/html.ts"],
         "external": ["react", "react-dom", "react/jsx-runtime", "react-hook-form"],
         "format": ["esm", "cjs"],
         "rollupConfig": "@nx/react/plugins/bundle-rollup",

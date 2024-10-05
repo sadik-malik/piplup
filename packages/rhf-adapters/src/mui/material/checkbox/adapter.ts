@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useFormControl } from '@mui/material';
-import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core';
+import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core/html';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 
 export interface UseMuiCheckboxAdapterProps<

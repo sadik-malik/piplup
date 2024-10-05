@@ -1,6 +1,6 @@
 import type * as React from 'react';
 import { useFormControl } from '@mui/material';
-import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core';
+import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core/html';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 
 export type UseMuiOutlinedInputAdapterProps<

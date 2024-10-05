@@ -6,10 +6,10 @@
   "scripts": {
     "clean": "rimraf --glob ./packages/*/dist ./apps/storybook-host/storybook-static ./build-storybook.log",
     "lint": "nx run-many --target=lint --all",
-    "build:all": "nx run-many --target=build --all",
+    "build": "nx run-many --target=build --all",
     "build:packages": "nx run-many -t build -p tag:scope:packages",
-    "storybook:start": "nx storybook storybook-host",
-    "storybook:build": "nx build-storybook storybook-host",
+    "build:storybook": "nx build-storybook storybook-host",
+    "start:storybook": "nx storybook storybook-host",
     "reset": "nx reset",
     "prepare": "node ./scripts/prepare.mjs"
   },
