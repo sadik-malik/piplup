@@ -16,6 +16,9 @@ const config: StorybookConfig = {
   },
   staticDirs: ['../public'],
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+  },
   viteFinal: async (config) =>
     mergeConfig(config, {
       plugins: [nxViteTsPaths()],

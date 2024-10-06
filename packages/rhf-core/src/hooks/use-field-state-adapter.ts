@@ -3,16 +3,13 @@ import { type FieldPath, type FieldValues } from 'react-hook-form';
 import {
   type UseComposeClassNameProps,
   useComposeClassName,
-} from './internal/use-compose-class-name';
-import {
   type UseComposeHelperTextProps,
   useComposeHelperText,
-} from './internal/use-compose-helper-text';
-import {
   type UseComposeModifierStateProps,
   useComposeModifierState,
-} from './internal/use-compose-modifier-state';
-import { type UseComposeStyleProps, useComposeStyle } from './internal/use-compose-style';
+  type UseComposeStyleProps,
+  useComposeStyle,
+} from './internals/internals';
 import { useFieldState, type UseFieldStateProps } from './use-field-state';
 
 /**

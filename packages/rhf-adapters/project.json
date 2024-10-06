@@ -27,7 +27,9 @@
         "entryFile": "{projectRoot}/src/index.ts",
         "additionalEntryPoints": [
           "{projectRoot}/src/mui/material/mui-material.ts",
-          "{projectRoot}/src/mui/lab/mui-lab.ts"
+          "{projectRoot}/src/mui/lab/mui-lab.ts",
+          "{projectRoot}/src/mui/x-date-pickers/mui-x-date-pickers.ts",
+          "{projectRoot}/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts"
         ],
         "external": [
           "react",
@@ -36,7 +38,8 @@
           "react-hook-form",
           "@piplup/rhf-core",
           "@mui/material",
-          "@mui/lab"
+          "@mui/lab",
+          "@mui/x-date-pickers"
         ],
         "format": ["esm", "cjs"],
         "rollupConfig": "@nx/react/plugins/bundle-rollup",

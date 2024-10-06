@@ -13,11 +13,7 @@ export type UseComposeStyleProps<
   modifierState: ModifierState;
 
   /**
-   * A function that takes the `modifierState` and returns a `React.CSSProperties` object,
-   * or a direct `React.CSSProperties` object.
-   *
-   * @param modifierState - The current modifier states.
-   * @returns The computed CSS properties based on the `modifierState`.
+   * `style` accepts either a `React.CSSProperties` object or a function that takes modifierState and returns a `React.CSSProperties` object.
    */
   style?: ((modifierState: ModifierState) => React.CSSProperties) | React.CSSProperties;
 };

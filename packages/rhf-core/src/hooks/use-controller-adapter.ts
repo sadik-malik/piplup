@@ -6,22 +6,22 @@ import {
   type FieldPath,
   type FieldValues,
   type PathValue,
+  type FieldPathValue,
+  type Control,
 } from 'react-hook-form';
 import {
   useComposeClassName,
   type UseComposeClassNameProps,
-} from './internal/use-compose-class-name';
-import {
   type UseComposeHelperTextProps,
   useComposeHelperText,
-} from './internal/use-compose-helper-text';
-import {
   useComposeModifierState,
   type UseComposeModifierStateProps,
-} from './internal/use-compose-modifier-state';
-import { useComposeRules, type UseComposeRulesProps } from './internal/use-compose-rules';
-import { useComposeStyle, type UseComposeStyleProps } from './internal/use-compose-style';
-import { useTransform } from './internal/use-transform';
+  useComposeRules,
+  type UseComposeRulesProps,
+  useComposeStyle,
+  type UseComposeStyleProps,
+  useTransform,
+} from './internals/internals';
 
 /**
  * Type for the props of the controller adapter hook.
@@ -30,12 +30,27 @@ export interface UseControllerAdapterProps<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends UseControllerProps<TFieldValues, TName>,
-    UseComposeRulesProps<TFieldValues, TName>,
+> extends UseComposeRulesProps<TFieldValues, TName>,
     Omit<UseComposeModifierStateProps<TFieldValues>, 'fieldError' | 'isSubmitting'>,
     Omit<UseComposeClassNameProps, 'modifierState'>,
     Omit<UseComposeStyleProps, 'modifierState'>,
     Omit<UseComposeHelperTextProps<TFieldValues>, 'fieldError' | 'name'> {
+  /**
+   * '`control` object from `useForm` hook.'
+   */
+  control?: Control<TFieldValues>;
+  /**
+   * The default value for the field.
+   */
+  defaultValue?: FieldPathValue<TFieldValues, TName>;
+  /**
+   * If true, the field will be disabled
+   */
+  disabled?: boolean;
+  /**
+   * Name of the field.
+   */
+  name: TName;
   /**
    * Function called when the field loses focus.
    *
@@ -46,7 +61,6 @@ export interface UseControllerAdapterProps<
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...args: any[]
   ) => void;
-
   /**
    * Function called when the field's value changes.
    *
@@ -57,6 +71,14 @@ export interface UseControllerAdapterProps<
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...args: any[]
   ) => void;
+  /**
+   * Validation rules object. Refer react-hook-form documentation [here](https://www.react-hook-form.com/api/usecontroller/controller/).
+   */
+  rules?: UseControllerProps<TFieldValues, TName>['rules'];
+  /**
+   * Enable and disable field unregister after unmount.
+   */
+  shouldUnregister?: boolean;
 
   /**
    * Transformation functions for the field's input and output values.
@@ -64,17 +86,11 @@ export interface UseControllerAdapterProps<
   transform?: {
     /**
      * Function to transform the input value.
-     *
-     * @param value - The input value to be transformed.
-     * @returns The transformed value.
      */
     input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
 
     /**
      * Function to transform the output value.
-     *
-     * @param args - Arguments to be passed to the output transformation function.
-     * @returns The transformed output value.
      */
     output?: (
       // User needs to write their own types for the rest parameters.

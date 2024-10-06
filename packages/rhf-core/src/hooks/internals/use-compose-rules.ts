@@ -64,7 +64,7 @@ const defaultMessages: NonNullable<ComposeRulesMessages> = {
  * @param values - Values to pass to the function if `messageOrFunction` is a function.
  * @returns The generated message or an empty string if not defined.
  */
-function getMessage(
+export function getMessage(
   messageOrFunction:
     | ((
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

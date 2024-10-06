@@ -13,7 +13,7 @@ export type UseComposeClassNameProps<
    */
   classes?: Partial<Record<'root' | keyof ModifierState, string>>;
   /**
-   * Additional className string to append to the composed classes.
+   * className string to append to the composed classes.
    */
   className?: string;
   /**
