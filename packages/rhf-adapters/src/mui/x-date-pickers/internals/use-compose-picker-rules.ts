@@ -12,7 +12,7 @@ import { type UseControllerProps, type FieldPath, type FieldValues } from 'react
 /**
  * Customizable rules messages.
  */
-export type BasePickerRulesMessages<TTransformedValue extends null | PickerValidDate> = {
+export type ComposePickerRulesMessages<TTransformedValue extends null | PickerValidDate> = {
   disableFuture?: ((date: TTransformedValue) => string) | string;
   disablePast?: ((date: TTransformedValue) => string) | string;
   invalidDate?: (date: TTransformedValue) => string;
@@ -29,7 +29,7 @@ export type BasePickerRulesMessages<TTransformedValue extends null | PickerValid
   shouldDisableYear?: ((date: TTransformedValue) => string) | string;
 };
 
-export interface UseBasePickerRules<
+export interface UseComposePickerRules<
   TTransformedValue extends null | PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -38,6 +38,11 @@ export interface UseBasePickerRules<
    * If true, disable values after the current date.
    */
   disableFuture?: boolean;
+  /**
+   * Do not ignore date part when validating min/max time.
+   * @default false
+   */
+  disableIgnoringDatePartForTimeValidation?: boolean;
   /**
    * 'If true, disable values before the current date.'
    */
@@ -53,7 +58,7 @@ export interface UseBasePickerRules<
   /**
    * Override internal error message with your own custom error message.
    */
-  messages?: BasePickerRulesMessages<TTransformedValue>;
+  messages?: ComposePickerRulesMessages<TTransformedValue>;
   /**
    * Minimal selectable date.
    */
@@ -104,13 +109,14 @@ export interface UseBasePickerRules<
   >;
 }
 
-export function useBasePickerRules<
+export function useComposePickerRules<
   TTransformedValue extends null | PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
->(props: UseBasePickerRules<TTransformedValue, TFieldValues, TName>) {
+>(props: UseComposePickerRules<TTransformedValue, TFieldValues, TName>) {
   const {
     disableFuture,
+    disableIgnoringDatePartForTimeValidation,
     disablePast,
     maxDate,
     maxTime,
@@ -127,7 +133,7 @@ export function useBasePickerRules<
     validator,
   } = props;
 
-  const errorMessages: Required<NonNullable<BasePickerRulesMessages<TTransformedValue>>> =
+  const errorMessages: Required<NonNullable<ComposePickerRulesMessages<TTransformedValue>>> =
     React.useMemo(
       () => ({
         disableFuture: (date: TTransformedValue) =>
@@ -190,10 +196,14 @@ export function useBasePickerRules<
     rules.validate = {
       ...rules.validate,
       internal: (value: TTransformedValue) => {
+        if (typeof value === 'undefined' || value === null) {
+          return true;
+        }
         const error = validator({
           adapter,
           props: {
             disableFuture,
+            disableIgnoringDatePartForTimeValidation,
             disablePast,
             maxDate,
             maxTime,

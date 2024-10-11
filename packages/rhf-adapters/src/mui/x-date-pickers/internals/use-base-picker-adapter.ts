@@ -8,24 +8,29 @@ import {
 import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 import {
-  type BasePickerRulesMessages,
-  type UseBasePickerRules,
-  useBasePickerRules,
-} from '../internals/use-base-picker-rules';
+  type ComposePickerRulesMessages,
+  type UseComposePickerRules,
+  useComposePickerRules,
+} from './use-compose-picker-rules';
 
 export interface UseBasePickerAdapterProps<
   TTransformedValue extends null | PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> extends Omit<UseBasePickerRules<TTransformedValue, TFieldValues, TName>, 'messages'>,
+> extends Omit<UseComposePickerRules<TTransformedValue, TFieldValues, TName>, 'messages'>,
     Omit<
       UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>,
-      'max' | 'maxLength' | 'messages' | 'min' | 'minLength' | 'pattern'
+      'max' | 'maxLength' | 'messages' | 'min' | 'minLength' | 'pattern' | 'title'
     > {
   /**
    * If true, disable values after the current date.
    */
   disableFuture?: boolean;
+  /**
+   * Do not ignore date part when validating min/max time.
+   * @default false
+   */
+  disableIgnoringDatePartForTimeValidation?: boolean;
   /**
    * 'If true, disable values before the current date.'
    */
@@ -38,7 +43,7 @@ export interface UseBasePickerAdapterProps<
    * Maximum selectable time.
    */
   maxTime?: TTransformedValue;
-  messages?: BasePickerRulesMessages<TTransformedValue> & {
+  messages?: ComposePickerRulesMessages<TTransformedValue> & {
     required?: string;
   };
   /**
@@ -94,6 +99,7 @@ export function useBasePickerAdapter<
 ) {
   const {
     disableFuture,
+    disableIgnoringDatePartForTimeValidation,
     disablePast,
     maxDate,
     maxTime,
@@ -123,8 +129,9 @@ export function useBasePickerAdapter<
     []
   );
 
-  const pickerRules = useBasePickerRules({
+  const pickerRules = useComposePickerRules({
     disableFuture,
+    disableIgnoringDatePartForTimeValidation,
     disablePast,
     maxDate,
     maxTime,
@@ -161,6 +168,7 @@ export function useBasePickerAdapter<
   return {
     ...adapter,
     disableFuture,
+    disableIgnoringDatePartForTimeValidation,
     disablePast,
     maxDate,
     maxTime,

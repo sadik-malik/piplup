@@ -12,7 +12,13 @@ export interface UseMuiXDateFieldAdapterProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
     UseBasePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
-    'maxTime' | 'minTime' | 'minutesStep' | 'shouldDisableTime' | 'title' | 'validator'
+    | 'disableIgnoringDatePartForTimeValidation'
+    | 'maxTime'
+    | 'minTime'
+    | 'minutesStep'
+    | 'shouldDisableTime'
+    | 'title'
+    | 'validator'
   > {
   inputRef?: React.Ref<HTMLInputElement>;
 }
@@ -29,6 +35,7 @@ export function useMuiXDateFieldAdapter<
   const { inputRef } = props;
 
   const {
+    disableIgnoringDatePartForTimeValidation: _disableIgnoringDatePartForTimeValidation,
     maxTime: _maxTime,
     minTime: _minTime,
     minutesStep: _minutesStep,
@@ -37,6 +44,7 @@ export function useMuiXDateFieldAdapter<
   } = useBasePickerAdapter(
     {
       ...props,
+      disableIgnoringDatePartForTimeValidation: undefined,
       maxTime: undefined,
       minTime: undefined,
       minutesStep: undefined,

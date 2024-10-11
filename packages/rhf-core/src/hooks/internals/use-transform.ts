@@ -7,6 +7,23 @@ import {
   type UseControllerReturn,
 } from 'react-hook-form';
 
+export type Transform<
+  OnChange extends
+    | ((
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...args: any[]
+      ) => void)
+    | undefined,
+  TTransformedValue,
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+> = {
+  input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
+  output?: (
+    ...args: [...Parameters<NonNullable<OnChange>>, previousValue: TTransformedValue]
+  ) => PathValue<TFieldValues, TName>;
+};
+
 /**
  * Props for the `useTransform` hook.
  */
@@ -23,27 +40,16 @@ export type UseTransformProps<
   /**
    * Optional transformation functions for input and output values.
    */
-  transform?: {
-    /**
-     * A function to transform the input value before returning it.
-     *
-     * @param value - The current value of the field.
-     * @returns The transformed value.
-     */
-    input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
-
-    /**
-     * A function to transform the output value before calling `onChange`.
-     *
-     * @param args - Arguments passed to the output transformation function.
-     * @returns The transformed output value.
-     */
-    output?: (
+  transform?: Transform<
+    (
       // User needs to write their own types for the rest parameters.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ...args: any[]
-    ) => PathValue<TFieldValues, TName>;
-  };
+    ) => PathValue<TFieldValues, TName>,
+    TTransformedValue,
+    TFieldValues,
+    TName
+  >;
 
   /**
    * The current value of the field from the `react-hook-form` controller.

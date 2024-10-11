@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OutlinedInput, type OutlinedInputProps } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { type UseMuiOutlinedInputAdapterProps, useMuiOutlinedInputAdapter } from './adapter';
 
@@ -21,7 +22,13 @@ export interface MuiOutlinedInputElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
-    > {}
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<OutlinedInputProps['onChange'], TTransformedValue, TFieldValues, TName>;
+}
 
 function MuiOutlinedInputComponent<
   TTransformedValue,

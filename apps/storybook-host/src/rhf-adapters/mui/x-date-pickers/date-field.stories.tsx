@@ -14,6 +14,8 @@ import { type Meta, type StoryFn } from '@storybook/react';
  * ```tsx
  * import { MuiXDateFieldElement } from '@piplup/rhf-adapters/mui-x-date-pickers';
  * ```
+ *
+ * > Note: See the storybook actions panel for form submission results in individual story.
  */
 const meta: Meta<typeof MuiXDateFieldElement> = {
   args: {
@@ -235,6 +237,6 @@ const Template: StoryFn<typeof MuiXDateFieldElement> = (props) => {
 export const Default = Template.bind({});
 
 Default.args = {
-  label: 'Basic Date Field',
-  name: 'basic-date-field',
+  label: 'Default Date Field',
+  name: 'default-date-field',
 };

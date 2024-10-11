@@ -14,6 +14,8 @@ import { type Meta, type StoryObj } from '@storybook/react';
  * ```tsx
  * import { MuiIconButtonElement } from '@piplup/rhf-adapters/mui-material';
  * ```
+ *
+ * > Note: See the storybook actions panel for form submission results in individual story.
  */
 const meta: Meta<typeof MuiIconButtonElement> = {
   args: {},

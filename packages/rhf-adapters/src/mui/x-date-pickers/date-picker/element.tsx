@@ -1,11 +1,7 @@
 import * as React from 'react';
-import {
-  type DatePickerProps,
-  type PickerValidDate,
-  DatePicker,
-  type DateValidationError,
-} from '@mui/x-date-pickers';
-import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
+import { type DatePickerProps, type PickerValidDate, DatePicker } from '@mui/x-date-pickers';
+import { type Transform } from '@piplup/rhf-core';
+import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { type UseMuiXDatePickerAdapterProps, useMuiXDatePickerAdapter } from './adapter';
 
 export interface MuiXDatePickerElementProps<
@@ -31,14 +27,12 @@ export interface MuiXDatePickerElementProps<
   /**
    * Transformation functions for the field's input and output values.
    */
-  transform?: {
-    input: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
-    output: (
-      value: TTransformedValue,
-      context: DateValidationError,
-      prevValue: TTransformedValue
-    ) => PathValue<TFieldValues, TName>;
-  };
+  transform?: Transform<
+    DatePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>['onChange'],
+    TTransformedValue,
+    TFieldValues,
+    TName
+  >;
 }
 
 function MuiXDatePickerComponent<

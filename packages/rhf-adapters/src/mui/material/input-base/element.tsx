@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { InputBase, type InputBaseProps } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { type UseMuiInputBaseAdapterProps, useMuiInputBaseAdapter } from './adapter';
 
@@ -21,7 +22,13 @@ export interface MuiInputBaseElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
-    > {}
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<InputBaseProps['onChange'], TTransformedValue, TFieldValues, TName>;
+}
 
 function MuiInputBaseComponent<
   TTransformedValue,

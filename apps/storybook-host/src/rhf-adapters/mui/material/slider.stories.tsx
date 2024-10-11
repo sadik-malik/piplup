@@ -13,6 +13,8 @@ import { type Meta, type StoryObj } from '@storybook/react';
  * ```tsx
  * import { MuiSliderElement } from '@piplup/rhf-adapters/mui-material';
  * ```
+ *
+ * > Note: See the storybook actions panel for form submission results in individual story.
  */
 const meta: Meta<typeof MuiSliderElement> = {
   args: {},

@@ -9,6 +9,8 @@ import { type Meta } from '@storybook/react';
  * ```tsx
  * import { MuiInputBaseElement } from '@piplup/rhf-adapters/mui-material';
  * ```
+ *
+ * > Note: See the storybook actions panel for form submission results in individual story.
  */
 const meta: Meta<typeof MuiInputBaseElement> = {
   args: {},

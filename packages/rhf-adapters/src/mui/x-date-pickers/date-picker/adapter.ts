@@ -3,6 +3,7 @@ import { validateDate, type PickerValidDate } from '@mui/x-date-pickers';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import {
   useBasePickerAdapter,
+  useComposePickerSlotProps,
   type UseBasePickerAdapterProps,
 } from '../internals/mui-x-date-pickers-internals';
 
@@ -12,7 +13,15 @@ export interface UseMuiXDatePickerAdapterProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
     UseBasePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
-    'maxTime' | 'minTime' | 'minutesStep' | 'onBlur' | 'shouldDisableTime' | 'title' | 'validator'
+    | 'disableIgnoringDatePartForTimeValidation'
+    | 'helperText'
+    | 'maxTime'
+    | 'minTime'
+    | 'minutesStep'
+    | 'onBlur'
+    | 'shouldDisableTime'
+    | 'title'
+    | 'validator'
   > {
   inputRef?: React.Ref<HTMLInputElement>;
   onClose?: () => void;
@@ -32,6 +41,7 @@ export function useMuiXDatePickerAdapter<
   const { inputRef, onClose, slotProps } = props;
 
   const {
+    disableIgnoringDatePartForTimeValidation: _disableIgnoringDatePartForTimeValidation,
     error,
     helperText,
     maxTime: _maxTime,
@@ -43,6 +53,8 @@ export function useMuiXDatePickerAdapter<
   } = useBasePickerAdapter(
     {
       ...props,
+      disableIgnoringDatePartForTimeValidation: undefined,
+      helperText: undefined,
       maxTime: undefined,
       minTime: undefined,
       minutesStep: undefined,
@@ -53,26 +65,17 @@ export function useMuiXDatePickerAdapter<
     inputRef
   );
 
+  const composedSlotProps = useComposePickerSlotProps({
+    error,
+    helperText,
+    slotProps,
+  });
+
   return {
     ...adapter,
     inputRef: adapter.ref,
     onClose: onBlur,
     ref,
-    slotProps: {
-      ...slotProps,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      textField(ownerState: Record<string, any>) {
-        let textFieldProps = slotProps ? slotProps.textField : {};
-        if (typeof textFieldProps === 'function') {
-          textFieldProps = textFieldProps(ownerState);
-        }
-
-        return {
-          ...textFieldProps,
-          error: textFieldProps?.error ?? error,
-          helperText: textFieldProps?.helperText ?? helperText,
-        };
-      },
-    },
+    slotProps: composedSlotProps,
   };
 }

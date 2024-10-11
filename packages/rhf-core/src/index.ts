@@ -21,3 +21,4 @@ export {
   type UseFormResetResult,
 } from './hooks/use-form-reset';
 export { useFormStateAdapter, type UseFormStateAdapterProps } from './hooks/use-form-state-adapter';
+export { type Transform } from './types';

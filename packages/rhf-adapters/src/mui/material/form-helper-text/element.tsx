@@ -10,7 +10,12 @@ export interface MuiFormHelperTextElementProps<
     Omit<
       UseMuiFormHelperTextProps<TFieldValues, TName>,
       'classes' | 'composeClassName' | 'composeHelperText' | 'internalClasses'
-    > {}
+    > {
+  /**
+   * Render component only, if there is an error
+   */
+  renderOnError?: boolean;
+}
 
 function MuiFormHelperTextComponent<
   TFieldValues extends FieldValues = FieldValues,
@@ -27,6 +32,7 @@ function MuiFormHelperTextComponent<
     error,
     errorParser,
     name,
+    renderOnError,
     style,
     ...rest
   } = props;
@@ -49,6 +55,10 @@ function MuiFormHelperTextComponent<
     },
     ref
   );
+
+  if (renderOnError && !adapter.error) {
+    return <></>;
+  }
 
   return <FormHelperText {...rest} {...adapter} />;
 }

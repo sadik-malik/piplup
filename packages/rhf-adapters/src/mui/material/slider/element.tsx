@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { type SliderProps, Slider } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { type UseMuiSliderAdapterProps, useMuiSliderAdapter } from './adapter';
 
@@ -18,7 +19,13 @@ export interface MuiSliderElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
-    > {}
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<SliderProps['onChange'], TTransformedValue, TFieldValues, TName>;
+}
 
 function MuiSliderComponent<
   TFieldValues extends FieldValues = FieldValues,

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Checkbox, type CheckboxProps } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiCheckboxAdapter, type UseMuiCheckboxAdapterProps } from './adapter';
 
@@ -21,7 +22,13 @@ export interface MuiCheckboxElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
-    > {}
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<CheckboxProps['onChange'], TTransformedValue, TFieldValues, TName>;
+}
 
 function MuiCheckboxComponent<
   TTransformedValue,

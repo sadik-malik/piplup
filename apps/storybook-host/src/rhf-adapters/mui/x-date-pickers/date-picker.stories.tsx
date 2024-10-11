@@ -15,6 +15,8 @@ import dayjs from 'dayjs';
  * ```tsx
  * import { MuiXDatePickerElement } from '@piplup/rhf-adapters/mui-x-date-pickers';
  * ```
+ *
+ * > Note: See the storybook actions panel for form submission results in individual story.
  */
 const meta: Meta<typeof MuiXDatePickerElement> = {
   args: {
@@ -234,6 +236,6 @@ const Template: StoryFn<typeof MuiXDatePickerElement> = (props) => {
 export const Default = Template.bind({});
 
 Default.args = {
-  label: 'Basic Date Picker',
-  name: 'basic-date-picker',
+  label: 'Default Date Picker',
+  name: 'default-date-picker',
 };

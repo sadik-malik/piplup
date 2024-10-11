@@ -1,5 +1,5 @@
 import { Box, MenuItem, textFieldClasses } from '@mui/material';
-import { MuiTextFieldElement } from '@piplup/rhf-adapters/mui-material';
+import { MuiButtonElement, MuiTextFieldElement } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer } from '@piplup/rhf-core';
 import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryObj } from '@storybook/react';
@@ -12,10 +12,23 @@ import { type Meta, type StoryObj } from '@storybook/react';
  * ```tsx
  * import { MuiTextFieldElement } from '@piplup/rhf-adapters/mui-material';
  * ```
+ *
+ * > Note: See the storybook actions panel for form submission results in individual story.
  */
 const meta: Meta<typeof MuiTextFieldElement> = {
-  args: {},
+  args: {
+    required: false,
+  },
   argTypes: {
+    required: {
+      control: 'boolean',
+      description: 'If true, the label is displayed as required and the input element is required.',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
     type: {
       control: {
         type: 'select',
@@ -83,6 +96,9 @@ export const BasicTextField: Story = {
             variant="standard"
           />
         </Box>
+        <MuiButtonElement sx={{ mt: 2 }} type="submit" variant="contained">
+          Submit
+        </MuiButtonElement>
       </FormContainer>
     );
   },
@@ -215,8 +231,10 @@ export const Select: Story = {
               ))}
             </MuiTextFieldElement>
             <MuiTextFieldElement
-              SelectProps={{
-                native: true,
+              slotProps={{
+                select: {
+                  native: true,
+                },
               }}
               defaultValue="EUR"
               helperText="Please select your currency"
@@ -247,8 +265,10 @@ export const Select: Story = {
               ))}
             </MuiTextFieldElement>
             <MuiTextFieldElement
-              SelectProps={{
-                native: true,
+              slotProps={{
+                select: {
+                  native: true,
+                },
               }}
               defaultValue="EUR"
               helperText="Please select your currency"
@@ -280,8 +300,10 @@ export const Select: Story = {
               ))}
             </MuiTextFieldElement>
             <MuiTextFieldElement
-              SelectProps={{
-                native: true,
+              slotProps={{
+                select: {
+                  native: true,
+                },
               }}
               defaultValue="EUR"
               helperText="Please select your currency"

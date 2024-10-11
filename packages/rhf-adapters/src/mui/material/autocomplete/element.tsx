@@ -5,6 +5,7 @@ import {
   type AutocompleteProps,
   type ChipTypeMap,
 } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiAutocompleteAdapter, type UseMuiAutocompleteProps } from './adapter';
 
@@ -33,7 +34,24 @@ export interface MuiAutocompleteElementProps<
       | 'multiple'
       | 'onBlur'
       | 'onChange'
-    > {}
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<
+    AutocompleteProps<
+      TTransformedValue,
+      Multiple,
+      DisableClearable,
+      FreeSolo,
+      ChipComponent
+    >['onChange'],
+    AutocompleteValue<TTransformedValue, Multiple, DisableClearable, FreeSolo>,
+    TFieldValues,
+    TName
+  >;
+}
 
 function MuiAutocompleteComponent<
   TTransformedValue,

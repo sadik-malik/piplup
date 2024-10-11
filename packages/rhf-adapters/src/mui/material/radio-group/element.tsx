@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { RadioGroup, type RadioGroupProps } from '@mui/material';
-import { type FieldPath, type FieldValues, type PathValue } from 'react-hook-form';
+import { type Transform } from '@piplup/rhf-core';
+import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiRadioGroupAdapter, type UseMuiRadioGroupAdapterProps } from './adapter';
 
 export interface MuiRadioGroupElementProps<
@@ -18,15 +19,12 @@ export interface MuiRadioGroupElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
+      | 'transform'
     > {
-  transform?: {
-    input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
-    output?: (
-      event: React.ChangeEvent,
-      value: string,
-      previousValue: TTransformedValue
-    ) => PathValue<TFieldValues, TName>;
-  };
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<RadioGroupProps['onChange'], TTransformedValue, TFieldValues, TName>;
 }
 
 function MuiRadioGroupComponent<
