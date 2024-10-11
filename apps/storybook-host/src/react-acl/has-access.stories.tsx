@@ -23,7 +23,7 @@ const meta: Meta<typeof HasAccess> = {
     );
   },
   tags: ['autodocs'],
-  title: 'React ACL/Components/HasAccess',
+  title: 'React ACL/HasAccess',
 };
 
 export default meta;

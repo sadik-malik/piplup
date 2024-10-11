@@ -162,7 +162,7 @@ const meta: Meta<typeof MuiXDateFieldElement> = {
       },
     },
     onBlur: {
-      action: 'onClose',
+      action: 'onBlur',
       description: 'Callback fired when the field looses focus.',
       type: 'function',
     },

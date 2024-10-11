@@ -16,7 +16,7 @@ const meta: Meta<typeof AclProvider> = {
   argTypes: {},
   component: AclProvider,
   tags: ['autodocs'],
-  title: 'React ACL/Components/AclProvider',
+  title: 'React ACL/AclProvider',
 };
 
 export default meta;
