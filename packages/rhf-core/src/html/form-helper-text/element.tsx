@@ -10,7 +10,12 @@ export interface HtmlFormHelperTextElementProps<
     Omit<
       UseHtmlFormHelperTextProps<TFieldValues, TName>,
       'composeClassName' | 'composeHelperText' | 'helperText' | 'internalClasses'
-    > {}
+    > {
+  /**
+   * Render component only, if there is an error
+   */
+  renderOnError?: boolean;
+}
 
 function HtmlFormHelperTextComponent<
   TFieldValues extends FieldValues = FieldValues,
@@ -30,11 +35,12 @@ function HtmlFormHelperTextComponent<
     error,
     errorParser,
     name,
+    renderOnError,
     style,
     ...rest
   } = props;
 
-  const { error: _error, ...adapter } = useHtmlFormHelperTextAdapter(
+  const { error: hasError, ...adapter } = useHtmlFormHelperTextAdapter(
     {
       children,
       classes,
@@ -53,6 +59,10 @@ function HtmlFormHelperTextComponent<
     },
     ref
   );
+
+  if (renderOnError && !hasError) {
+    return <></>;
+  }
 
   return <p {...rest} {...adapter} />;
 }

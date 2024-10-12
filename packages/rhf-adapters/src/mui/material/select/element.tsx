@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Select, type SelectProps } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiSelectAdapter, type UseMuiSelectAdapterProps } from './adapter';
 
@@ -19,7 +20,13 @@ export interface MuiSelectElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
-    > {}
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<SelectProps['onChange'], TTransformedValue, TFieldValues, TName>;
+}
 
 function MuiSelectComponent<
   TTransformedValue,

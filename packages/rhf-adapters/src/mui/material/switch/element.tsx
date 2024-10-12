@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Switch, type SwitchProps } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { type UseMuiSwitchAdapterProps, useMuiSwitchAdapter } from './adapter';
 
@@ -18,7 +19,13 @@ export interface MuiSwitchElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
-    > {}
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<SwitchProps['onChange'], TTransformedValue, TFieldValues, TName>;
+}
 
 function MuiSwitchComponent<
   TFieldValues extends FieldValues = FieldValues,

@@ -3,16 +3,13 @@ import { useFormState, type FieldValues, type UseFormStateProps } from 'react-ho
 import {
   useComposeClassName,
   type UseComposeClassNameProps,
-} from './internal/use-compose-class-name';
-import {
   useComposeHelperText,
   type UseComposeHelperTextProps,
-} from './internal/use-compose-helper-text';
-import {
   useComposeModifierState,
   type UseComposeModifierStateProps,
-} from './internal/use-compose-modifier-state';
-import { useComposeStyle, type UseComposeStyleProps } from './internal/use-compose-style';
+  useComposeStyle,
+  type UseComposeStyleProps,
+} from './internals/internals';
 
 /**
  * Defines the properties for the `useFormStateAdapter` hook, including component-specific props.

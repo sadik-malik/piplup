@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TextField, type TextFieldProps } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiTextFieldAdapter, type UseMuiTextFieldAdapterProps } from './adapter';
 
@@ -19,8 +20,14 @@ export interface MuiTextFieldElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
+      | 'transform'
       | 'type'
-    > {}
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<TextFieldProps['onChange'], TTransformedValue, TFieldValues, TName>;
+}
 
 function MuiTextFieldComponent<
   TTransformedValue,

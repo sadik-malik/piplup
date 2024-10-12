@@ -1,5 +1,8 @@
 import type * as React from 'react';
-import { useHtmlFormHelperTextAdapter, type UseHtmlFormHelperTextProps } from '@piplup/rhf-core';
+import {
+  useHtmlFormHelperTextAdapter,
+  type UseHtmlFormHelperTextProps,
+} from '@piplup/rhf-core/html';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 
 export type UseMuiFormHelperTextProps<

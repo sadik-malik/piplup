@@ -1,5 +1,5 @@
 import { useFormControl } from '@mui/material';
-import { useHtmlFormLabelAdapter, type UseHtmlFormLabelProps } from '@piplup/rhf-core';
+import { useHtmlFormLabelAdapter, type UseHtmlFormLabelProps } from '@piplup/rhf-core/html';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 
 export interface UseMuiFormLabelAdapterProps<

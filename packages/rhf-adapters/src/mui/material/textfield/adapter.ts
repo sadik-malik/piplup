@@ -1,5 +1,5 @@
 import type * as React from 'react';
-import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core';
+import { useHtmlInputAdapter, type UseHtmlInputAdapterProps } from '@piplup/rhf-core/html';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 
 export interface UseMuiTextFieldAdapterProps<

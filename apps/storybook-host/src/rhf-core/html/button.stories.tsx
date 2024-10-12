@@ -1,4 +1,5 @@
-import { FormContainer, HtmlButtonElement, HtmlInputElement } from '@piplup/rhf-core';
+import { FormContainer } from '@piplup/rhf-core';
+import { HtmlButtonElement, HtmlInputElement } from '@piplup/rhf-core/html';
 import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryObj } from '@storybook/react';
 
@@ -8,7 +9,7 @@ import { type Meta, type StoryObj } from '@storybook/react';
  * ## <span className="docs-h2">Import</span>
  *
  * ```tsx
- * import { HtmlButtonElement } from '@piplup/rhf-core';
+ * import { HtmlButtonElement } from '@piplup/rhf-core/html';
  * ```
  */
 const meta: Meta<typeof HtmlButtonElement> = {

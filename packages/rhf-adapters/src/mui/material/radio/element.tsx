@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Radio, type RadioProps } from '@mui/material';
+import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { useMuiRadioAdapter, type UseMuiRadioAdapterProps } from './adapter';
 
@@ -21,7 +22,13 @@ export interface MuiRadioElementProps<
       | 'internalClasses'
       | 'onBlur'
       | 'onChange'
-    > {}
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<RadioProps['onChange'], TTransformedValue, TFieldValues, TName>;
+}
 
 function MuiRadioComponent<
   TTransformedValue,
