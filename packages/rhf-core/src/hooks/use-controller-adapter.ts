@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { execSequentially, useForkRef } from '@piplup/utils';
 import {
   useController,
   type UseControllerProps,
@@ -22,6 +21,7 @@ import {
   type UseComposeStyleProps,
   useTransform,
 } from './internals/internals';
+import { execSequentially, useForkRef } from '../utils';
 
 /**
  * Type for the props of the controller adapter hook.

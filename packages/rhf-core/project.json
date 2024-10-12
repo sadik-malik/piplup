@@ -27,6 +27,7 @@
         "entryFile": "{projectRoot}/src/index.ts",
         "additionalEntryPoints": [
           "{projectRoot}/src/html/html.ts",
+          "{projectRoot}/src/utils.ts",
           "{projectRoot}/src/hooks/internals/internals.ts"
         ],
         "external": ["react", "react-dom", "react/jsx-runtime", "react-hook-form"],

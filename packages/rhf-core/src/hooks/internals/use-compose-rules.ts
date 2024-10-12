@@ -1,5 +1,5 @@
-import { compact } from '@piplup/utils';
 import { type FieldPath, type FieldValues, type UseControllerProps } from 'react-hook-form';
+import { compact } from '../../utils';
 
 /**
  * Type definition for customizable rule messages.
