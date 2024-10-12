@@ -1,6 +1,6 @@
 {
   "name": "@piplup/rhf-adapters",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "private": false,
   "homepage": "https://www.piplupjs.com",
   "description": "A library designed to streamline the integration of react-hook-form with UI frameworks by managing boilerplate code.",
@@ -25,7 +25,7 @@
     "@types/react": ">=18.0.0",
     "react": ">=18.0.0",
     "react-hook-form": ">=7.51.0 <8.0.0",
-    "@piplup/rhf-core": "^2.0.0-beta.0",
+    "@piplup/rhf-core": "^2.0.0-beta.3",
     "@mui/x-date-pickers": ">=7.19.0 <8.0.0"
   },
   "peerDependenciesMeta": {
