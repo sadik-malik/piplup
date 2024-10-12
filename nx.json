@@ -63,6 +63,9 @@
   "release": {
     "projects": ["*", "!storybook-host"],
     "projectsRelationship": "independent",
+    "changelog": {
+      "workspaceChangelog": true
+    },
     "version": {
       "conventionalCommits": true
     }
