@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryFn } from '@storybook/react';
 
 /**
- * A wrapper around the [\<MultiSectionDigitalClock /\>](https://mui.com/x/api/date-pickers/multi-section-digital-clock/) component pre-configured with `useMuiXMultiSelectionDigitalClockAdapter`.
+ * A wrapper around the [\<MultiSectionDigitalClock /\>](https://mui.com/x/api/date-pickers/multi-section-digital-clock/) component pre-configured with `useMuiXMultiSectionDigitalClockAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *
