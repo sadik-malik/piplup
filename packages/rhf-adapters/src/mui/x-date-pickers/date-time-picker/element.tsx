@@ -1,48 +1,51 @@
 import * as React from 'react';
-import { type PickerValidDate, DateField, type DateFieldProps } from '@mui/x-date-pickers';
+import {
+  type DatePickerProps,
+  type PickerValidDate,
+  type DateTimePickerProps,
+  DateTimePicker,
+} from '@mui/x-date-pickers';
 import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
-import { type UseMuiXDateFieldAdapterProps, useMuiXDateFieldAdapter } from './adapter';
+import { type UseMuiXDateTimePickerAdapterProps, useMuiXDateTimePickerAdapter } from './adapter';
 
-export type MuiXDateFieldElementProps<
+export interface MuiXDateTimePickerElementProps<
   TTransformedValue extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
-> = Omit<
-  DateFieldProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>,
-  'defaultValue' | 'name' | 'value'
-> &
-  Omit<
-    UseMuiXDateFieldAdapterProps<TTransformedValue, TFieldValues, TName>,
-    | 'classes'
-    | 'composeClassName'
-    | 'composeHelperText'
-    | 'helperText'
-    | 'internalClasses'
-    | 'onBlur'
-    | 'onChange'
-    | 'slotProps'
-    | 'transform'
-  > & {
-    /**
-     * Transformation functions for the field's input and output values.
-     */
-    transform?: Transform<
-      DateFieldProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>['onChange'],
-      TTransformedValue,
-      TFieldValues,
-      TName
-    >;
-  };
+> extends Omit<
+      DateTimePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>,
+      'defaultValue' | 'name' | 'value'
+    >,
+    Omit<
+      UseMuiXDateTimePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
+      | 'classes'
+      | 'composeClassName'
+      | 'composeHelperText'
+      | 'internalClasses'
+      | 'onChange'
+      | 'slotProps'
+      | 'transform'
+    > {
+  /**
+   * Transformation functions for the field's input and output values.
+   */
+  transform?: Transform<
+    DatePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>['onChange'],
+    TTransformedValue,
+    TFieldValues,
+    TName
+  >;
+}
 
-function MuiXDateFieldComponent<
+function MuiXDateTimePickerComponent<
   TTransformedValue extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: MuiXDateFieldElementProps<
+  props: MuiXDateTimePickerElementProps<
     TTransformedValue,
     TEnableAccessibleFieldDOMStructure,
     TFieldValues,
@@ -56,32 +59,39 @@ function MuiXDateFieldComponent<
     defaultValue,
     disabled,
     disableFuture,
+    disableIgnoringDatePartForTimeValidation,
     disableOnError,
     disableOnIsSubmitting,
     disablePast,
-    error,
+    error: errorProp,
     errorParser,
-    helperText,
     inputRef,
     maxDate,
+    maxDateTime,
+    maxTime,
     messages,
     minDate,
+    minDateTime,
+    minTime,
+    minutesStep,
     name,
-    onBlur,
     onChange,
+    onClose,
     required,
     rules,
     shouldDisableDate,
     shouldDisableMonth,
+    shouldDisableTime,
     shouldDisableYear,
     shouldUnregister,
+    slotProps,
     style,
     timezone,
     transform,
     ...rest
   } = props;
 
-  const adapter = useMuiXDateFieldAdapter(
+  const adapter = useMuiXDateTimePickerAdapter(
     {
       classes: undefined,
       className,
@@ -91,26 +101,33 @@ function MuiXDateFieldComponent<
       defaultValue,
       disabled,
       disableFuture,
+      disableIgnoringDatePartForTimeValidation,
       disableOnError,
       disableOnIsSubmitting,
       disablePast,
-      error,
+      error: errorProp,
       errorParser,
-      helperText,
       inputRef,
       internalClasses: undefined,
       maxDate,
+      maxDateTime,
+      maxTime,
       messages,
       minDate,
+      minDateTime,
+      minTime,
+      minutesStep,
       name,
-      onBlur,
       onChange,
+      onClose,
       required,
       rules,
       shouldDisableDate,
       shouldDisableMonth,
+      shouldDisableTime,
       shouldDisableYear,
       shouldUnregister,
+      slotProps,
       style,
       timezone,
       transform,
@@ -118,16 +135,11 @@ function MuiXDateFieldComponent<
     ref
   );
 
-  return (
-    <DateField
-      {...(rest as DateFieldProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>)}
-      {...adapter}
-    />
-  );
+  return <DateTimePicker {...rest} {...adapter} />;
 }
 
-export const MuiXDateFieldElement = React.forwardRef(
-  MuiXDateFieldComponent
-) as typeof MuiXDateFieldComponent & { displayName?: string };
+export const MuiXDateTimePickerElement = React.forwardRef(
+  MuiXDateTimePickerComponent
+) as typeof MuiXDateTimePickerComponent & { displayName?: string };
 
-MuiXDateFieldElement.displayName = 'MuiXDateFieldElement';
+MuiXDateTimePickerElement.displayName = 'MuiXDateTimePickerElement';

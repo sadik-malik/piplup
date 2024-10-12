@@ -1,24 +1,24 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
-import { MuiXTimePickerElement } from '@piplup/rhf-adapters/mui-x-date-pickers';
+import { MuiXMobileDateTimePickerElement } from '@piplup/rhf-adapters/mui-x-date-pickers';
 import { FormContainer } from '@piplup/rhf-core';
 import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryFn } from '@storybook/react';
 import dayjs from 'dayjs';
 
 /**
- * A wrapper around the [\<TimePicker /\>](https://mui.com/x/api/date-pickers/time-picker/) component pre-configured with `useMuiXTimePickerAdapter`.
+ * A wrapper around the [\<MobileDateTimePicker /\>](https://mui.com/x/api/date-pickers/mobile-date-time-picker/) component pre-configured with `useMuiXMobileDateTimePickerAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *
  * ```tsx
- * import { MuiXTimePickerElement } from '@piplup/rhf-adapters/mui-x-date-pickers';
+ * import { MuiXMobileDateTimePickerElement } from '@piplup/rhf-adapters/mui-x-date-pickers';
  * ```
  *
  * > Note: See the storybook actions panel for form submission results in individual story.
  */
-const meta: Meta<typeof MuiXTimePickerElement> = {
+const meta: Meta<typeof MuiXMobileDateTimePickerElement> = {
   args: {},
   argTypes: {
     className: {
@@ -125,19 +125,54 @@ const meta: Meta<typeof MuiXTimePickerElement> = {
         },
       },
     },
+    maxDate: {
+      control: {
+        type: 'date',
+      },
+      table: {
+        defaultValue: {
+          summary: '2099-12-31',
+        },
+      },
+    },
+    maxDateTime: {
+      control: {
+        type: 'date',
+      },
+    },
     maxTime: {
-      control: 'date',
+      control: {
+        type: 'date',
+      },
       description:
         'Maximal selectable time. The date part of the object will be ignored unless `props.disableIgnoringDatePartForTimeValidation === true.`',
     },
+    minDate: {
+      control: {
+        type: 'date',
+      },
+      table: {
+        defaultValue: {
+          summary: '1900-01-01',
+        },
+      },
+    },
+    minDateTime: {
+      control: {
+        type: 'date',
+      },
+    },
     minTime: {
-      control: 'date',
+      control: {
+        type: 'date',
+      },
       description:
         'Minimal selectable time. The date part of the object will be ignored unless `props.disableIgnoringDatePartForTimeValidation === true.`',
     },
     minutesStep: {
       control: 'number',
     },
+
     name: {
       control: 'text',
       table: {
@@ -158,7 +193,6 @@ const meta: Meta<typeof MuiXTimePickerElement> = {
       description: 'Callback fired when the popup requests to be closed. Use in controlled mode.',
       type: 'function',
     },
-
     required: {
       control: 'boolean',
       description: 'If true, the label is displayed as required and the input element is required.',
@@ -180,6 +214,13 @@ const meta: Meta<typeof MuiXTimePickerElement> = {
         },
       },
     },
+    shouldDisableDate: {
+      control: {
+        disable: true,
+      },
+      description: 'Disable specific date.',
+      type: 'function',
+    },
     shouldDisableTime: {
       control: {
         disable: true,
@@ -194,22 +235,26 @@ const meta: Meta<typeof MuiXTimePickerElement> = {
       },
     },
   },
-  component: MuiXTimePickerElement,
+  component: MuiXMobileDateTimePickerElement,
   tags: ['autodocs'],
-  title: 'RHF-Adapters/mui-x-date-pickers/Time Components/MuiXTimePickerElement',
+  title: 'RHF-Adapters/mui-x-date-pickers/Date Time Components/MuiXMobileDateTimePickerElement',
 };
 
 export default meta;
 
-const Template: StoryFn<typeof MuiXTimePickerElement> = (props) => {
+const Template: StoryFn<typeof MuiXMobileDateTimePickerElement> = (props) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <FormContainer onError={action('onError')} onSubmit={action('onSubmit')}>
         <div>
-          <MuiXTimePickerElement
+          <MuiXMobileDateTimePickerElement
             {...props}
+            {...(props.minDate && { minDate: dayjs(props.minDate) })}
+            {...(props.maxDate && { maxDate: dayjs(props.maxDate) })}
             {...(props.minTime && { minDate: dayjs(props.minTime) })}
             {...(props.maxTime && { maxDate: dayjs(props.maxTime) })}
+            {...(props.maxDateTime && { maxDateTime: dayjs(props.maxDateTime) })}
+            {...(props.minDateTime && { minDateTime: dayjs(props.minDateTime) })}
           />
         </div>
         <MuiButtonElement sx={{ mt: 2 }} type="submit" variant="contained">
@@ -223,6 +268,6 @@ const Template: StoryFn<typeof MuiXTimePickerElement> = (props) => {
 export const Default = Template.bind({});
 
 Default.args = {
-  label: 'Default Time Picker',
-  name: 'default-time-picker',
+  label: 'Mobile Date Time Picker',
+  name: 'mobile-date-time-picker',
 };

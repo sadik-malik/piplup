@@ -5,7 +5,11 @@ import {
   type PickerValidDate,
   type TimeView,
 } from '@mui/x-date-pickers';
-import { useLocalizationContext } from '@mui/x-date-pickers/internals';
+import {
+  applyDefaultDate,
+  useDefaultDates,
+  useLocalizationContext,
+} from '@mui/x-date-pickers/internals';
 import { getMessage } from '@piplup/rhf-core/internals';
 import { type UseControllerProps, type FieldPath, type FieldValues } from 'react-hook-form';
 
@@ -52,6 +56,10 @@ export interface UseComposePickerRules<
    */
   maxDate?: TTransformedValue;
   /**
+   * Maximal selectable moment of time with binding to date, to set max time in each day use maxTime.
+   */
+  maxDateTime?: TTransformedValue;
+  /**
    * Maximum selectable time.
    */
   maxTime?: TTransformedValue;
@@ -63,6 +71,10 @@ export interface UseComposePickerRules<
    * Minimal selectable date.
    */
   minDate?: TTransformedValue;
+  /**
+   * Minimal selectable moment of time with binding to date, to set min time in each day use minTime.
+   */
+  minDateTime?: TTransformedValue;
   /**
    * Minimal selectable time.
    */
@@ -119,9 +131,11 @@ export function useComposePickerRules<
     disableIgnoringDatePartForTimeValidation,
     disablePast,
     maxDate,
+    maxDateTime,
     maxTime,
     messages,
     minDate,
+    minDateTime,
     minTime,
     minutesStep,
     rules = {},
@@ -132,6 +146,8 @@ export function useComposePickerRules<
     timezone,
     validator,
   } = props;
+
+  const defaultDates = useDefaultDates<TTransformedValue>();
 
   const errorMessages: Required<NonNullable<ComposePickerRulesMessages<TTransformedValue>>> =
     React.useMemo(
@@ -203,12 +219,14 @@ export function useComposePickerRules<
           adapter,
           props: {
             disableFuture,
-            disableIgnoringDatePartForTimeValidation,
+            disableIgnoringDatePartForTimeValidation:
+              disableIgnoringDatePartForTimeValidation ??
+              Boolean(minDateTime || maxDateTime || disablePast || disableFuture),
             disablePast,
-            maxDate,
-            maxTime,
-            minDate,
-            minTime,
+            maxDate: applyDefaultDate(adapter.utils, maxDateTime ?? maxDate, defaultDates.maxDate),
+            maxTime: maxDateTime ?? maxTime,
+            minDate: applyDefaultDate(adapter.utils, minDateTime ?? minDate, defaultDates.minDate),
+            minTime: minDateTime ?? minTime,
             minutesStep,
             shouldDisableDate,
             shouldDisableMonth,

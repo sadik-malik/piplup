@@ -18,6 +18,7 @@ export type MuiXDateCalendarElementProps<
     | 'composeClassName'
     | 'composeHelperText'
     | 'helperText'
+    | 'helperText'
     | 'internalClasses'
     | 'onChange'
     | 'slotProps'
@@ -71,8 +72,9 @@ function MuiXDateCalendarComponent<
     ...rest
   } = props;
 
-  const adapter = useMuiXDateCalendarAdapter(
+  const { helperText: _helperText, ...adapter } = useMuiXDateCalendarAdapter(
     {
+      classes: undefined,
       className,
       composeClassName: false,
       composeHelperText: true,
@@ -85,6 +87,8 @@ function MuiXDateCalendarComponent<
       disablePast,
       error,
       errorParser,
+      helperText: undefined,
+      internalClasses: undefined,
       maxDate,
       messages,
       minDate,

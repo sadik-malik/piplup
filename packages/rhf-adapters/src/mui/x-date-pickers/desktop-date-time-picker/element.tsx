@@ -1,23 +1,31 @@
 import * as React from 'react';
-import { type DatePickerProps, type PickerValidDate, DatePicker } from '@mui/x-date-pickers';
+import {
+  type PickerValidDate,
+  DesktopDateTimePicker,
+  type DesktopDateTimePickerProps,
+} from '@mui/x-date-pickers';
 import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
-import { type UseMuiXDatePickerAdapterProps, useMuiXDatePickerAdapter } from './adapter';
+import {
+  useMuiXDesktopDateTimePickerAdapter,
+  type UseMuiXDesktopDateTimePickerAdapterProps,
+} from './adapter';
 
-export interface MuiXDatePickerElementProps<
+export interface MuiXDesktopDateTimePickerElementProps<
   TTransformedValue extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
-      DatePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>,
-      'defaultValue' | 'maxDate' | 'minDate' | 'name' | 'value'
+      DesktopDateTimePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>,
+      'defaultValue' | 'name' | 'value'
     >,
     Omit<
-      UseMuiXDatePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
+      UseMuiXDesktopDateTimePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
       | 'classes'
       | 'composeClassName'
       | 'composeHelperText'
+      | 'helperText'
       | 'internalClasses'
       | 'onChange'
       | 'slotProps'
@@ -27,20 +35,20 @@ export interface MuiXDatePickerElementProps<
    * Transformation functions for the field's input and output values.
    */
   transform?: Transform<
-    DatePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>['onChange'],
+    DesktopDateTimePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>['onChange'],
     TTransformedValue,
     TFieldValues,
     TName
   >;
 }
 
-function MuiXDatePickerComponent<
+function MuiXDesktopDateTimePickerComponent<
   TTransformedValue extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: MuiXDatePickerElementProps<
+  props: MuiXDesktopDateTimePickerElementProps<
     TTransformedValue,
     TEnableAccessibleFieldDOMStructure,
     TFieldValues,
@@ -54,6 +62,7 @@ function MuiXDatePickerComponent<
     defaultValue,
     disabled,
     disableFuture,
+    disableIgnoringDatePartForTimeValidation,
     disableOnError,
     disableOnIsSubmitting,
     disablePast,
@@ -61,8 +70,13 @@ function MuiXDatePickerComponent<
     errorParser,
     inputRef,
     maxDate,
+    maxDateTime,
+    maxTime,
     messages,
     minDate,
+    minDateTime,
+    minTime,
+    minutesStep,
     name,
     onChange,
     onClose,
@@ -70,6 +84,7 @@ function MuiXDatePickerComponent<
     rules,
     shouldDisableDate,
     shouldDisableMonth,
+    shouldDisableTime,
     shouldDisableYear,
     shouldUnregister,
     slotProps,
@@ -79,7 +94,7 @@ function MuiXDatePickerComponent<
     ...rest
   } = props;
 
-  const adapter = useMuiXDatePickerAdapter(
+  const adapter = useMuiXDesktopDateTimePickerAdapter(
     {
       classes: undefined,
       className,
@@ -89,6 +104,7 @@ function MuiXDatePickerComponent<
       defaultValue,
       disabled,
       disableFuture,
+      disableIgnoringDatePartForTimeValidation,
       disableOnError,
       disableOnIsSubmitting,
       disablePast,
@@ -97,8 +113,13 @@ function MuiXDatePickerComponent<
       inputRef,
       internalClasses: undefined,
       maxDate,
+      maxDateTime,
+      maxTime,
       messages,
       minDate,
+      minDateTime,
+      minTime,
+      minutesStep,
       name,
       onChange,
       onClose,
@@ -106,6 +127,7 @@ function MuiXDatePickerComponent<
       rules,
       shouldDisableDate,
       shouldDisableMonth,
+      shouldDisableTime,
       shouldDisableYear,
       shouldUnregister,
       slotProps,
@@ -116,11 +138,11 @@ function MuiXDatePickerComponent<
     ref
   );
 
-  return <DatePicker {...rest} {...adapter} />;
+  return <DesktopDateTimePicker {...rest} {...adapter} />;
 }
 
-export const MuiXDatePickerElement = React.forwardRef(
-  MuiXDatePickerComponent
-) as typeof MuiXDatePickerComponent & { displayName?: string };
+export const MuiXDesktopDateTimePickerElement = React.forwardRef(
+  MuiXDesktopDateTimePickerComponent
+) as typeof MuiXDesktopDateTimePickerComponent & { displayName?: string };
 
-MuiXDatePickerElement.displayName = 'MuiXDatePickerElement';
+MuiXDesktopDateTimePickerElement.displayName = 'MuiXDesktopDateTimePickerElement';

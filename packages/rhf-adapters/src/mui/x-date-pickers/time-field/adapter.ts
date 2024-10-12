@@ -13,7 +13,9 @@ export interface UseMuiXTimeFieldAdapterProps<
 > extends Omit<
     UseBasePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
     | 'maxDate'
+    | 'maxDateTime'
     | 'minDate'
+    | 'minDateTime'
     | 'shouldDisableDate'
     | 'shouldDisableMonth'
     | 'shouldDisableYear'
@@ -35,7 +37,9 @@ export function useMuiXTimeFieldAdapter<
 
   const {
     maxDate: _maxDate,
+    maxDateTime: _maxDateTime,
     minDate: _minDate,
+    minDateTime: _minDateTime,
     shouldDisableDate: _shouldDisableDate,
     shouldDisableMonth: _shouldDisableMonth,
     shouldDisableYear: _shouldDisableYear,
@@ -44,7 +48,9 @@ export function useMuiXTimeFieldAdapter<
     {
       ...props,
       maxDate: undefined,
+      maxDateTime: undefined,
       minDate: undefined,
+      minDateTime: undefined,
       shouldDisableDate: undefined,
       shouldDisableMonth: undefined,
       shouldDisableYear: undefined,

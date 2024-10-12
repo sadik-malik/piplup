@@ -14,7 +14,9 @@ export interface UseMuiXStaticDatePickerAdapterProps<
     UseBasePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
     | 'disableIgnoringDatePartForTimeValidation'
     | 'helperText'
+    | 'maxDateTime'
     | 'maxTime'
+    | 'minDateTime'
     | 'minTime'
     | 'minutesStep'
     | 'onBlur'
@@ -34,7 +36,9 @@ export function useMuiXStaticDatePickerAdapter<
 ) {
   const {
     disableIgnoringDatePartForTimeValidation: _disableIgnoringDatePartForTimeValidation,
+    maxDateTime: _maxDateTime,
     maxTime: _maxTime,
+    minDateTime: _minDateTime,
     minTime: _minTime,
     minutesStep: _minutesStep,
     shouldDisableTime: _shouldDisableTime,
@@ -44,7 +48,9 @@ export function useMuiXStaticDatePickerAdapter<
       ...props,
       disableIgnoringDatePartForTimeValidation: undefined,
       helperText: undefined,
+      maxDateTime: undefined,
       maxTime: undefined,
+      minDateTime: undefined,
       minTime: undefined,
       minutesStep: undefined,
       onBlur: undefined,

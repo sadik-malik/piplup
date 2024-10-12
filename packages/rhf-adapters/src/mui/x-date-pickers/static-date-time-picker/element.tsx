@@ -1,23 +1,30 @@
 import * as React from 'react';
-import { type DatePickerProps, type PickerValidDate, DatePicker } from '@mui/x-date-pickers';
+import {
+  type PickerValidDate,
+  StaticDateTimePicker,
+  type StaticDateTimePickerProps,
+} from '@mui/x-date-pickers';
 import { type Transform } from '@piplup/rhf-core';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
-import { type UseMuiXDatePickerAdapterProps, useMuiXDatePickerAdapter } from './adapter';
+import {
+  type UseMuiXStaticDateTimePickerAdapterProps,
+  useMuiXStaticDateTimePickerAdapter,
+} from './adapter';
 
-export interface MuiXDatePickerElementProps<
+export interface MuiXStaticDateTimePickerElementProps<
   TTransformedValue extends PickerValidDate,
-  TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
-      DatePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>,
+      StaticDateTimePickerProps<TTransformedValue>,
       'defaultValue' | 'maxDate' | 'minDate' | 'name' | 'value'
     >,
     Omit<
-      UseMuiXDatePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
+      UseMuiXStaticDateTimePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
       | 'classes'
       | 'composeClassName'
       | 'composeHelperText'
+      | 'helperText'
       | 'internalClasses'
       | 'onChange'
       | 'slotProps'
@@ -27,25 +34,19 @@ export interface MuiXDatePickerElementProps<
    * Transformation functions for the field's input and output values.
    */
   transform?: Transform<
-    DatePickerProps<TTransformedValue, TEnableAccessibleFieldDOMStructure>['onChange'],
+    StaticDateTimePickerProps<TTransformedValue>['onChange'],
     TTransformedValue,
     TFieldValues,
     TName
   >;
 }
 
-function MuiXDatePickerComponent<
+function MuiXStaticDateTimePickerComponent<
   TTransformedValue extends PickerValidDate,
-  TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(
-  props: MuiXDatePickerElementProps<
-    TTransformedValue,
-    TEnableAccessibleFieldDOMStructure,
-    TFieldValues,
-    TName
-  >,
+  props: MuiXStaticDateTimePickerElementProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<HTMLDivElement>
 ): React.ReactElement {
   const {
@@ -54,32 +55,42 @@ function MuiXDatePickerComponent<
     defaultValue,
     disabled,
     disableFuture,
+    disableIgnoringDatePartForTimeValidation,
     disableOnError,
     disableOnIsSubmitting,
     disablePast,
     error: errorProp,
     errorParser,
-    inputRef,
     maxDate,
+    maxDateTime,
+    maxTime,
     messages,
     minDate,
+    minDateTime,
+    minTime,
+    minutesStep,
     name,
     onChange,
-    onClose,
     required,
     rules,
     shouldDisableDate,
     shouldDisableMonth,
+    shouldDisableTime,
     shouldDisableYear,
     shouldUnregister,
-    slotProps,
     style,
     timezone,
     transform,
     ...rest
   } = props;
 
-  const adapter = useMuiXDatePickerAdapter(
+  const {
+    error: _error,
+    helperText: _helperText,
+    required: _required,
+
+    ...adapter
+  } = useMuiXStaticDateTimePickerAdapter(
     {
       classes: undefined,
       className,
@@ -89,26 +100,30 @@ function MuiXDatePickerComponent<
       defaultValue,
       disabled,
       disableFuture,
+      disableIgnoringDatePartForTimeValidation,
       disableOnError,
       disableOnIsSubmitting,
       disablePast,
       error: errorProp,
       errorParser,
-      inputRef,
       internalClasses: undefined,
       maxDate,
+      maxDateTime,
+      maxTime,
       messages,
       minDate,
+      minDateTime,
+      minTime,
+      minutesStep,
       name,
       onChange,
-      onClose,
       required,
       rules,
       shouldDisableDate,
       shouldDisableMonth,
+      shouldDisableTime,
       shouldDisableYear,
       shouldUnregister,
-      slotProps,
       style,
       timezone,
       transform,
@@ -116,11 +131,11 @@ function MuiXDatePickerComponent<
     ref
   );
 
-  return <DatePicker {...rest} {...adapter} />;
+  return <StaticDateTimePicker {...rest} {...adapter} />;
 }
 
-export const MuiXDatePickerElement = React.forwardRef(
-  MuiXDatePickerComponent
-) as typeof MuiXDatePickerComponent & { displayName?: string };
+export const MuiXStaticDateTimePickerElement = React.forwardRef(
+  MuiXStaticDateTimePickerComponent
+) as typeof MuiXStaticDateTimePickerComponent & { displayName?: string };
 
-MuiXDatePickerElement.displayName = 'MuiXDatePickerElement';
+MuiXStaticDateTimePickerElement.displayName = 'MuiXStaticDateTimePickerElement';

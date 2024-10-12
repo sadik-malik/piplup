@@ -40,9 +40,16 @@ export interface UseBasePickerAdapterProps<
    */
   maxDate?: TTransformedValue;
   /**
+   * Maximal selectable moment of time with binding to date, to set max time in each day use maxTime.
+   */
+  maxDateTime?: TTransformedValue;
+  /**
    * Maximum selectable time.
    */
   maxTime?: TTransformedValue;
+  /**
+   * Customizable rules messages.
+   */
   messages?: ComposePickerRulesMessages<TTransformedValue> & {
     required?: string;
   };
@@ -50,6 +57,10 @@ export interface UseBasePickerAdapterProps<
    * Minimal selectable date.
    */
   minDate?: TTransformedValue;
+  /**
+   * Minimal selectable moment of time with binding to date, to set min time in each day use minTime.
+   */
+  minDateTime?: TTransformedValue;
   /**
    * Minimal selectable time.
    */
@@ -78,7 +89,13 @@ export interface UseBasePickerAdapterProps<
    * Disable specific year.
    */
   shouldDisableYear?: (year: TTransformedValue) => boolean;
+  /**
+   * Choose which timezone to use for the value. Example: "default", "system", "UTC", "America/New_York". If you pass values from other timezones to some props, they will be converted to this timezone before being used.
+   */
   timezone?: PickersTimezone;
+  /**
+   * `validateDate`, `validateTime` or `validateDateTime` function for performing date and time related validations.
+   */
   validator: Validator<
     TTransformedValue,
     NonNullable<TTransformedValue>,
@@ -102,9 +119,11 @@ export function useBasePickerAdapter<
     disableIgnoringDatePartForTimeValidation,
     disablePast,
     maxDate,
+    maxDateTime,
     maxTime,
     messages = {},
     minDate,
+    minDateTime,
     minTime,
     minutesStep,
     rules,
@@ -134,9 +153,11 @@ export function useBasePickerAdapter<
     disableIgnoringDatePartForTimeValidation,
     disablePast,
     maxDate,
+    maxDateTime,
     maxTime,
     messages,
     minDate,
+    minDateTime,
     minTime,
     minutesStep,
     rules,
@@ -171,8 +192,10 @@ export function useBasePickerAdapter<
     disableIgnoringDatePartForTimeValidation,
     disablePast,
     maxDate,
+    maxDateTime,
     maxTime,
     minDate,
+    minDateTime,
     minTime,
     minutesStep,
     shouldDisableDate,

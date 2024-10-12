@@ -17,11 +17,23 @@ export {
   type UseMuiXDatePickerAdapterProps,
 } from './date-picker';
 export {
+  MuiXDateTimePickerElement,
+  type MuiXDateTimePickerElementProps,
+  useMuiXDateTimePickerAdapter,
+  type UseMuiXDateTimePickerAdapterProps,
+} from './date-time-picker';
+export {
   MuiXDesktopDatePickerElement,
   type MuiXDesktopDatePickerElementProps,
   useMuiXDesktopDatePickerAdapter,
   type UseMuiXDesktopDatePickerAdapterProps,
 } from './desktop-date-picker';
+export {
+  MuiXDesktopDateTimePickerElement,
+  type MuiXDesktopDateTimePickerElementProps,
+  useMuiXDesktopDateTimePickerAdapter,
+  type UseMuiXDesktopDateTimePickerAdapterProps,
+} from './desktop-date-time-picker';
 export {
   MuiXDesktopTimePickerElement,
   type MuiXDesktopTimePickerElementProps,
@@ -40,6 +52,12 @@ export {
   useMuiXMobileDatePickerAdapter,
   type UseMuiXMobileDatePickerAdapterProps,
 } from './mobile-date-picker';
+export {
+  MuiXMobileDateTimePickerElement,
+  type MuiXMobileDateTimePickerElementProps,
+  useMuiXMobileDateTimePickerAdapter,
+  type UseMuiXMobileDateTimePickerAdapterProps,
+} from './mobile-date-time-picker';
 export {
   MuiXMobileTimePickerElement,
   type MuiXMobileTimePickerElementProps,
@@ -64,6 +82,12 @@ export {
   useMuiXStaticDatePickerAdapter,
   type UseMuiXStaticDatePickerAdapterProps,
 } from './static-date-picker';
+export {
+  MuiXStaticDateTimePickerElement,
+  type MuiXStaticDateTimePickerElementProps,
+  useMuiXStaticDateTimePickerAdapter,
+  type UseMuiXStaticDateTimePickerAdapterProps,
+} from './static-date-time-picker';
 export {
   MuiXStaticTimePickerElement,
   type MuiXStaticTimePickerElementProps,

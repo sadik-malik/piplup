@@ -14,7 +14,9 @@ export interface UseMuiXStaticTimePickerAdapterProps<
     UseBasePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
     | 'helperText'
     | 'maxDate'
+    | 'maxDateTime'
     | 'minDate'
+    | 'minDateTime'
     | 'onBlur'
     | 'shouldDisableDate'
     | 'shouldDisableMonth'
@@ -33,7 +35,9 @@ export function useMuiXStaticTimePickerAdapter<
 ) {
   const {
     maxDate: _maxDate,
+    maxDateTime: _maxDateTime,
     minDate: _minDate,
+    minDateTime: _minDateTime,
     shouldDisableDate: _shouldDisableDate,
     shouldDisableMonth: _shouldDisableMonth,
     shouldDisableYear: _shouldDisableYear,
@@ -43,7 +47,9 @@ export function useMuiXStaticTimePickerAdapter<
       ...props,
       helperText: undefined,
       maxDate: undefined,
+      maxDateTime: undefined,
       minDate: undefined,
+      minDateTime: undefined,
       shouldDisableDate: undefined,
       shouldDisableMonth: undefined,
       shouldDisableYear: undefined,

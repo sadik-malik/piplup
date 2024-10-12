@@ -1,5 +1,6 @@
 import type * as React from 'react';
-import { validateTime, type PickerValidDate } from '@mui/x-date-pickers';
+import { validateDateTime, type PickerValidDate } from '@mui/x-date-pickers';
+import { execSequentially } from '@piplup/rhf-core/utils';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import {
   useBasePickerAdapter,
@@ -7,22 +8,13 @@ import {
   type UseBasePickerAdapterProps,
 } from '../internals/mui-x-date-pickers-internals';
 
-export interface UseMuiXTimePickerAdapterProps<
+export interface UseMuiXDateTimePickerAdapterProps<
   TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
     UseBasePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
-    | 'helperText'
-    | 'maxDate'
-    | 'maxDateTime'
-    | 'minDate'
-    | 'minDateTime'
-    | 'onBlur'
-    | 'shouldDisableDate'
-    | 'shouldDisableMonth'
-    | 'shouldDisableYear'
-    | 'validator'
+    'helperText' | 'onBlur' | 'title' | 'validator'
   > {
   inputRef?: React.Ref<HTMLInputElement>;
   onClose?: () => void;
@@ -30,42 +22,23 @@ export interface UseMuiXTimePickerAdapterProps<
   slotProps?: Record<string, any>;
 }
 
-export function useMuiXTimePickerAdapter<
+export function useMuiXDateTimePickerAdapter<
   TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown
 >(
-  props: UseMuiXTimePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
+  props: UseMuiXDateTimePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>
 ) {
   const { inputRef, onClose, slotProps } = props;
 
-  const {
-    error,
-    helperText,
-    maxDate: _maxDate,
-    maxDateTime: _maxDateTime,
-    minDate: _minDate,
-    minDateTime: _minDateTime,
-    onBlur,
-    shouldDisableDate: _shouldDisableDate,
-    shouldDisableMonth: _shouldDisableMonth,
-    shouldDisableYear: _shouldDisableYear,
-    ...adapter
-  } = useBasePickerAdapter(
+  const { error, helperText, onBlur, ...adapter } = useBasePickerAdapter(
     {
       ...props,
       helperText: undefined,
-      maxDate: undefined,
-      maxDateTime: undefined,
-      minDate: undefined,
-      minDateTime: undefined,
-      onBlur: onClose,
-      shouldDisableDate: undefined,
-      shouldDisableMonth: undefined,
-      shouldDisableYear: undefined,
-      validator: validateTime,
+      onBlur: undefined,
+      validator: validateDateTime,
     },
     inputRef
   );
@@ -73,13 +46,14 @@ export function useMuiXTimePickerAdapter<
   const composedSlotProps = useComposePickerSlotProps({
     error,
     helperText,
+    onBlur,
     slotProps,
   });
 
   return {
     ...adapter,
     inputRef: adapter.ref,
-    onClose: onBlur,
+    onClose: execSequentially(onBlur, onClose),
     ref,
     slotProps: composedSlotProps,
   };

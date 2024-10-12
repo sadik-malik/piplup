@@ -13,7 +13,9 @@ export interface UseMuiXMonthCalendarAdapterProps<
 > extends Omit<
     UseBasePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
     | 'disableIgnoringDatePartForTimeValidation'
+    | 'maxDateTime'
     | 'maxTime'
+    | 'minDateTime'
     | 'minTime'
     | 'minutesStep'
     | 'shouldDisableDate'
@@ -34,7 +36,9 @@ export function useMuiXMonthCalendarAdapter<
 ) {
   const {
     disableIgnoringDatePartForTimeValidation: _disableIgnoringDatePartForTimeValidation,
+    maxDateTime: _maxDateTime,
     maxTime: _maxTime,
+    minDateTime: _minDateTime,
     minTime: _minTime,
     minutesStep: _minutesStep,
     shouldDisableDate: _shouldDisableDate,
@@ -45,7 +49,9 @@ export function useMuiXMonthCalendarAdapter<
     {
       ...props,
       disableIgnoringDatePartForTimeValidation: undefined,
+      maxDateTime: undefined,
       maxTime: undefined,
+      minDateTime: undefined,
       minTime: undefined,
       minutesStep: undefined,
       shouldDisableDate: undefined,

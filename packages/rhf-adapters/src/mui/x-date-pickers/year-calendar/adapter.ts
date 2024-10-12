@@ -13,7 +13,9 @@ export interface UseMuiXYearCalendarAdapterProps<
 > extends Omit<
     UseBasePickerAdapterProps<TTransformedValue, TFieldValues, TName>,
     | 'disableIgnoringDatePartForTimeValidation'
+    | 'maxDateTime'
     | 'maxTime'
+    | 'minDateTime'
     | 'minTime'
     | 'minutesStep'
     | 'shouldDisableDate'
@@ -34,7 +36,9 @@ export function useMuiXYearCalendarAdapter<
 ) {
   const {
     disableIgnoringDatePartForTimeValidation: _disableIgnoringDatePartForTimeValidation,
+    maxDateTime: _maxDateTime,
     maxTime: _maxTime,
+    minDateTime: _minDateTime,
     minTime: _minTime,
     minutesStep: _minutesStep,
     shouldDisableDate: _shouldDisableDate,
@@ -45,7 +49,9 @@ export function useMuiXYearCalendarAdapter<
     {
       ...props,
       disableIgnoringDatePartForTimeValidation: undefined,
+      maxDateTime: undefined,
       maxTime: undefined,
+      minDateTime: undefined,
       minTime: undefined,
       minutesStep: undefined,
       shouldDisableDate: undefined,
