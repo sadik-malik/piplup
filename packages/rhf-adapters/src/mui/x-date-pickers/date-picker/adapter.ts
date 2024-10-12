@@ -1,5 +1,6 @@
 import type * as React from 'react';
 import { validateDate, type PickerValidDate } from '@mui/x-date-pickers';
+import { execSequentially } from '@piplup/rhf-core/utils';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
 import {
   useBasePickerAdapter,
@@ -8,7 +9,7 @@ import {
 } from '../internals/mui-x-date-pickers-internals';
 
 export interface UseMuiXDatePickerAdapterProps<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
@@ -30,7 +31,7 @@ export interface UseMuiXDatePickerAdapterProps<
 }
 
 export function useMuiXDatePickerAdapter<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown
@@ -58,7 +59,7 @@ export function useMuiXDatePickerAdapter<
       maxTime: undefined,
       minTime: undefined,
       minutesStep: undefined,
-      onBlur: onClose,
+      onBlur: undefined,
       shouldDisableTime: undefined,
       validator: validateDate,
     },
@@ -68,13 +69,14 @@ export function useMuiXDatePickerAdapter<
   const composedSlotProps = useComposePickerSlotProps({
     error,
     helperText,
+    onBlur,
     slotProps,
   });
 
   return {
     ...adapter,
     inputRef: adapter.ref,
-    onClose: onBlur,
+    onClose: execSequentially(onBlur, onClose),
     ref,
     slotProps: composedSlotProps,
   };

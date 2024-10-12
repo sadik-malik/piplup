@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryFn } from '@storybook/react';
 
 /**
- * A wrapper around the `<DateCalendar>` component pre-configured with `useMuiXDateCalendarAdapter`.
+ * A wrapper around the [\<DateCalendar /\>](https://mui.com/x/api/date-pickers/date-calendar/) component pre-configured with `useMuiXDateCalendarAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *
@@ -200,7 +200,7 @@ const meta: Meta<typeof MuiXDateCalendarElement> = {
   },
   component: MuiXDateCalendarElement,
   tags: ['autodocs'],
-  title: 'RHF-Adapters/mui-x-date-pickers/MuiXDateCalendarElement',
+  title: 'RHF-Adapters/mui-x-date-pickers/Date Components/MuiXDateCalendarElement',
 };
 
 export default meta;

@@ -196,7 +196,7 @@ export function useComposePickerRules<
     rules.validate = {
       ...rules.validate,
       internal: (value: TTransformedValue) => {
-        if (typeof value === 'undefined' || value === null) {
+        if (!value) {
           return true;
         }
         const error = validator({
@@ -222,6 +222,7 @@ export function useComposePickerRules<
               : 'default'),
           value,
         });
+
         const messageFn =
           error && Object.prototype.hasOwnProperty.call(errorMessages, error)
             ? errorMessages[error as keyof typeof errorMessages]

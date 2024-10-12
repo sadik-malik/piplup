@@ -5,7 +5,7 @@ import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { type UseMuiXDatePickerAdapterProps, useMuiXDatePickerAdapter } from './adapter';
 
 export interface MuiXDatePickerElementProps<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -36,7 +36,7 @@ export interface MuiXDatePickerElementProps<
 }
 
 function MuiXDatePickerComponent<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -82,6 +82,7 @@ function MuiXDatePickerComponent<
 
   const adapter = useMuiXDatePickerAdapter(
     {
+      classes: undefined,
       className,
       composeClassName: false,
       composeHelperText: true,
@@ -95,6 +96,7 @@ function MuiXDatePickerComponent<
       error: errorProp,
       errorParser,
       inputRef,
+      internalClasses: undefined,
       maxDate,
       messages,
       minDate,

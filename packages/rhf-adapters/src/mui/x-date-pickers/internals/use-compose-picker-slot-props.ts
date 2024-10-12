@@ -1,14 +1,19 @@
 import type * as React from 'react';
+import { execSequentially } from '@piplup/rhf-core/utils';
 
 export interface UseComposePickerSlotProps {
   error: boolean;
   helperText: React.ReactNode;
+  onBlur?: (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ...args: any[]
+  ) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   slotProps?: Record<string, any>;
 }
 
 export function useComposePickerSlotProps(props: UseComposePickerSlotProps) {
-  const { error, helperText, slotProps } = props;
+  const { error, helperText, onBlur, slotProps } = props;
   return {
     ...slotProps,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,8 +25,9 @@ export function useComposePickerSlotProps(props: UseComposePickerSlotProps) {
 
       return {
         ...textFieldProps,
-        error: error || textFieldProps?.error,
+        error: error || !!textFieldProps?.error,
         helperText: helperText || textFieldProps?.helperText,
+        onBlur: execSequentially(onBlur, textFieldProps?.onBlur),
       };
     },
   };

@@ -7,7 +7,7 @@ import {
 } from '../internals/mui-x-date-pickers-internals';
 
 export interface UseMuiXMonthCalendarAdapterProps<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
@@ -24,7 +24,7 @@ export interface UseMuiXMonthCalendarAdapterProps<
   > {}
 
 export function useMuiXMonthCalendarAdapter<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown

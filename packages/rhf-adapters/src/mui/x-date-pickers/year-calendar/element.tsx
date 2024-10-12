@@ -5,7 +5,7 @@ import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { type UseMuiXYearCalendarAdapterProps, useMuiXYearCalendarAdapter } from './adapter';
 
 export type MuiXYearCalendarElementProps<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = Omit<
@@ -35,7 +35,7 @@ export type MuiXYearCalendarElementProps<
   };
 
 function MuiXYearCalendarComponent<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >(

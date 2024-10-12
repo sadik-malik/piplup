@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryFn } from '@storybook/react';
 
 /**
- * A wrapper around the `<YearCalendar>` component pre-configured with `useMuiXYearCalendarAdapter`.
+ * A wrapper around the [\<YearCalendar /\>](https://mui.com/x/api/date-pickers/year-calendar/) component pre-configured with `useMuiXYearCalendarAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *
@@ -193,7 +193,7 @@ const meta: Meta<typeof MuiXYearCalendarElement> = {
   },
   component: MuiXYearCalendarElement,
   tags: ['autodocs'],
-  title: 'RHF-Adapters/mui-x-date-pickers/MuiXYearCalendarElement',
+  title: 'RHF-Adapters/mui-x-date-pickers/Date Components/MuiXYearCalendarElement',
 };
 
 export default meta;

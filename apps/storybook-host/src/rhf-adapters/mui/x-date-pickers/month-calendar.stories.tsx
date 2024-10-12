@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryFn } from '@storybook/react';
 
 /**
- * A wrapper around the `<MonthCalendar>` component pre-configured with `useMuiXMonthCalendarAdapter`.
+ * A wrapper around the [\<MonthCalendar /\>](https://mui.com/x/api/date-pickers/month-calendar/) component pre-configured with `useMuiXMonthCalendarAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *
@@ -196,7 +196,7 @@ const meta: Meta<typeof MuiXMonthCalendarElement> = {
   },
   component: MuiXMonthCalendarElement,
   tags: ['autodocs'],
-  title: 'RHF-Adapters/mui-x-date-pickers/MuiXMonthCalendarElement',
+  title: 'RHF-Adapters/mui-x-date-pickers/Date Components/MuiXMonthCalendarElement',
 };
 
 export default meta;
@@ -207,7 +207,7 @@ const Template: StoryFn<typeof MuiXMonthCalendarElement> = (props) => {
       <FormContainer onError={action('onError')} onSubmit={action('onSubmit')}>
         <div>
           <MuiXMonthCalendarElement {...props} />
-          <MuiFormHelperTextElement control={props.control} name={props.name} renderOnError />
+          <MuiFormHelperTextElement error={props.error} name={props.name} renderOnError />
         </div>
         <MuiButtonElement sx={{ mt: 2 }} type="submit" variant="contained">
           Submit

@@ -7,7 +7,7 @@ import {
 } from '../internals/mui-x-date-pickers-internals';
 
 export interface UseMuiXTimeFieldAdapterProps<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends Omit<
@@ -23,7 +23,7 @@ export interface UseMuiXTimeFieldAdapterProps<
 }
 
 export function useMuiXTimeFieldAdapter<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown

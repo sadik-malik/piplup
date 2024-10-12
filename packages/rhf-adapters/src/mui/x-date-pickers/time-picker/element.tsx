@@ -5,7 +5,7 @@ import { type FieldPath, type FieldValues } from 'react-hook-form';
 import { type UseMuiXTimePickerAdapterProps, useMuiXTimePickerAdapter } from './adapter';
 
 export type MuiXTimePickerElementProps<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -36,7 +36,7 @@ export type MuiXTimePickerElementProps<
   };
 
 function MuiXTimePickerComponent<
-  TTransformedValue extends null | PickerValidDate,
+  TTransformedValue extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -55,6 +55,7 @@ function MuiXTimePickerComponent<
     defaultValue,
     disabled,
     disableFuture,
+    disableIgnoringDatePartForTimeValidation,
     disableOnError,
     disableOnIsSubmitting,
     disablePast,
@@ -89,6 +90,7 @@ function MuiXTimePickerComponent<
       defaultValue,
       disabled,
       disableFuture,
+      disableIgnoringDatePartForTimeValidation,
       disableOnError,
       disableOnIsSubmitting,
       disablePast,

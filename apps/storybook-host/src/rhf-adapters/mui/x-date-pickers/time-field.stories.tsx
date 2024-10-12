@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryFn } from '@storybook/react';
 
 /**
- * A wrapper around the `<TimeField>` component pre-configured with `useMuiXTimeFieldAdapter`.
+ * A wrapper around the [\<TimeField /\>](https://mui.com/x/api/date-pickers/time-field/) component pre-configured with `useMuiXTimeFieldAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *
@@ -199,7 +199,7 @@ const meta: Meta<typeof MuiXTimeFieldElement> = {
   },
   component: MuiXTimeFieldElement,
   tags: ['autodocs'],
-  title: 'RHF-Adapters/mui-x-date-pickers/MuiXTimeFieldElement',
+  title: 'RHF-Adapters/mui-x-date-pickers/Time Components/MuiXTimeFieldElement',
 };
 
 export default meta;

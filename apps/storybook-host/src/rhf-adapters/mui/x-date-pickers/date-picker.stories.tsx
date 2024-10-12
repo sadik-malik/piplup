@@ -8,7 +8,7 @@ import { type Meta, type StoryFn } from '@storybook/react';
 import dayjs from 'dayjs';
 
 /**
- * A wrapper around the `<DatePicker>` component pre-configured with `useMuiXDatePickerAdapter`.
+ * A wrapper around the [\<DatePicker /\>](https://mui.com/x/api/date-pickers/date-picker/) component pre-configured with `useMuiXDatePickerAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *
@@ -19,20 +19,7 @@ import dayjs from 'dayjs';
  * > Note: See the storybook actions panel for form submission results in individual story.
  */
 const meta: Meta<typeof MuiXDatePickerElement> = {
-  args: {
-    className: '',
-    disabled: false,
-    disableFuture: false,
-    disableOnError: false,
-    disableOnIsSubmitting: false,
-    disablePast: false,
-    error: false,
-    messages: {},
-    required: false,
-    rules: {},
-    shouldUnregister: false,
-    style: {},
-  },
+  args: {},
   argTypes: {
     className: {
       control: 'text',
@@ -209,7 +196,7 @@ const meta: Meta<typeof MuiXDatePickerElement> = {
   },
   component: MuiXDatePickerElement,
   tags: ['autodocs'],
-  title: 'RHF-Adapters/mui-x-date-pickers/MuiXDatePickerElement',
+  title: 'RHF-Adapters/mui-x-date-pickers/Date Components/MuiXDatePickerElement',
 };
 
 export default meta;

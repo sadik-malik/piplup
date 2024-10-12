@@ -8,7 +8,7 @@ import { type Meta, type StoryFn } from '@storybook/react';
 import dayjs from 'dayjs';
 
 /**
- * A wrapper around the `<TimePicker>` component pre-configured with `useMuiXTimePickerAdapter`.
+ * A wrapper around the [\<TimePicker /\>](https://mui.com/x/api/date-pickers/time-picker/) component pre-configured with `useMuiXTimePickerAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *
@@ -193,7 +193,7 @@ const meta: Meta<typeof MuiXTimePickerElement> = {
   },
   component: MuiXTimePickerElement,
   tags: ['autodocs'],
-  title: 'RHF-Adapters/mui-x-date-pickers/MuiXTimePickerElement',
+  title: 'RHF-Adapters/mui-x-date-pickers/Time Components/MuiXTimePickerElement',
 };
 
 export default meta;
