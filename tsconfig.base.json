@@ -29,9 +29,9 @@
         "packages/rhf-adapters/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts"
       ],
       "@piplup/rhf-core": ["packages/rhf-core/src/index.ts"],
-      "@piplup/rhf-core/utils": ["packages/rhf-core/src/utils.ts"],
       "@piplup/rhf-core/html": ["packages/rhf-core/src/html/html.ts"],
       "@piplup/rhf-core/internals": ["packages/rhf-core/src/hooks/internals/internals.ts"],
+      "@piplup/rhf-core/utils": ["packages/rhf-core/src/utils.ts"],
       "@piplup/storybook-host": ["apps/storybook-host/src/index.ts"],
       "@piplup/use-event-listener": ["packages/use-event-listener/src/index.ts"],
       "@piplup/use-local-storage": ["packages/use-local-storage/src/index.ts"],
