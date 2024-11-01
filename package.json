@@ -8,8 +8,8 @@
     "lint": "nx run-many --target=lint --all",
     "build": "nx run-many --target=build --all",
     "build:packages": "nx run-many -t build -p tag:scope:packages",
-    "build:storybook": "nx build-storybook storybook-host",
-    "start:storybook": "nx reset && nx storybook storybook-host",
+    "build:storybook": "nx reset && nx build-storybook storybook-host",
+    "start:storybook": "nx storybook storybook-host",
     "reset": "nx reset",
     "prepare": "node ./scripts/prepare.mjs",
     "release": "npm run clean && npm run build && nx release"
