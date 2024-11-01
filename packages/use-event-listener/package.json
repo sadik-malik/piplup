@@ -1,6 +1,6 @@
 {
   "name": "@piplup/use-event-listener",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": false,
   "homepage": "https://www.piplupjs.com",
   "description": "React hook designed to simplify the process of adding event listeners to various DOM elements in React applications.",
@@ -17,7 +17,7 @@
   "license": "MIT",
   "sideEffects": false,
   "dependencies": {
-    "@piplup/utils": "^2.2.0"
+    "@piplup/utils": "^2.3.0"
   },
   "peerDependencies": {
     "@types/react": "^18.0.0"
