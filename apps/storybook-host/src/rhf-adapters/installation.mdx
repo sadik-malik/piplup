@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="RHF-Adapters/Installation" />
+
+# Installation
+
+Run one of the following commands to add @piplup/rhf-adapters to your project:
+
+```bash
+npm install @piplup/rhf-adapters @piplup/rhf-core react-hook-form
+
+# or
+
+pnpm add @piplup/rhf-adapters @piplup/rhf-core react-hook-form
+
+# or
+
+yarn add @piplup/rhf-adapters @piplup/rhf-core react-hook-form
+```
+
+# Peer dependencies
+
+Please note that react, @piplup/rhf-core and react-hook-form are required peer dependencies, meaning you should ensure they are installed as well.
+
+```json
+{
+  "react": ">=18.0.0",
+  "react-hook-form": ">=7.51.0 <8.0.0",
+  "@piplup/rhf-core": "^2.0.0-beta.0"
+}
+```
+
+Additionally, the following peer dependencies are optional and only needed if you want to use react-hook-form integrated components from the respective libraries.
+
+```json
+{
+  "@mui/material": ">=5.0.0 <7.0.0",
+  "@mui/lab": "^5.0.0-alpha.173",
+  "@mui/x-date-pickers": ">=7.19.0 <8.0.0"
+}
+```

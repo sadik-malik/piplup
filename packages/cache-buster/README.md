@@ -21,6 +21,7 @@ pnpm add @piplup/cache-buster
 ```
 
 ## Usage
+
 1. **Integration with your build process**:
 
    Include a script in your package.json to generate a release ID before building your application:
@@ -32,29 +33,30 @@ pnpm add @piplup/cache-buster
   }
 }
 ```
-  Alternatively, if you are using `vite` to build your react application. You can use `@piplup/vite-plugin-cache-buster` and update your vite configuration file (usually `vite.config.js` or `vite.config.ts`) to the following:
-  
+
+Alternatively, if you are using `vite` to build your react application. You can use `@piplup/vite-plugin-cache-buster` and update your vite configuration file (usually `vite.config.js` or `vite.config.ts`) to the following:
+
 ```javascript
 import { vitePluginCacheBuster } from '@piplup/vite-plugin-cache-buster';
 
 export default {
   // Other Vite config options...
-  plugins: [vitePluginCacheBuster(), /*...other plugins */],
+  plugins: [vitePluginCacheBuster() /*...other plugins */],
 };
 ```
-
 
 2. **Integrate CacheBuster into your application**:
 
 ```jsx
 import { CacheBuster } from '@piplup/cache-buster';
 
-function App(){
+function App() {
   return (
     <>
-      <CacheBuster 
+      <CacheBuster
         loading={null} // Optional: Add a loading component to display loading.
         verbose={false} // Optional: If true, logs will be visible.
+        storageKey="RELEASE" // Optional: local storage key for storing the unique release ID.
         enabled={process.env.NODE_ENV === 'production'}
       />
       <YourApp />
