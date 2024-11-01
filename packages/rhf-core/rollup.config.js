@@ -2,13 +2,13 @@ const { withNx } = require('@nx/rollup/with-nx');
 
 const options = {
   additionalEntryPoints: [
-    '../../{projectRoot}/src/html/html.ts',
-    '../../{projectRoot}/src/utils.ts',
-    '../../{projectRoot}/src/hooks/internals/internals.ts',
+    '../../packages/rhf-core/src/html/html.ts',
+    '../../packages/rhf-core/src/utils.ts',
+    '../../packages/rhf-core/src/hooks/internals/internals.ts',
   ],
   assets: [
     {
-      glob: '{projectRoot}/README.md',
+      glob: 'packages/rhf-core/README.md',
       input: '.',
       output: '.',
     },
@@ -17,10 +17,10 @@ const options = {
   external: ['react', 'react-dom', 'react/jsx-runtime', 'react-hook-form'],
   format: ['esm', 'cjs'],
   generateExportsField: true,
-  main: '{projectRoot}/src/index.ts',
-  outputPath: '../../{projectRoot}/dist',
-  project: '../../{projectRoot}/package.json',
-  tsConfig: '../../{projectRoot}/tsconfig.lib.json',
+  main: 'packages/rhf-core/src/index.ts',
+  outputPath: '../../packages/rhf-core/dist',
+  project: '../../packages/rhf-core/package.json',
+  tsConfig: '../../packages/rhf-core/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

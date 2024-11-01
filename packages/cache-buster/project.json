@@ -1,7 +1,7 @@
 {
   "name": "@piplup/cache-buster",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "{projectRoot}/src",
+  "sourceRoot": "/packages/cache-buster/src",
   "projectType": "library",
   "tags": ["scope:packages"],
   "targets": {

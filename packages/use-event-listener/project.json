@@ -1,7 +1,7 @@
 {
   "name": "@piplup/use-event-listener",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "{projectRoot}/src",
+  "sourceRoot": "packages/use-event-listener/src",
   "projectType": "library",
   "tags": ["scope:packages"],
   "targets": {

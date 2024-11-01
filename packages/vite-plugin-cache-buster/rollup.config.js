@@ -3,12 +3,12 @@ const { withNx } = require('@nx/rollup/with-nx');
 const options = {
   assets: [
     {
-      glob: '{projectRoot}/README.md',
+      glob: 'packages/vite-plugin-cache-buster/README.md',
       input: '.',
       output: '.',
     },
     {
-      glob: '{projectRoot}/LICENSE',
+      glob: 'packages/vite-plugin-cache-buster/LICENSE',
       input: '.',
       output: '.',
     },
@@ -17,10 +17,10 @@ const options = {
   external: ['react', 'react-dom', 'react/jsx-runtime', 'vite'],
   format: ['cjs', 'esm'],
   generateExportsField: true,
-  main: '{projectRoot}/src/index.ts',
-  outputPath: '../../{projectRoot}/dist',
-  project: '../../{projectRoot}/package.json',
-  tsConfig: '../../{projectRoot}/tsconfig.lib.json',
+  main: 'packages/vite-plugin-cache-buster/src/index.ts',
+  outputPath: '../../packages/vite-plugin-cache-buster/dist',
+  project: '../../packages/vite-plugin-cache-buster/package.json',
+  tsConfig: '../../packages/vite-plugin-cache-buster/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

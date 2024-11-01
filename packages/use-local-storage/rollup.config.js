@@ -3,7 +3,7 @@ const { withNx } = require('@nx/rollup/with-nx');
 const options = {
   assets: [
     {
-      glob: '{projectRoot}/README.md',
+      glob: 'packages/use-local-storage/README.md',
       input: '.',
       output: '.',
     },
@@ -12,10 +12,10 @@ const options = {
   external: ['react', 'react-dom', 'react/jsx-runtime', '@piplup/use-event-listener'],
   format: ['esm', 'cjs'],
   generateExportsField: true,
-  main: '{projectRoot}/src/index.ts',
-  outputPath: '../../{projectRoot}/dist',
-  project: '../../{projectRoot}/package.json',
-  tsConfig: '../../{projectRoot}/tsconfig.lib.json',
+  main: 'packages/use-local-storage/src/index.ts',
+  outputPath: '../../packages/use-local-storage/dist',
+  project: '../../packages/use-local-storage/package.json',
+  tsConfig: '../../packages/use-local-storage/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

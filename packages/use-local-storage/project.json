@@ -1,7 +1,7 @@
 {
   "name": "@piplup/use-local-storage",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "{projectRoot}/src",
+  "sourceRoot": "packages/use-local-storage/src",
   "projectType": "library",
   "tags": ["scope:packages"],
   "targets": {
