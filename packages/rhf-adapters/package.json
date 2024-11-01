@@ -26,7 +26,8 @@
     "react": ">=18.0.0",
     "react-hook-form": ">=7.51.0 <8.0.0",
     "@piplup/rhf-core": "^2.0.0",
-    "@mui/x-date-pickers": ">=7.19.0 <8.0.0"
+    "@mui/x-date-pickers": ">=7.19.0 <8.0.0",
+    "react-number-format": "^5.4.2"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -39,6 +40,9 @@
       "optional": true
     },
     "@mui/x-date-pickers": {
+      "optional": true
+    },
+    "react-number-format": {
       "optional": true
     }
   },

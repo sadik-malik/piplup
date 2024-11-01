@@ -5,18 +5,6 @@
   "projectType": "library",
   "tags": ["scope:packages"],
   "targets": {
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "{projectRoot}/src/**/*.ts",
-          "{projectRoot}/src/**/*.tsx",
-          "{projectRoot}/package.json",
-          "{projectRoot}/project.json"
-        ]
-      }
-    },
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],

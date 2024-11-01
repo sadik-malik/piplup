@@ -6,17 +6,6 @@
   "tags": ["scope:packages"],
   "// targets": "to see all targets run: nx show project rhf-adapters --web",
   "targets": {
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "{projectRoot}/src/**/*.ts",
-          "{projectRoot}/package.json",
-          "{projectRoot}/project.json"
-        ]
-      }
-    },
     "build": {
       "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
@@ -29,7 +18,8 @@
           "{projectRoot}/src/mui/material/mui-material.ts",
           "{projectRoot}/src/mui/lab/mui-lab.ts",
           "{projectRoot}/src/mui/x-date-pickers/mui-x-date-pickers.ts",
-          "{projectRoot}/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts"
+          "{projectRoot}/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts",
+          "{projectRoot}/src/react-number-format/react-number-format.ts"
         ],
         "external": [
           "react",
@@ -39,7 +29,8 @@
           "@piplup/rhf-core",
           "@mui/material",
           "@mui/lab",
-          "@mui/x-date-pickers"
+          "@mui/x-date-pickers",
+          "react-number-format"
         ],
         "format": ["esm", "cjs"],
         "rollupConfig": "@nx/react/plugins/bundle-rollup",

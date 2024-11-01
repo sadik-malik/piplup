@@ -28,6 +28,9 @@
       "@piplup/rhf-adapters/mui-x-date-pickers-internals": [
         "packages/rhf-adapters/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts"
       ],
+      "@piplup/rhf-adapters/react-number-format": [
+        "packages/rhf-adapters/src/react-number-format/react-number-format.ts"
+      ],
       "@piplup/rhf-core": ["packages/rhf-core/src/index.ts"],
       "@piplup/rhf-core/html": ["packages/rhf-core/src/html/html.ts"],
       "@piplup/rhf-core/internals": ["packages/rhf-core/src/hooks/internals/internals.ts"],

@@ -8,6 +8,7 @@ import {
   type FieldPathValue,
   type Control,
 } from 'react-hook-form';
+import { execSequentially, useForkRef } from '../utils';
 import {
   useComposeClassName,
   type UseComposeClassNameProps,
@@ -21,7 +22,6 @@ import {
   type UseComposeStyleProps,
   useTransform,
 } from './internals/internals';
-import { execSequentially, useForkRef } from '../utils';
 
 /**
  * Type for the props of the controller adapter hook.

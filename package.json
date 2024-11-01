@@ -73,6 +73,7 @@
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
     "react-hook-form": "^7.53.0",
+    "react-number-format": "^5.4.2",
     "rimraf": "^5.0.5",
     "rollup": "^4.14.0",
     "storybook": "^8.3.1",
