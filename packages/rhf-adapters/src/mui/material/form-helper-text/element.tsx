@@ -5,7 +5,7 @@ import { useMuiFormHelperTextAdapter, type UseMuiFormHelperTextProps } from './a
 
 export interface MuiFormHelperTextElementProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<FormHelperTextProps, 'style'>,
     Omit<
       UseMuiFormHelperTextProps<TFieldValues, TName>,
@@ -19,7 +19,7 @@ export interface MuiFormHelperTextElementProps<
 
 function MuiFormHelperTextComponent<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: MuiFormHelperTextElementProps<TFieldValues, TName>, ref?: FormHelperTextProps['ref']) {
   const {
     children,
@@ -53,10 +53,11 @@ function MuiFormHelperTextComponent<
       name,
       style,
     },
-    ref
+    ref,
   );
 
   if (renderOnError && !adapter.error) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     return <></>;
   }
 
@@ -64,7 +65,7 @@ function MuiFormHelperTextComponent<
 }
 
 export const MuiFormHelperTextElement = React.forwardRef(
-  MuiFormHelperTextComponent
+  MuiFormHelperTextComponent,
 ) as typeof MuiFormHelperTextComponent & { displayName?: string };
 
 MuiFormHelperTextElement.displayName = 'MuiFormHelperTextElement';

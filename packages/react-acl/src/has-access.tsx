@@ -37,12 +37,15 @@ export function HasAccess(props: HasAccessProps): React.ReactElement {
   const acl = useAcl();
 
   if (acl.loading) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     return <>{loading}</>;
   }
 
   if (!acl.isAuthorized({ permissions, roles, validationMode })) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     return <>{fallback}</>;
   }
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;
 }

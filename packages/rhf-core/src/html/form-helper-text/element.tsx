@@ -5,7 +5,7 @@ import { HtmlFormHelperTextClasses } from './classes';
 
 export interface HtmlFormHelperTextElementProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<React.ComponentProps<'p'>, 'style'>,
     Omit<
       UseHtmlFormHelperTextProps<TFieldValues, TName>,
@@ -19,10 +19,10 @@ export interface HtmlFormHelperTextElementProps<
 
 function HtmlFormHelperTextComponent<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
   props: HtmlFormHelperTextElementProps<TFieldValues, TName>,
-  ref?: React.Ref<HTMLParagraphElement>
+  ref?: React.Ref<HTMLParagraphElement>,
 ): React.ReactElement {
   const {
     children,
@@ -57,10 +57,11 @@ function HtmlFormHelperTextComponent<
       name,
       style,
     },
-    ref
+    ref,
   );
 
   if (renderOnError && !hasError) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     return <></>;
   }
 
@@ -68,7 +69,7 @@ function HtmlFormHelperTextComponent<
 }
 
 export const HtmlFormHelperTextElement = React.forwardRef(
-  HtmlFormHelperTextComponent
+  HtmlFormHelperTextComponent,
 ) as typeof HtmlFormHelperTextComponent & { displayName?: string };
 
 HtmlFormHelperTextElement.displayName = 'HtmlFormHelperTextElement';

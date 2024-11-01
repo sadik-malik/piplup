@@ -24,7 +24,6 @@
     ".storybook/*.js",
     ".storybook/*.jsx",
     ".storybook/*.ts",
-    ".storybook/*.tsx",
-    "markdown.d.ts"
+    ".storybook/*.tsx"
   ]
 }

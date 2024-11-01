@@ -5,7 +5,7 @@ import { HtmlFormLabelClasses } from './classes';
 
 export interface HtmlFormLabelElementProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<React.ComponentProps<'label'>, 'style'>,
     Omit<
       UseHtmlFormLabelProps<TFieldValues, TName>,
@@ -14,10 +14,10 @@ export interface HtmlFormLabelElementProps<
 
 function HtmlFormLabelComponent<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
   props: HtmlFormLabelElementProps<TFieldValues, TName>,
-  ref?: React.Ref<HTMLLabelElement>
+  ref?: React.Ref<HTMLLabelElement>,
 ): React.ReactElement {
   const {
     className,
@@ -31,7 +31,7 @@ function HtmlFormLabelComponent<
       composeHelperText: false,
       internalClasses: HtmlFormLabelClasses,
     },
-    ref
+    ref,
   );
 
   return (
@@ -39,6 +39,7 @@ function HtmlFormLabelComponent<
       aria-disabled={disabled}
       {...props}
       className={className}
+      htmlFor={props.htmlFor}
       ref={adapterRef}
       style={style}
     />
@@ -46,7 +47,7 @@ function HtmlFormLabelComponent<
 }
 
 export const HtmlFormLabelElement = React.forwardRef(
-  HtmlFormLabelComponent
+  HtmlFormLabelComponent,
 ) as typeof HtmlFormLabelComponent & { displayName?: string };
 
 HtmlFormLabelElement.displayName = 'HtmlFormLabelElement';

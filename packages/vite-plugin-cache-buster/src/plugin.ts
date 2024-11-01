@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 import path from 'path';
-import  { type Logger, type Plugin, type PluginOption } from 'vite';
+import { type Logger, type Plugin, type PluginOption } from 'vite';
 
 export type VitePluginCacheBusterOptions = {
   debug?: boolean;
@@ -8,7 +8,7 @@ export type VitePluginCacheBusterOptions = {
 };
 
 export default function vitePluginCacheBuster(
-  options: VitePluginCacheBusterOptions = {}
+  options: VitePluginCacheBusterOptions = {},
 ): PluginOption[] {
   let publicDir = path.resolve(process.cwd(), 'public');
   let enabled = false;
@@ -22,7 +22,7 @@ export default function vitePluginCacheBuster(
           execSync(`piplup-cache-buster --publicDir=${publicDir}`, {
             stdio: 'inherit',
           });
-        } catch (error) {
+        } catch {
           logger.error('Error running piplup-cache-buster');
         }
       }

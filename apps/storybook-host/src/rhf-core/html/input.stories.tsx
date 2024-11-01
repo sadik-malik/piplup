@@ -100,11 +100,11 @@ export const Checkbox: Story = {
   render(props) {
     return (
       <FormContainer onError={action('onError')} onSubmit={action('onSubmit')}>
-        <HtmlInputElement {...props} name="checkbox" type="checkbox" value="one" />
-        <label>One</label>
+        <HtmlInputElement {...props} id="one" name="checkbox" type="checkbox" value="one" />
+        <label htmlFor="one">One</label>
         <br />
-        <HtmlInputElement name="checkbox" type="checkbox" value="two" />
-        <label>Two</label>
+        <HtmlInputElement id="two" name="checkbox" type="checkbox" value="two" />
+        <label htmlFor="two">Two</label>
         <br />
         <HtmlFormHelperTextElement
           style={({ error }) => ({
@@ -269,11 +269,11 @@ export const Radio: Story = {
   render(props) {
     return (
       <FormContainer onError={action('onError')} onSubmit={action('onSubmit')}>
-        <HtmlInputElement {...props} name="radio" type="radio" value="one" />
-        <label>One</label>
+        <HtmlInputElement {...props} id="one" name="radio" type="radio" value="one" />
+        <label htmlFor="one">One</label>
         <br />
-        <HtmlInputElement name="radio" type="radio" value="two" />
-        <label>Two</label>
+        <HtmlInputElement id="two" name="radio" type="radio" value="two" />
+        <label htmlFor="two">Two</label>
         <br />
         <HtmlFormHelperTextElement
           style={({ error }) => ({

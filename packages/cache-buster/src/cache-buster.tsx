@@ -26,7 +26,7 @@ function CacheBuster(props: CacheBusterProps): React.ReactElement {
         console[variant](...args);
       }
     },
-    [verbose]
+    [verbose],
   );
 
   const handleNewRelease = React.useCallback(() => {
@@ -46,7 +46,7 @@ function CacheBuster(props: CacheBusterProps): React.ReactElement {
               window.location.reload(
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                true // https://developer.mozilla.org/en-US/docs/Web/API/Location/reload#forceget
+                true, // https://developer.mozilla.org/en-US/docs/Web/API/Location/reload#forceget
               );
             }
           } else {
@@ -66,9 +66,11 @@ function CacheBuster(props: CacheBusterProps): React.ReactElement {
   }, [handleNewRelease]);
 
   if (!isInitialized) {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     return <>{loading}</>;
   }
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;
 }
 
