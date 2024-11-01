@@ -64,7 +64,7 @@
     "projects": ["*", "!storybook-host"],
     "projectsRelationship": "independent",
     "changelog": {
-      "workspaceChangelog": true
+      "projectChangelogs": true
     },
     "version": {
       "conventionalCommits": true
