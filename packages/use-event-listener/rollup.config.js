@@ -13,9 +13,9 @@ const options = {
   format: ['esm', 'cjs'],
   generateExportsField: true,
   main: 'packages/use-event-listener/src/index.ts',
-  outputPath: '../../packages/use-event-listener/dist',
-  project: '../../packages/use-event-listener/package.json',
-  tsConfig: '../../packages/use-event-listener/tsconfig.lib.json',
+  outputPath: 'packages/use-event-listener/dist',
+  project: 'packages/use-event-listener/package.json',
+  tsConfig: 'packages/use-event-listener/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

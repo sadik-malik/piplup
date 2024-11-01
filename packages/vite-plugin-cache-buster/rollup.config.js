@@ -18,9 +18,9 @@ const options = {
   format: ['cjs', 'esm'],
   generateExportsField: true,
   main: 'packages/vite-plugin-cache-buster/src/index.ts',
-  outputPath: '../../packages/vite-plugin-cache-buster/dist',
-  project: '../../packages/vite-plugin-cache-buster/package.json',
-  tsConfig: '../../packages/vite-plugin-cache-buster/tsconfig.lib.json',
+  outputPath: 'packages/vite-plugin-cache-buster/dist',
+  project: 'packages/vite-plugin-cache-buster/package.json',
+  tsConfig: 'packages/vite-plugin-cache-buster/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

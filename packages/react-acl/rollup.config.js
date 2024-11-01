@@ -13,9 +13,9 @@ const options = {
   format: ['esm', 'cjs'],
   generateExportsField: true,
   main: 'packages/react-acl/src/index.ts',
-  outputPath: '../../packages/react-acl/dist',
-  project: '../../packages/react-acl/package.json',
-  tsConfig: '../../packages/react-acl/tsconfig.lib.json',
+  outputPath: 'packages/react-acl/dist',
+  project: 'packages/react-acl/package.json',
+  tsConfig: 'packages/react-acl/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

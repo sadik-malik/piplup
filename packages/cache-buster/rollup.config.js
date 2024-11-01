@@ -18,9 +18,9 @@ const options = {
   format: ['esm', 'cjs'],
   generateExportsField: true,
   main: 'packages/cache-buster/src/index.ts',
-  outputPath: '../../packages/cache-buster/dist',
-  project: '../../packages/cache-buster/package.json',
-  tsConfig: '../../packages/cache-buster/tsconfig.lib.json',
+  outputPath: 'packages/cache-buster/dist',
+  project: 'packages/cache-buster/package.json',
+  tsConfig: 'packages/cache-buster/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

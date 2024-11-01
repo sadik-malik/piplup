@@ -13,9 +13,9 @@ const options = {
   format: ['esm', 'cjs'],
   generateExportsField: true,
   main: 'packages/utils/src/index.ts',
-  outputPath: '../../packages/utils/dist',
-  project: '../../packages/utils/package.json',
-  tsConfig: '../../packages/utils/tsconfig.lib.json',
+  outputPath: 'packages/utils/dist',
+  project: 'packages/utils/package.json',
+  tsConfig: 'packages/utils/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

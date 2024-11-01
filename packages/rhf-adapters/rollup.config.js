@@ -2,11 +2,11 @@ const { withNx } = require('@nx/rollup/with-nx');
 
 const options = {
   additionalEntryPoints: [
-    '../../packages/rhf-adapters/src/mui/material/mui-material.ts',
-    '../../packages/rhf-adapters/src/mui/lab/mui-lab.ts',
-    '../../packages/rhf-adapters/src/mui/x-date-pickers/mui-x-date-pickers.ts',
-    '../../packages/rhf-adapters/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts',
-    '../../packages/rhf-adapters/src/react-number-format/react-number-format.ts',
+    'packages/rhf-adapters/src/mui/material/mui-material.ts',
+    'packages/rhf-adapters/src/mui/lab/mui-lab.ts',
+    'packages/rhf-adapters/src/mui/x-date-pickers/mui-x-date-pickers.ts',
+    'packages/rhf-adapters/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts',
+    'packages/rhf-adapters/src/react-number-format/react-number-format.ts',
   ],
   assets: [
     {
@@ -30,9 +30,9 @@ const options = {
   format: ['esm', 'cjs'],
   generateExportsField: true,
   main: 'packages/rhf-adapters/src/index.ts',
-  outputPath: '../../packages/rhf-adapters/dist',
-  project: '../../packages/rhf-adapters/package.json',
-  tsConfig: '../../packages/rhf-adapters/tsconfig.lib.json',
+  outputPath: 'packages/rhf-adapters/dist',
+  project: 'packages/rhf-adapters/package.json',
+  tsConfig: 'packages/rhf-adapters/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

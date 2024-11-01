@@ -2,9 +2,9 @@ const { withNx } = require('@nx/rollup/with-nx');
 
 const options = {
   additionalEntryPoints: [
-    '../../packages/rhf-core/src/html/html.ts',
-    '../../packages/rhf-core/src/utils.ts',
-    '../../packages/rhf-core/src/hooks/internals/internals.ts',
+    'packages/rhf-core/src/html/html.ts',
+    'packages/rhf-core/src/utils.ts',
+    'packages/rhf-core/src/hooks/internals/internals.ts',
   ],
   assets: [
     {
@@ -18,9 +18,9 @@ const options = {
   format: ['esm', 'cjs'],
   generateExportsField: true,
   main: 'packages/rhf-core/src/index.ts',
-  outputPath: '../../packages/rhf-core/dist',
-  project: '../../packages/rhf-core/package.json',
-  tsConfig: '../../packages/rhf-core/tsconfig.lib.json',
+  outputPath: 'packages/rhf-core/dist',
+  project: 'packages/rhf-core/package.json',
+  tsConfig: 'packages/rhf-core/tsconfig.lib.json',
 };
 
 let config = withNx(options, {

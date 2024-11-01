@@ -13,9 +13,9 @@ const options = {
   format: ['esm', 'cjs'],
   generateExportsField: true,
   main: 'packages/use-local-storage/src/index.ts',
-  outputPath: '../../packages/use-local-storage/dist',
-  project: '../../packages/use-local-storage/package.json',
-  tsConfig: '../../packages/use-local-storage/tsconfig.lib.json',
+  outputPath: 'packages/use-local-storage/dist',
+  project: 'packages/use-local-storage/package.json',
+  tsConfig: 'packages/use-local-storage/tsconfig.lib.json',
 };
 
 let config = withNx(options, {
