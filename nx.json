@@ -69,5 +69,6 @@
     "version": {
       "conventionalCommits": true
     }
-  }
+  },
+  "useLegacyCache": true
 }

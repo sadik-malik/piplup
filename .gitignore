@@ -47,3 +47,5 @@ apps/playground
 #Storybook
 storybook-static
 build-storybook.log
+
+vite.config.*.timestamp*
