@@ -11,7 +11,8 @@
     "build:storybook": "nx build-storybook storybook-host",
     "start:storybook": "nx storybook storybook-host",
     "reset": "nx reset",
-    "prepare": "node ./scripts/prepare.mjs"
+    "prepare": "node ./scripts/prepare.mjs",
+    "release": "npm run clean && npm run build && nx release"
   },
   "private": true,
   "devDependencies": {
