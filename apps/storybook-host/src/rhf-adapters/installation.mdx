@@ -40,3 +40,9 @@ Additionally, the following peer dependencies are optional and only needed if yo
   "react-number-format": "^5.4.2"
 }
 ```
+
+> Important Note:
+> Each Module is divided into adapter and element layer.
+
+- Adapter: The actual integration logic of `react-hook-form` is done within the `adapter` layer, which is subject to **frequent breaking changes** till v3. Therefore, we do not recommend using adapters directly. Instead, use the `element` layer, which will be subject to only minor changes.
+- Element: This layer manages the integration between the `component` and the `adapter` and is more stable than the `adapter` layer.
