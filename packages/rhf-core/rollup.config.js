@@ -4,9 +4,9 @@ const url = require('@rollup/plugin-url');
 module.exports = withNx(
   {
     additionalEntryPoints: [
-      './src/html/html.ts',
-      './src/utils.ts',
-      './src/hooks/internals/internals.ts',
+      'packages/rhf-core/src/html/html.ts',
+      'packages/rhf-core/src/utils.ts',
+      'packages/rhf-core/src/hooks/internals/internals.ts',
     ],
     assets: [
       {

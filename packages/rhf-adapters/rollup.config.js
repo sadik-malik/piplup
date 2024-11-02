@@ -4,11 +4,11 @@ const url = require('@rollup/plugin-url');
 module.exports = withNx(
   {
     additionalEntryPoints: [
-      './src/mui/material/mui-material.ts',
-      './src/mui/lab/mui-lab.ts',
-      './src/mui/x-date-pickers/mui-x-date-pickers.ts',
-      './src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts',
-      './src/react-number-format/react-number-format.ts',
+      'packages/rhf-adapters/src/mui/material/mui-material.ts',
+      'packages/rhf-adapters/src/mui/lab/mui-lab.ts',
+      'packages/rhf-adapters/src/mui/x-date-pickers/mui-x-date-pickers.ts',
+      'packages/rhf-adapters/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts',
+      'packages/rhf-adapters/src/react-number-format/react-number-format.ts',
     ],
     assets: [
       {
