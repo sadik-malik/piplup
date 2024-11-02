@@ -6,7 +6,7 @@ import { type Meta, type StoryObj } from '@storybook/react';
 import { type NumberFormatBaseProps } from 'react-number-format';
 
 /**
- * A wrapper around the [\<NumberFormatBaseElement /\>](https://s-yadav.github.io/react-number-format/docs/customization) component pre-configured with `useNumberFormatBaseAdapter`.
+ * A wrapper around the [\<NumberFormatBase /\>](https://s-yadav.github.io/react-number-format/docs/customization) component pre-configured with `useNumberFormatBaseAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *

@@ -22,7 +22,7 @@
 // SOFTWARE.
 
 import * as React from 'react';
-import { setRef } from '../helpers/set-ref';
+import { forkRef } from '../helpers/fork-ref';
 
 /**
  * Hook that combines multiple refs into a single ref callback.
@@ -33,16 +33,9 @@ import { setRef } from '../helpers/set-ref';
 export function useForkRef<T>(
   ...refs: Array<React.Ref<T> | undefined>
 ): null | React.RefCallback<T> {
-  return React.useMemo(() => {
-    if (refs.every((ref) => ref == null)) {
-      return null;
-    }
-
-    return (instance: T) => {
-      refs.forEach((ref) => {
-        setRef(ref, instance);
-      });
-    };
+  return React.useMemo(
+    () => forkRef(...refs),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, refs);
+    refs,
+  );
 }

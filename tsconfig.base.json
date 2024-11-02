@@ -31,6 +31,15 @@
       "@piplup/rhf-adapters/react-number-format": [
         "packages/rhf-adapters/src/react-number-format/react-number-format.ts"
       ],
+      "@piplup/rhf-adapters/mui-file-input": [
+        "packages/rhf-adapters/src/mui-file-input/mui-file-input.ts"
+      ],
+      "@piplup/rhf-adapters/mui-color-input": [
+        "packages/rhf-adapters/src/mui-color-input/mui-color-input.ts"
+      ],
+      "@piplup/rhf-adapters/mui-one-time-password-input": [
+        "packages/rhf-adapters/src/mui-one-time-password-input/mui-one-time-password-input.ts"
+      ],
       "@piplup/rhf-core": ["packages/rhf-core/src/index.ts"],
       "@piplup/rhf-core/html": ["packages/rhf-core/src/html/html.ts"],
       "@piplup/rhf-core/internals": ["packages/rhf-core/src/hooks/internals/internals.ts"],

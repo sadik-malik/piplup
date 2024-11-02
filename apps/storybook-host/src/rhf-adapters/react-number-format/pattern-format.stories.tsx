@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { type Meta, type StoryFn } from '@storybook/react';
 
 /**
- * A wrapper around the [\<PatternFormatElement /\>](https://s-yadav.github.io/react-number-format/docs/pattern_format/) component pre-configured with `usePatternFormatAdapter`.
+ * A wrapper around the [\<PatternFormat /\>](https://s-yadav.github.io/react-number-format/docs/pattern_format/) component pre-configured with `usePatternFormatAdapter`.
  *
  * ## <span className="docs-h2">Import</span>
  *

@@ -29,6 +29,7 @@ pnpm add @piplup/utils
   - [execSequentially](https://github.com/sadik-malik/piplup/blob/main/packages/utils/src/helpers/exec-sequentially.ts)
   - [hasOwnProperty](https://github.com/sadik-malik/piplup/blob/main/packages/utils/src/helpers/has-own-property.ts)
   - [setRef](https://github.com/sadik-malik/piplup/blob/main/packages/utils/src/helpers/set-ref.ts)
+  - [forkRef](https://github.com/sadik-malik/piplup/blob/main/packages/utils/src/helpers/fork-ref.ts)
 - [Hooks](#hooks)
   - [useEventCallback](https://github.com/sadik-malik/piplup/blob/main/packages/utils/src/hooks/use-event-callback.ts)
   - [useEventListener](https://github.com/sadik-malik/piplup/blob/main/packages/utils/src/hooks/use-event-listener.ts)
@@ -98,6 +99,38 @@ import { setRef } from '@piplup/utils';
 const ref = React.createRef<HTMLDivElement>();
 
 setRef(ref, document.createElement('div'));
+```
+
+### forkRef
+
+Creates a function that forwards an instance to multiple refs.
+
+### Example
+
+```tsx
+import * as React from 'react';
+import { forkRef } from '@piplup/utils';
+
+type TextInputProps = React.InputHTMLAttributes<HTMLInputElement>;
+
+function TextInputComponent(props: TextInputProps, ref?: React.Ref<HTMLInputElement>) {
+  const internalRef = React.useRef<HTMLInputElement>(null);
+
+  // Combine internalRef and ref received from parent component
+  const handleInputRef = React.useMemo(() => forkRef(internalRef, ref), []);
+
+  return (
+    <input
+      placeholder="Type something here"
+      {...props}
+      ref={handleInputRef} // Pass the combined ref to the input
+    />
+  );
+}
+
+const TextFieldInput = React.forwardRef(TextInputComponent);
+
+export default TextFieldInput;
 ```
 
 ## Hooks

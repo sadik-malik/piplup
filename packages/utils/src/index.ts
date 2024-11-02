@@ -1,6 +1,7 @@
 // Functions
 export { compact } from './helpers/compact';
 export { execSequentially } from './helpers/exec-sequentially';
+export { forkRef } from './helpers/fork-ref';
 export { hasOwnProperty } from './helpers/has-own-property';
 export { setRef } from './helpers/set-ref';
 

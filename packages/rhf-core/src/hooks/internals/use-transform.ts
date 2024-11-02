@@ -16,7 +16,7 @@ export type Transform<
     | undefined,
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   input?: (value: PathValue<TFieldValues, TName>) => TTransformedValue;
   output?: (
@@ -30,7 +30,7 @@ export type Transform<
 export type UseTransformProps<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   /**
    * The `onChange` function from the `react-hook-form` controller.
@@ -63,7 +63,7 @@ export type UseTransformProps<
 export type UseTransformReturn<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   /**
    * The transformed `onChange` function.
@@ -85,9 +85,9 @@ export type UseTransformReturn<
 export function useTransform<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
-  props: UseTransformProps<TTransformedValue, TFieldValues, TName>
+  props: UseTransformProps<TTransformedValue, TFieldValues, TName>,
 ): UseTransformReturn<TTransformedValue, TFieldValues, TName> {
   const value = React.useMemo(() => {
     const input = props.transform?.input;
@@ -102,7 +102,7 @@ export function useTransform<
       const output = props.transform?.output;
       const onChange = props.onChange;
       return typeof output === 'function' ? onChange(output(...args, value)) : onChange(...args);
-    }
+    },
   );
 
   return {

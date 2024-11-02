@@ -9,6 +9,9 @@ module.exports = withNx(
       'packages/rhf-adapters/src/mui/x-date-pickers/mui-x-date-pickers.ts',
       'packages/rhf-adapters/src/mui/x-date-pickers/internals/mui-x-date-pickers-internals.ts',
       'packages/rhf-adapters/src/react-number-format/react-number-format.ts',
+      'packages/rhf-adapters/src/mui-file-input/mui-file-input.ts',
+      'packages/rhf-adapters/src/mui-color-input/mui-color-input.ts',
+      'packages/rhf-adapters/src/mui-one-time-password-input/mui-one-time-password-input.ts',
     ],
     assets: [
       {
@@ -28,6 +31,9 @@ module.exports = withNx(
       '@mui/lab',
       '@mui/x-date-pickers',
       'react-number-format',
+      'mui-file-input',
+      'mui-color-input',
+      'mui-one-time-password-input',
     ],
     format: ['esm', 'cjs'],
     generateExportsField: true,
