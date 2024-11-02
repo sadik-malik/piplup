@@ -1,29 +1,30 @@
 const { withNx } = require('@nx/rollup/with-nx');
+const url = require('@rollup/plugin-url');
 
-const options = {
-  assets: [
-    {
-      glob: 'packages/react-acl/README.md',
-      input: '.',
-      output: '.',
-    },
-  ],
-  compiler: 'babel',
-  external: ['react', 'react-dom', 'react/jsx-runtime'],
-  format: ['esm', 'cjs'],
-  generateExportsField: true,
-  main: 'packages/react-acl/src/index.ts',
-  outputPath: 'packages/react-acl/dist',
-  project: 'packages/react-acl/package.json',
-  tsConfig: 'packages/react-acl/tsconfig.lib.json',
-};
-
-let config = withNx(options, {
-  // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
-  // e.g.
-  // output: { sourcemap: true },
-});
-
-config = require('@nx/react/plugins/bundle-rollup')(config, options);
-
-module.exports = config;
+module.exports = withNx(
+  {
+    assets: [
+      {
+        glob: './README.md',
+        input: '.',
+        output: '.',
+      },
+    ],
+    compiler: 'babel',
+    external: ['react', 'react-dom', 'react/jsx-runtime'],
+    format: ['esm', 'cjs'],
+    generateExportsField: true,
+    main: './src/index.ts',
+    outputPath: './dist',
+    project: './package.json',
+    tsConfig: './tsconfig.lib.json',
+  },
+  {
+    // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
+    plugins: [
+      url({
+        limit: 10000, // 10kB
+      }),
+    ],
+  },
+);

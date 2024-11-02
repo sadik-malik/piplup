@@ -43,6 +43,7 @@ module.exports = [
             'jsonc-eslint-parser',
             '@nx/rollup',
             '@nx/react',
+            '@rollup/plugin-url',
           ],
         },
       ],

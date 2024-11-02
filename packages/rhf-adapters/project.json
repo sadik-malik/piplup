@@ -4,16 +4,5 @@
   "sourceRoot": "packages/rhf-adapters/src",
   "projectType": "library",
   "tags": ["scope:packages"],
-  "targets": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": [
-        "default",
-        "^default",
-        {
-          "externalDependencies": ["rollup"]
-        }
-      ]
-    }
-  }
+  "targets": {}
 }
