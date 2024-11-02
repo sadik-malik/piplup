@@ -1,3 +1,27 @@
+## 1.5.0 (2024-11-02)
+
+### 🚀 Features
+
+- **rhf-adapters:** added components from react-number-format ([328cf22](https://github.com/sadik-malik/piplup/commit/328cf22))
+- reduced bundled size by optimizing babel configuration ([c80327f](https://github.com/sadik-malik/piplup/commit/c80327f))
+- change default import to name import ([14b96bf](https://github.com/sadik-malik/piplup/commit/14b96bf))
+- added use-local-storage ([85847ac](https://github.com/sadik-malik/piplup/commit/85847ac))
+- added use-event-listener package ([8a44257](https://github.com/sadik-malik/piplup/commit/8a44257))
+
+### 🩹 Fixes
+
+- rollup.config.js for additionalEntryPoints ([ef673b2](https://github.com/sadik-malik/piplup/commit/ef673b2))
+- nx config for publishing package and removed dist from package.json ([942dc1f](https://github.com/sadik-malik/piplup/commit/942dc1f))
+
+### 🧱 Updated Dependencies
+
+- Updated @piplup/utils to 2.4.0
+
+### ❤️  Thank You
+
+- sadik_malik
+- sadik-malik
+
 ## 1.4.1 (2024-11-01)
 
 ### 🩹 Fixes

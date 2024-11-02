@@ -1,6 +1,6 @@
 {
   "name": "@piplup/utils",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "private": false,
   "homepage": "https://www.piplupjs.com",
   "description": "A collection of utility hooks and functions crafted to power up the packages within Piplup.",
