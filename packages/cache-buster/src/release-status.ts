@@ -16,7 +16,8 @@ async function getReleaseStatus(options: ReleaseStatusOptions): Promise<ReleaseS
   const { enabled = true, storageKey, verbose = false } = options;
 
   if (typeof window === 'undefined' || !enabled) {
-    return null;
+    lastStatus = null;
+    return lastStatus;
   }
 
   const date = new Date();
