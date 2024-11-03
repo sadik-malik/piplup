@@ -9,7 +9,7 @@ export interface UseMuiOtpInputAdapterProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<
     UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>,
-    'classes' | 'composeClassName' | 'composeHelperText' | 'internalClasses'
+    'classes' | 'composeClassName' | 'internalClasses'
   > {
   TextFieldsProps?: MuiOtpInputProps['TextFieldsProps'];
 }
@@ -69,7 +69,6 @@ export function useMuiOtpInputAdapter<
     ...rest,
     classes: undefined,
     composeClassName: false,
-    composeHelperText: true,
     internalClasses: undefined,
     transform: {
       ...internalTransform,

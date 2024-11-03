@@ -19,7 +19,7 @@ export type MuiFileInputElementProps<
   multiple?: Multiple;
 } & Omit<
     UseMuiFileInputAdapterProps<TTransformedValue, TFieldValues, TName>,
-    'onBlur' | 'onChange' | 'transform'
+    'composeHelperText' | 'onBlur' | 'onChange' | 'transform'
   > & {
     /**
      * Transformation functions for the field's input and output values.
@@ -46,6 +46,7 @@ function MuiFileInputComponent<
     error,
     errorParser,
     helperText,
+    inputRef,
     messages,
     multiple,
     name,
@@ -72,6 +73,7 @@ function MuiFileInputComponent<
       error,
       errorParser,
       helperText,
+      inputRef,
       messages,
       multiple,
       name,

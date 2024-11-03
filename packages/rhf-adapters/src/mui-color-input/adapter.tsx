@@ -9,7 +9,10 @@ export interface UseMuiColorInputAdapterProps<
 > extends Omit<
     UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>,
     'classes' | 'composeClassName' | 'internalClasses'
-  > {}
+  > {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  inputRef?: React.Ref<any>;
+}
 
 export function useMuiColorInputAdapter<
   TTransformedValue,
@@ -20,7 +23,7 @@ export function useMuiColorInputAdapter<
   props: UseMuiColorInputAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>,
 ) {
-  const { transform, ...rest } = props;
+  const { inputRef, transform, ...rest } = props;
 
   const internalTransform = React.useMemo<
     UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform']
@@ -36,7 +39,11 @@ export function useMuiColorInputAdapter<
     [],
   );
 
-  const adapter = useControllerAdapter<TTransformedValue, TFieldValues, TName, RefType>(
+  const { ref: adapterRef, ...adapter } = useControllerAdapter<
+    TTransformedValue,
+    TFieldValues,
+    TName
+  >(
     {
       ...rest,
       classes: undefined,
@@ -47,7 +54,11 @@ export function useMuiColorInputAdapter<
         ...transform,
       },
     },
-    ref,
+    inputRef,
   );
-  return adapter;
+  return {
+    ...adapter,
+    inputRef: adapterRef,
+    ref,
+  };
 }

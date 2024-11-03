@@ -43,6 +43,9 @@
       "@piplup/rhf-adapters/mui-tel-input": [
         "packages/rhf-adapters/src/mui-tel-input/mui-tel-input.ts"
       ],
+      "@piplup/rhf-adapters/mui-chips-input": [
+        "packages/rhf-adapters/src/mui-chips-input/mui-chips-input.ts"
+      ],
       "@piplup/rhf-core": ["packages/rhf-core/src/index.ts"],
       "@piplup/rhf-core/html": ["packages/rhf-core/src/html/html.ts"],
       "@piplup/rhf-core/internals": ["packages/rhf-core/src/hooks/internals/internals.ts"],

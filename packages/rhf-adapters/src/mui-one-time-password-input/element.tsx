@@ -10,7 +10,13 @@ export interface MuiOtpInputElementProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<
       MuiOtpInputProps,
-      'checked' | 'defaultChecked' | 'defaultValue' | 'name' | 'style' | 'value'
+      | 'checked'
+      | 'composeHelperText'
+      | 'defaultChecked'
+      | 'defaultValue'
+      | 'name'
+      | 'style'
+      | 'value'
     >,
     Omit<
       UseMuiOtpInputAdapterProps<TTransformedValue, TFieldValues, TName>,
@@ -62,6 +68,7 @@ function MuiOtpInputComponent<
   const { helperText: _helperText, ...adapter } = useMuiOtpInputAdapter(
     {
       className,
+      composeHelperText: false,
       control,
       defaultValue,
       disabled,

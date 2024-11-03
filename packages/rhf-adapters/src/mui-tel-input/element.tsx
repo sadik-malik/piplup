@@ -14,7 +14,7 @@ export type MuiTelInputElementProps<
 > &
   Omit<
     UseMuiTelInputAdapterProps<TTransformedValue, TFieldValues, TName>,
-    'onBlur' | 'onChange' | 'transform'
+    'composeHelperText' | 'onBlur' | 'onChange' | 'transform'
   > & {
     /**
      * Transformation functions for the field's input and output values.

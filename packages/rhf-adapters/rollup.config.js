@@ -15,6 +15,7 @@ module.exports = withNx(
       'packages/rhf-adapters/src/mui-color-input/mui-color-input.ts',
       'packages/rhf-adapters/src/mui-one-time-password-input/mui-one-time-password-input.ts',
       'packages/rhf-adapters/src/mui-tel-input/mui-tel-input.ts',
+      'packages/rhf-adapters/src/mui-chips-input/mui-chips-input.ts',
     ],
     assets: [
       {
