@@ -1,3 +1,21 @@
+## 1.5.0 (2024-11-03)
+
+### 🚀 Features
+
+- **rhf-adapters:** added component from mui-chips-input ([d18929c](https://github.com/sadik-malik/piplup/commit/d18929c))
+- **rhf-adapters:** added component from mui-tel-input ([8564bdb](https://github.com/sadik-malik/piplup/commit/8564bdb))
+- **cache-buster:** added a new hook useReleaseStatus ([58aaa52](https://github.com/sadik-malik/piplup/commit/58aaa52))
+- **rhf-adapters:** added mui-color-input, mui-file-input and mui-one-time-password-input ([9f5a982](https://github.com/sadik-malik/piplup/commit/9f5a982))
+
+### 🩹 Fixes
+
+- **cache-buster:** fixed status value in case enabled is false or window is undefined ([3221197](https://github.com/sadik-malik/piplup/commit/3221197))
+- **cache-buster:** fixed rollup.config.js for bin folder ([943019e](https://github.com/sadik-malik/piplup/commit/943019e))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 1.4.0 (2024-11-02)
 
 ### 🚀 Features

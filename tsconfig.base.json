@@ -18,9 +18,24 @@
       "@piplup/cache-buster": ["packages/cache-buster/src/index.ts"],
       "@piplup/react-acl": ["packages/react-acl/src/index.ts"],
       "@piplup/rhf-adapters": ["packages/rhf-adapters/src/index.ts"],
+      "@piplup/rhf-adapters/mui-chips-input": [
+        "packages/rhf-adapters/src/mui-chips-input/mui-chips-input.ts"
+      ],
+      "@piplup/rhf-adapters/mui-color-input": [
+        "packages/rhf-adapters/src/mui-color-input/mui-color-input.ts"
+      ],
+      "@piplup/rhf-adapters/mui-file-input": [
+        "packages/rhf-adapters/src/mui-file-input/mui-file-input.ts"
+      ],
       "@piplup/rhf-adapters/mui-lab": ["packages/rhf-adapters/src/mui/lab/mui-lab.ts"],
       "@piplup/rhf-adapters/mui-material": [
         "packages/rhf-adapters/src/mui/material/mui-material.ts"
+      ],
+      "@piplup/rhf-adapters/mui-one-time-password-input": [
+        "packages/rhf-adapters/src/mui-one-time-password-input/mui-one-time-password-input.ts"
+      ],
+      "@piplup/rhf-adapters/mui-tel-input": [
+        "packages/rhf-adapters/src/mui-tel-input/mui-tel-input.ts"
       ],
       "@piplup/rhf-adapters/mui-x-date-pickers": [
         "packages/rhf-adapters/src/mui/x-date-pickers/mui-x-date-pickers.ts"
@@ -30,21 +45,6 @@
       ],
       "@piplup/rhf-adapters/react-number-format": [
         "packages/rhf-adapters/src/react-number-format/react-number-format.ts"
-      ],
-      "@piplup/rhf-adapters/mui-file-input": [
-        "packages/rhf-adapters/src/mui-file-input/mui-file-input.ts"
-      ],
-      "@piplup/rhf-adapters/mui-color-input": [
-        "packages/rhf-adapters/src/mui-color-input/mui-color-input.ts"
-      ],
-      "@piplup/rhf-adapters/mui-one-time-password-input": [
-        "packages/rhf-adapters/src/mui-one-time-password-input/mui-one-time-password-input.ts"
-      ],
-      "@piplup/rhf-adapters/mui-tel-input": [
-        "packages/rhf-adapters/src/mui-tel-input/mui-tel-input.ts"
-      ],
-      "@piplup/rhf-adapters/mui-chips-input": [
-        "packages/rhf-adapters/src/mui-chips-input/mui-chips-input.ts"
       ],
       "@piplup/rhf-core": ["packages/rhf-core/src/index.ts"],
       "@piplup/rhf-core/html": ["packages/rhf-core/src/html/html.ts"],
