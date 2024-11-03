@@ -5,12 +5,12 @@ module.exports = withNx(
   {
     assets: [
       {
-        glob: './README.md',
+        glob: 'packages/vite-plugin-cache-buster/README.md',
         input: '.',
         output: '.',
       },
       {
-        glob: './LICENSE',
+        glob: 'packages/vite-plugin-cache-buster/LICENSE',
         input: '.',
         output: '.',
       },
