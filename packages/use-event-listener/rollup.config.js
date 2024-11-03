@@ -7,7 +7,7 @@ module.exports = withNx(
   {
     assets: [
       {
-        glob: './README.md',
+        glob: 'packages/use-event-listener/README.md',
         input: '.',
         output: '.',
       },
