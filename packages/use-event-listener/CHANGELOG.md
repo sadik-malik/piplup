@@ -1,3 +1,13 @@
+## 1.5.2 (2024-11-03)
+
+### 🩹 Fixes
+
+- **use-event-listener:** fixed README.md glob path ([39084ea](https://github.com/sadik-malik/piplup/commit/39084ea))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 1.5.1 (2024-11-03)
 
 ### 🚀 Features

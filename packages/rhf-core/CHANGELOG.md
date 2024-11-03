@@ -1,3 +1,13 @@
+## 2.4.1 (2024-11-03)
+
+### 🩹 Fixes
+
+- **rhf-core:** fixed README.md glob path ([f206bf4](https://github.com/sadik-malik/piplup/commit/f206bf4))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 2.4.0 (2024-11-03)
 
 ### 🚀 Features

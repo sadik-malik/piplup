@@ -1,3 +1,19 @@
+## 2.4.1 (2024-11-03)
+
+### 🚀 Features
+
+- **rhf-adapters:** added component from mui-chips-input ([d18929c](https://github.com/sadik-malik/piplup/commit/d18929c))
+- **rhf-adapters:** added component from mui-tel-input ([8564bdb](https://github.com/sadik-malik/piplup/commit/8564bdb))
+- **rhf-adapters:** added mui-color-input, mui-file-input and mui-one-time-password-input ([9f5a982](https://github.com/sadik-malik/piplup/commit/9f5a982))
+
+### 🩹 Fixes
+
+- **react-acl:** fixed README.md glob path ([c283949](https://github.com/sadik-malik/piplup/commit/c283949))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 2.4.0 (2024-11-02)
 
 ### 🚀 Features

@@ -1,3 +1,13 @@
+## 1.4.2 (2024-11-03)
+
+### 🩹 Fixes
+
+- **use-local-storage:** fixed README.md glob path ([ae0c638](https://github.com/sadik-malik/piplup/commit/ae0c638))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 1.4.1 (2024-11-03)
 
 ### 🚀 Features
