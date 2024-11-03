@@ -1,3 +1,7 @@
+## 2.6.0 (2024-11-03)
+
+This was a version bump only for @piplup/utils to align it with other projects, there were no code changes.
+
 ## 2.5.0 (2024-11-03)
 
 ### 🚀 Features

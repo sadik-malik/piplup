@@ -1,3 +1,9 @@
+## 1.6.0 (2024-11-03)
+
+### 🧱 Updated Dependencies
+
+- Updated @piplup/utils to 2.6.0
+
 ## 1.5.2 (2024-11-03)
 
 ### 🩹 Fixes
