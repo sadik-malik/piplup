@@ -15,7 +15,7 @@
     "use event listener"
   ],
   "repository": {
-    "url": "https://github.com/sadik-malik/piplup.git",
+    "url": "git+https://github.com/sadik-malik/piplup.git",
     "directory": "packages/utils"
   },
   "license": "MIT",
