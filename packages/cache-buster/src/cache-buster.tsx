@@ -1,73 +1,43 @@
 import * as React from 'react';
+import { FILENAME } from './constant';
+import { useReleaseStatus } from './release-status';
 
 export type CacheBusterProps = {
   children?: React.ReactNode;
   enabled?: boolean;
+  error?: React.ReactNode;
   loading?: React.ReactNode;
   storageKey?: string;
   verbose?: boolean;
 };
 
-const FILENAME = 'RELEASE';
-
 function CacheBuster(props: CacheBusterProps): React.ReactElement {
-  const { children = null, enabled = true, loading = null, storageKey = FILENAME, verbose } = props;
+  const {
+    children = null,
+    enabled = true,
+    error,
+    loading = null,
+    storageKey = FILENAME,
+    verbose,
+  } = props;
 
   const [isInitialized, setIsInitialized] = React.useState<boolean>(false);
-
-  const resourceURL = React.useMemo(() => {
-    const date = new Date();
-    return `/${FILENAME}?v=${date.getTime().toString()}`;
-  }, []);
-
-  const logger = React.useCallback(
-    (variant: 'error' | 'log', ...args: unknown[]) => {
-      if (verbose) {
-        console[variant](...args);
-      }
-    },
-    [verbose],
-  );
-
-  const handleNewRelease = React.useCallback(() => {
-    if (typeof window !== 'undefined') {
-      if (!enabled) {
-        setIsInitialized(true);
-        return;
-      }
-      fetch(resourceURL)
-        .then((res) => res.text())
-        .then((releaseId) => {
-          const releaseIdFromStorage = localStorage.getItem(storageKey);
-          if (releaseId !== releaseIdFromStorage) {
-            localStorage.setItem(storageKey, releaseId);
-            if (releaseId) {
-              logger('log', 'New release detected. Reloading page');
-              window.location.reload(
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                true, // https://developer.mozilla.org/en-US/docs/Web/API/Location/reload#forceget
-              );
-            }
-          } else {
-            logger('log', 'No new release detected.');
-          }
-          setIsInitialized(true);
-        })
-        .catch(() => {
-          logger('error', 'An error occurred while verifying release id');
-          setIsInitialized(true);
-        });
-    }
-  }, [resourceURL, enabled, logger, storageKey]);
+  const releaseStatus = useReleaseStatus({ enabled, storageKey, verbose });
 
   React.useEffect(() => {
-    handleNewRelease();
-  }, [handleNewRelease]);
+    if (!enabled || releaseStatus) {
+      setIsInitialized(true);
+    }
+  }, [releaseStatus, enabled]);
 
   if (!isInitialized) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     return <>{loading}</>;
+  }
+
+  if (releaseStatus === 'error') {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{error}</>;
   }
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
