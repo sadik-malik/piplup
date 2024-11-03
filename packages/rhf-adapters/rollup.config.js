@@ -1,5 +1,7 @@
+// @ts-check
+
 const { withNx } = require('@nx/rollup/with-nx');
-const url = require('@rollup/plugin-url');
+const baseRollupConfig = require('../../rollup.base.config');
 
 module.exports = withNx(
   {
@@ -16,7 +18,7 @@ module.exports = withNx(
     ],
     assets: [
       {
-        glob: './README.md',
+        glob: 'packages/rhf-adapters/README.md',
         input: '.',
         output: '.',
       },
@@ -42,14 +44,8 @@ module.exports = withNx(
     main: './src/index.ts',
     outputPath: './dist',
     project: './package.json',
+    sourceMap: true,
     tsConfig: './tsconfig.lib.json',
   },
-  {
-    // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
-    plugins: [
-      url({
-        limit: 10000, // 10kB
-      }),
-    ],
-  },
+  baseRollupConfig,
 );

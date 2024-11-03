@@ -44,6 +44,7 @@ module.exports = [
             '@nx/rollup',
             '@nx/react',
             '@rollup/plugin-url',
+            '@rollup/plugin-terser',
           ],
         },
       ],
