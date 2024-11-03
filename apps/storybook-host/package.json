@@ -1,7 +1,7 @@
 {
   "name": "storybook-host",
   "private": true,
-  "version": "1.0.28",
+  "version": "1.0.32",
   "description": "This library was generated with [Nx](https://nx.dev).",
   "main": "index.js",
   "scripts": {
