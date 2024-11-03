@@ -12,7 +12,7 @@ module.exports = withNx(
     ],
     assets: [
       {
-        glob: './README.md',
+        glob: 'packages/rhf-core/README.md',
         input: '.',
         output: '.',
       },
