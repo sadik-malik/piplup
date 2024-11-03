@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { type TextFieldProps } from '@mui/material';
 import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
-import { type MuiOtpInputProps } from 'mui-one-time-password-input';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 
 export interface UseMuiOtpInputAdapterProps<
@@ -11,7 +11,7 @@ export interface UseMuiOtpInputAdapterProps<
     UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>,
     'classes' | 'composeClassName' | 'composeHelperText' | 'internalClasses'
   > {
-  TextFieldsProps?: MuiOtpInputProps['TextFieldsProps'];
+  TextFieldsProps?: ((index: number) => TextFieldProps) | TextFieldProps;
 }
 
 export function useMuiOtpInputAdapter<
