@@ -62,9 +62,9 @@
   },
   "release": {
     "projects": ["*", "!storybook-host"],
-    "projectsRelationship": "independent",
+    "projectsRelationship": "fixed",
     "changelog": {
-      "projectChangelogs": true
+      "workspaceChangelog": true
     },
     "version": {
       "conventionalCommits": true

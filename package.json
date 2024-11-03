@@ -1,6 +1,6 @@
 {
   "name": "@piplup/monorepo",
-  "version": "0.0.1",
+  "version": "2.7.0",
   "license": "MIT",
   "homepage": "https://www.piplupjs.com/",
   "scripts": {
@@ -11,9 +11,7 @@
     "build:storybook": "nx build-storybook storybook-host",
     "start:storybook": "nx storybook storybook-host",
     "reset": "nx reset",
-    "prepare": "node ./scripts/prepare.mjs",
-    "release": "npm run clean && npm run build && nx release",
-    "release:dry-run": "npm run clean && npm run build && nx release"
+    "prepare": "node ./scripts/prepare.mjs"
   },
   "private": true,
   "devDependencies": {
