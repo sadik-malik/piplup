@@ -5,12 +5,12 @@ module.exports = withNx(
   {
     assets: [
       {
-        glob: './README.md',
+        glob: 'packages/cache-buster/README.md',
         input: '.',
         output: '.',
       },
       {
-        glob: './bin/generate-release-id.js',
+        glob: 'packages/cache-buster/bin/generate-release-id.js',
         input: '.',
         output: './bin',
       },
