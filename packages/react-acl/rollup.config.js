@@ -7,7 +7,7 @@ module.exports = withNx(
   {
     assets: [
       {
-        glob: './README.md',
+        glob: 'packages/react-acl/README.md',
         input: '.',
         output: '.',
       },
