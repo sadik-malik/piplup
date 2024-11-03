@@ -7,7 +7,7 @@ import { useMuiTextFieldAdapter, type UseMuiTextFieldAdapterProps } from './adap
 export interface MuiTextFieldElementProps<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<
       TextFieldProps,
       'checked' | 'defaultChecked' | 'defaultValue' | 'name' | 'style' | 'value'
@@ -32,10 +32,10 @@ export interface MuiTextFieldElementProps<
 function MuiTextFieldComponent<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
   props: MuiTextFieldElementProps<TTransformedValue, TFieldValues, TName>,
-  ref?: TextFieldProps['ref']
+  ref?: TextFieldProps['ref'],
 ): React.ReactElement {
   const {
     checked,
@@ -50,6 +50,7 @@ function MuiTextFieldComponent<
     errorParser,
     helperText,
     indeterminate,
+    inputRef,
     max,
     maxLength,
     messages,
@@ -85,6 +86,7 @@ function MuiTextFieldComponent<
       errorParser,
       helperText,
       indeterminate,
+      inputRef,
       max,
       maxLength,
       messages,
@@ -102,7 +104,7 @@ function MuiTextFieldComponent<
       transform,
       type,
     },
-    ref
+    ref,
   );
 
   return (
@@ -121,7 +123,7 @@ function MuiTextFieldComponent<
 }
 
 export const MuiTextFieldElement = React.forwardRef(
-  MuiTextFieldComponent
+  MuiTextFieldComponent,
 ) as typeof MuiTextFieldComponent & { displayName?: string };
 
 MuiTextFieldElement.displayName = 'MuiTextFieldElement';

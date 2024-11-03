@@ -12,6 +12,7 @@ module.exports = withNx(
       'packages/rhf-adapters/src/mui-file-input/mui-file-input.ts',
       'packages/rhf-adapters/src/mui-color-input/mui-color-input.ts',
       'packages/rhf-adapters/src/mui-one-time-password-input/mui-one-time-password-input.ts',
+      'packages/rhf-adapters/src/mui-tel-input/mui-tel-input.ts',
     ],
     assets: [
       {
@@ -34,6 +35,7 @@ module.exports = withNx(
       'mui-file-input',
       'mui-color-input',
       'mui-one-time-password-input',
+      'mui-tel-input',
     ],
     format: ['esm', 'cjs'],
     generateExportsField: true,

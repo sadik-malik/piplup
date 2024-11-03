@@ -8,7 +8,7 @@ export interface UseMuiColorInputAdapterProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<
     UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>,
-    'classes' | 'composeClassName' | 'composeHelperText' | 'internalClasses'
+    'classes' | 'composeClassName' | 'internalClasses'
   > {}
 
 export function useMuiColorInputAdapter<
@@ -41,7 +41,6 @@ export function useMuiColorInputAdapter<
       ...rest,
       classes: undefined,
       composeClassName: false,
-      composeHelperText: true,
       internalClasses: undefined,
       transform: {
         ...internalTransform,

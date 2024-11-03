@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { type TextFieldProps } from '@mui/material';
 import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
+import { type MuiOtpInputProps } from 'mui-one-time-password-input';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 
 export interface UseMuiOtpInputAdapterProps<
@@ -11,7 +11,29 @@ export interface UseMuiOtpInputAdapterProps<
     UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>,
     'classes' | 'composeClassName' | 'composeHelperText' | 'internalClasses'
   > {
-  TextFieldsProps?: ((index: number) => TextFieldProps) | TextFieldProps;
+  TextFieldsProps?: MuiOtpInputProps['TextFieldsProps'];
+}
+
+interface UseMuiOtpInputAdapterResult<
+  TTransformedValue,
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+  RefType = unknown,
+> {
+  className?: string;
+  disabled: boolean;
+  helperText: React.ReactNode;
+  name: TName;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onBlur: (...args: any[]) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange: (...args: any[]) => void;
+  ref?: React.Ref<RefType>;
+  required?: boolean;
+  style?: React.CSSProperties;
+  TextFieldsProps: MuiOtpInputProps['TextFieldsProps'];
+  title?: string;
+  value: TTransformedValue;
 }
 
 export function useMuiOtpInputAdapter<
@@ -22,7 +44,7 @@ export function useMuiOtpInputAdapter<
 >(
   props: UseMuiOtpInputAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>,
-) {
+): UseMuiOtpInputAdapterResult<TTransformedValue, TFieldValues, TName, RefType> {
   const { TextFieldsProps, transform, ...rest } = props;
 
   const internalTransform = React.useMemo<

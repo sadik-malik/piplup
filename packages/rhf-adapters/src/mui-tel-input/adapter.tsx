@@ -2,79 +2,63 @@ import * as React from 'react';
 import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 
-export interface UseMuiFileInputAdapterProps<
+export interface UseMuiTelInputAdapterProps<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<
     UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>,
-    | 'classes'
-    | 'composeClassName'
-    | 'internalClasses'
-    | 'max'
-    | 'maxLength'
-    | 'min'
-    | 'minLength'
-    | 'pattern'
-    | 'title'
+    'classes' | 'composeClassName' | 'internalClasses'
   > {
-  multiple?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  inputRef?: React.Ref<any>;
 }
 
-export function useMuiFileInputAdapter<
+export function useMuiTelInputAdapter<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown,
 >(
-  props: UseMuiFileInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+  props: UseMuiTelInputAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>,
 ) {
-  const { multiple, transform, ...rest } = props;
+  const { inputRef, transform, ...rest } = props;
 
   const internalTransform = React.useMemo<
     UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform']
   >(
     () => ({
-      input(fileOrFiles) {
-        if (multiple) {
-          return (Array.isArray(fileOrFiles) ? fileOrFiles : []) as TTransformedValue;
-        }
-        return (fileOrFiles ?? null) as TTransformedValue;
+      input(value) {
+        return value as TTransformedValue;
       },
-      output(fileOrFiles) {
-        return fileOrFiles as PathValue<TFieldValues, TName>;
+      output(value) {
+        return value as PathValue<TFieldValues, TName>;
       },
     }),
-    [multiple],
+    [],
   );
 
-  const { title: _title, ...adapter } = useControllerAdapter<
+  const { ref: adapterRef, ...adapter } = useControllerAdapter<
     TTransformedValue,
     TFieldValues,
-    TName,
-    RefType
+    TName
   >(
     {
       ...rest,
       classes: undefined,
       composeClassName: false,
       internalClasses: undefined,
-      max: undefined,
-      maxLength: undefined,
-      min: undefined,
-      minLength: undefined,
-      pattern: undefined,
-      title: undefined,
       transform: {
         ...internalTransform,
         ...transform,
       },
     },
-    ref,
+    inputRef,
   );
   return {
     ...adapter,
-    multiple,
+    inputRef: adapterRef,
+    ref,
   };
 }

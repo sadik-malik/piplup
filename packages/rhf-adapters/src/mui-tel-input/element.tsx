@@ -1,34 +1,34 @@
 import * as React from 'react';
 import { type Transform } from '@piplup/rhf-core';
-import { MuiColorInput, type MuiColorInputValue, type MuiColorInputProps } from 'mui-color-input';
+import { MuiTelInput, type MuiTelInputProps } from 'mui-tel-input';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
-import { type UseMuiColorInputAdapterProps, useMuiColorInputAdapter } from './adapter';
+import { type UseMuiTelInputAdapterProps, useMuiTelInputAdapter } from './adapter';
 
-export interface MuiColorInputElementProps<
-  TTransformedValue extends MuiColorInputValue,
+export type MuiTelInputElementProps<
+  TTransformedValue extends string,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> extends Omit<
-      MuiColorInputProps,
-      'checked' | 'defaultChecked' | 'defaultValue' | 'name' | 'style' | 'value'
-    >,
-    Omit<
-      UseMuiColorInputAdapterProps<TTransformedValue, TFieldValues, TName>,
-      'onBlur' | 'onChange' | 'transform'
-    > {
-  /**
-   * Transformation functions for the field's input and output values.
-   */
-  transform?: Transform<MuiColorInputProps['onChange'], TTransformedValue, TFieldValues, TName>;
-}
+> = Omit<
+  MuiTelInputProps,
+  'checked' | 'defaultChecked' | 'defaultValue' | 'name' | 'style' | 'value'
+> &
+  Omit<
+    UseMuiTelInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+    'onBlur' | 'onChange' | 'transform'
+  > & {
+    /**
+     * Transformation functions for the field's input and output values.
+     */
+    transform?: Transform<MuiTelInputProps['onChange'], TTransformedValue, TFieldValues, TName>;
+  };
 
-function MuiColorInputComponent<
-  TTransformedValue extends MuiColorInputValue,
+function MuiTelInputComponent<
+  TTransformedValue extends string,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
-  props: MuiColorInputElementProps<TTransformedValue, TFieldValues, TName>,
-  ref?: MuiColorInputProps['ref'],
+  props: MuiTelInputElementProps<TTransformedValue, TFieldValues, TName>,
+  ref?: MuiTelInputProps['ref'],
 ): React.ReactElement {
   const {
     className,
@@ -40,6 +40,7 @@ function MuiColorInputComponent<
     error,
     errorParser,
     helperText,
+    inputRef,
     max,
     maxLength,
     messages,
@@ -58,7 +59,11 @@ function MuiColorInputComponent<
     ...rest
   } = props;
 
-  const adapter = useMuiColorInputAdapter(
+  const {
+    inputRef: _inputRef,
+    ref: _ref,
+    ...adapter
+  } = useMuiTelInputAdapter(
     {
       className,
       composeHelperText: true,
@@ -70,6 +75,7 @@ function MuiColorInputComponent<
       error,
       errorParser,
       helperText,
+      inputRef,
       max,
       maxLength,
       messages,
@@ -89,11 +95,11 @@ function MuiColorInputComponent<
     ref,
   );
 
-  return <MuiColorInput {...rest} {...adapter} />;
+  return <MuiTelInput {...(rest as MuiTelInputProps)} {...adapter} />;
 }
 
-export const MuiColorInputElement = React.forwardRef(
-  MuiColorInputComponent,
-) as typeof MuiColorInputComponent & { displayName?: string };
+export const MuiTelInputElement = React.forwardRef(
+  MuiTelInputComponent,
+) as typeof MuiTelInputComponent & { displayName?: string };
 
-MuiColorInputElement.displayName = 'MuiColorInputElement';
+MuiTelInputElement.displayName = 'MuiTelInputElement';

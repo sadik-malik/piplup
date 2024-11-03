@@ -2,13 +2,14 @@ import * as React from 'react';
 import { type Transform } from '@piplup/rhf-core';
 import { MuiFileInput, type MuiFileInputProps } from 'mui-file-input';
 import { type FieldPath, type FieldValues } from 'react-hook-form';
-import { type UseMuiFileInputAdapterProps, useMuiFieldInputAdapter } from './adapter';
+import { type UseMuiFileInputAdapterProps, useMuiFileInputAdapter } from './adapter';
 
 export type MuiFileInputValue<Multiple extends boolean | undefined = undefined> =
   Multiple extends true ? File[] : File | null;
 
 export type MuiFileInputElementProps<
   Multiple extends boolean | undefined = undefined,
+  TTransformedValue extends MuiFileInputValue<Multiple> = MuiFileInputValue<Multiple>,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Omit<
@@ -17,26 +18,22 @@ export type MuiFileInputElementProps<
 > & {
   multiple?: Multiple;
 } & Omit<
-    UseMuiFileInputAdapterProps<MuiFileInputValue<Multiple>, TFieldValues, TName>,
+    UseMuiFileInputAdapterProps<TTransformedValue, TFieldValues, TName>,
     'onBlur' | 'onChange' | 'transform'
   > & {
     /**
      * Transformation functions for the field's input and output values.
      */
-    transform?: Transform<
-      MuiFileInputProps['onChange'],
-      MuiFileInputValue<Multiple>,
-      TFieldValues,
-      TName
-    >;
+    transform?: Transform<MuiFileInputProps['onChange'], TTransformedValue, TFieldValues, TName>;
   };
 
 function MuiFileInputComponent<
   Multiple extends boolean | undefined = undefined,
+  TTransformedValue extends MuiFileInputValue<Multiple> = MuiFileInputValue<Multiple>,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
-  props: MuiFileInputElementProps<Multiple, TFieldValues, TName>,
+  props: MuiFileInputElementProps<Multiple, TTransformedValue, TFieldValues, TName>,
   ref?: MuiFileInputProps['ref'],
 ): React.ReactElement {
   const {
@@ -63,9 +60,10 @@ function MuiFileInputComponent<
     ...rest
   } = props;
 
-  const adapter = useMuiFieldInputAdapter(
+  const adapter = useMuiFileInputAdapter(
     {
       className,
+      composeHelperText: true,
       control,
       defaultValue,
       disabled,

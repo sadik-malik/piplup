@@ -1,4 +1,4 @@
-export { useMuiFieldInputAdapter, type UseMuiFileInputAdapterProps } from './adapter';
+export { useMuiFileInputAdapter, type UseMuiFileInputAdapterProps } from './adapter';
 export {
   MuiFileInputElement,
   type MuiFileInputElementProps,
