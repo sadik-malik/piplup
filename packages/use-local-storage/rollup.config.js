@@ -7,7 +7,7 @@ module.exports = withNx(
   {
     assets: [
       {
-        glob: './README.md',
+        glob: 'packages/use-local-storage/README.md',
         input: '.',
         output: '.',
       },
