@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 
-export interface UseMuiChipsInputAdapterProps<
+export interface UseMuiFileInputAdapterProps<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
@@ -16,41 +16,49 @@ export interface UseMuiChipsInputAdapterProps<
     | 'min'
     | 'minLength'
     | 'pattern'
+    | 'title'
   > {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   inputRef?: React.Ref<any>;
+  multiple?: boolean;
 }
 
-export function useMuiChipsInputAdapter<
+export function useMuiFileInputAdapter<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown,
 >(
-  props: UseMuiChipsInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+  props: UseMuiFileInputAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>,
 ) {
-  const { inputRef, transform, ...rest } = props;
+  const { inputRef, multiple, transform, ...rest } = props;
 
   const internalTransform = React.useMemo<
-    UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform']
+    Exclude<
+      UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform'],
+      undefined
+    >
   >(
     () => ({
-      input(value) {
-        return value as TTransformedValue;
+      input(fileOrFiles: PathValue<TFieldValues, TName>) {
+        if (multiple) {
+          return (Array.isArray(fileOrFiles) ? fileOrFiles : []) as TTransformedValue;
+        }
+        return (fileOrFiles ?? null) as TTransformedValue;
       },
-      output(value) {
-        return value as PathValue<TFieldValues, TName>;
+      output(fileOrFiles: TTransformedValue) {
+        return fileOrFiles as PathValue<TFieldValues, TName>;
       },
     }),
-    [],
+    [multiple],
   );
 
-  const { ref: adapterRef, ...adapter } = useControllerAdapter<
-    TTransformedValue,
-    TFieldValues,
-    TName
-  >(
+  const {
+    ref: adapterRef,
+    title: _title,
+    ...adapter
+  } = useControllerAdapter<TTransformedValue, TFieldValues, TName>(
     {
       ...rest,
       classes: undefined,
@@ -61,6 +69,7 @@ export function useMuiChipsInputAdapter<
       min: undefined,
       minLength: undefined,
       pattern: undefined,
+      title: undefined,
       transform: {
         ...internalTransform,
         ...transform,
@@ -71,6 +80,7 @@ export function useMuiChipsInputAdapter<
   return {
     ...adapter,
     inputRef: adapterRef,
+    multiple,
     ref,
   };
 }

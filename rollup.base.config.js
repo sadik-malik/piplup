@@ -1,7 +1,6 @@
 // @ts-check
 
 const { default: terser } = require('@rollup/plugin-terser');
-const { default: url } = require('@rollup/plugin-url');
 
 const banner = `/*
 * Piplup
@@ -25,9 +24,6 @@ const options = {
     banner,
   },
   plugins: [
-    url({
-      limit: 10000, // 10kB
-    }),
     terser({
       compress: { directives: false },
     }),

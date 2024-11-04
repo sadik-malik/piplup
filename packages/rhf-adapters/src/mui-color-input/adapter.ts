@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 
-export interface UseMuiTelInputAdapterProps<
+export interface UseMuiColorInputAdapterProps<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
@@ -14,25 +14,28 @@ export interface UseMuiTelInputAdapterProps<
   inputRef?: React.Ref<any>;
 }
 
-export function useMuiTelInputAdapter<
+export function useMuiColorInputAdapter<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown,
 >(
-  props: UseMuiTelInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+  props: UseMuiColorInputAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>,
 ) {
   const { inputRef, transform, ...rest } = props;
 
   const internalTransform = React.useMemo<
-    UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform']
+    Exclude<
+      UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform'],
+      undefined
+    >
   >(
     () => ({
-      input(value) {
+      input(value: PathValue<TFieldValues, TName>) {
         return value as TTransformedValue;
       },
-      output(value) {
+      output(value: TTransformedValue) {
         return value as PathValue<TFieldValues, TName>;
       },
     }),

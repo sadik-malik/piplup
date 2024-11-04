@@ -48,13 +48,16 @@ export function useMuiOtpInputAdapter<
   const { TextFieldsProps, transform, ...rest } = props;
 
   const internalTransform = React.useMemo<
-    UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform']
+    Exclude<
+      UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform'],
+      undefined
+    >
   >(
     () => ({
-      input(value) {
+      input(value: PathValue<TFieldValues, TName>) {
         return value as TTransformedValue;
       },
-      output(value) {
+      output(value: TTransformedValue) {
         return value as PathValue<TFieldValues, TName>;
       },
     }),

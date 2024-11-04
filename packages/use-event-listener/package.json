@@ -16,10 +16,8 @@
   },
   "license": "MIT",
   "sideEffects": false,
-  "dependencies": {
-    "@piplup/utils": "2.8.0"
-  },
   "peerDependencies": {
+    "react": "^18.0.0",
     "@types/react": "^18.0.0"
   },
   "peerDependenciesMeta": {

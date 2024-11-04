@@ -18,7 +18,7 @@ module.exports = withNx(
       },
     ],
     compiler: 'babel',
-    external: ['react', 'react-dom', 'react/jsx-runtime', 'react-hook-form'],
+    external: ['react', 'react-dom', 'react/jsx-runtime', 'react-hook-form', '@piplup/utils'],
     format: ['esm', 'cjs'],
     generateExportsField: true,
     main: './src/index.ts',

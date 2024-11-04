@@ -31,6 +31,7 @@ module.exports = withNx(
       'react/jsx-runtime',
       'react-hook-form',
       '@piplup/rhf-core',
+      '@piplup/utils',
       '@mui/material',
       '@mui/lab',
       '@mui/x-date-pickers',

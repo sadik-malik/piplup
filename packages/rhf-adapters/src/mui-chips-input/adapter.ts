@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useControllerAdapter, type UseControllerAdapterProps } from '@piplup/rhf-core';
 import { type PathValue, type FieldPath, type FieldValues } from 'react-hook-form';
 
-export interface UseMuiFileInputAdapterProps<
+export interface UseMuiChipsInputAdapterProps<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
@@ -16,46 +16,44 @@ export interface UseMuiFileInputAdapterProps<
     | 'min'
     | 'minLength'
     | 'pattern'
-    | 'title'
   > {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   inputRef?: React.Ref<any>;
-  multiple?: boolean;
 }
 
-export function useMuiFileInputAdapter<
+export function useMuiChipsInputAdapter<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   RefType = unknown,
 >(
-  props: UseMuiFileInputAdapterProps<TTransformedValue, TFieldValues, TName>,
+  props: UseMuiChipsInputAdapterProps<TTransformedValue, TFieldValues, TName>,
   ref?: React.Ref<RefType>,
 ) {
-  const { inputRef, multiple, transform, ...rest } = props;
+  const { inputRef, transform, ...rest } = props;
 
   const internalTransform = React.useMemo<
-    UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform']
+    Exclude<
+      UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>['transform'],
+      undefined
+    >
   >(
     () => ({
-      input(fileOrFiles) {
-        if (multiple) {
-          return (Array.isArray(fileOrFiles) ? fileOrFiles : []) as TTransformedValue;
-        }
-        return (fileOrFiles ?? null) as TTransformedValue;
+      input(value: PathValue<TFieldValues, TName>) {
+        return value as TTransformedValue;
       },
-      output(fileOrFiles) {
-        return fileOrFiles as PathValue<TFieldValues, TName>;
+      output(value: TTransformedValue) {
+        return value as PathValue<TFieldValues, TName>;
       },
     }),
-    [multiple],
+    [],
   );
 
-  const {
-    ref: adapterRef,
-    title: _title,
-    ...adapter
-  } = useControllerAdapter<TTransformedValue, TFieldValues, TName>(
+  const { ref: adapterRef, ...adapter } = useControllerAdapter<
+    TTransformedValue,
+    TFieldValues,
+    TName
+  >(
     {
       ...rest,
       classes: undefined,
@@ -66,7 +64,6 @@ export function useMuiFileInputAdapter<
       min: undefined,
       minLength: undefined,
       pattern: undefined,
-      title: undefined,
       transform: {
         ...internalTransform,
         ...transform,
@@ -77,7 +74,6 @@ export function useMuiFileInputAdapter<
   return {
     ...adapter,
     inputRef: adapterRef,
-    multiple,
     ref,
   };
 }

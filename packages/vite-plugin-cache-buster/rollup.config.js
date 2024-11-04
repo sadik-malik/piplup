@@ -1,5 +1,5 @@
 const { withNx } = require('@nx/rollup/with-nx');
-const url = require('@rollup/plugin-url');
+const baseRollupConfig = require('../../rollup.base.config');
 
 module.exports = withNx(
   {
@@ -16,7 +16,7 @@ module.exports = withNx(
       },
     ],
     compiler: 'babel',
-    external: ['react', 'react-dom', 'react/jsx-runtime', 'vite'],
+    external: ['react', 'react-dom', 'react/jsx-runtime', 'vite', '@piplup/cache-buster'],
     format: ['cjs', 'esm'],
     generateExportsField: true,
     main: './src/index.ts',
@@ -24,12 +24,5 @@ module.exports = withNx(
     project: './package.json',
     tsConfig: './tsconfig.lib.json',
   },
-  {
-    // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
-    plugins: [
-      url({
-        limit: 10000, // 10kB
-      }),
-    ],
-  },
+  baseRollupConfig,
 );

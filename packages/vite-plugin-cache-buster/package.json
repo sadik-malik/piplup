@@ -19,7 +19,7 @@
   "sideEffects": false,
   "peerDependencies": {
     "vite": "^5.0.0",
-    "@piplup/cache-buster": "^2.7.0"
+    "@piplup/cache-buster": "^2.8.0"
   },
   "publishConfig": {
     "access": "public"

@@ -124,7 +124,7 @@ module.exports = [
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          allow: [],
+          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
           depConstraints: [
             {
               onlyDependOnLibsWithTags: ['*'],
