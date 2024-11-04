@@ -92,7 +92,7 @@
 - **vite-plugin-cache-buster:** README.md fix import in options ([8cf59e0](https://github.com/sadik-malik/piplup/commit/8cf59e0))
 - **vite-plugin-cache-buster:** fixed README.md glob path ([5a40153](https://github.com/sadik-malik/piplup/commit/5a40153))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - Sadik Malik
 - sadik_malik
