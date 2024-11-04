@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://www.piplupjs.com/",
   "scripts": {
-    "preinstall": "npx only-allow pnpm && npm run clean",
+    "preinstall": "npx only-allow pnpm && pnpm run clean",
     "clean": "rimraf --glob ./packages/*/dist ./apps/storybook-host/storybook-static ./build-storybook.log",
     "lint": "nx run-many --target=lint --all",
     "build": "nx run-many --target=build --all",
