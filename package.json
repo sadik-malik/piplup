@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://www.piplupjs.com/",
   "scripts": {
-    "preinstall": "npm run clean",
+    "preinstall": "npx only-allow pnpm && npm run clean",
     "clean": "rimraf --glob ./packages/*/dist ./apps/storybook-host/storybook-static ./build-storybook.log",
     "lint": "nx run-many --target=lint --all",
     "build": "nx run-many --target=build --all",
@@ -92,7 +92,8 @@
     "tslib": "^2.3.0",
     "typescript": "5.5.4",
     "typescript-eslint": "^8.0.0",
-    "vite": "~5.0.0"
+    "vite": "~5.0.0",
+    "yargs": "^17.7.2"
   },
   "optionalDependencies": {
     "@esbuild/linux-x64": "^0.24.0",

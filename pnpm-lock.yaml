@@ -246,6 +246,9 @@ importers:
       vite:
         specifier: ~5.0.0
         version: 5.0.13(@types/node@22.8.6)(terser@5.36.0)
+      yargs:
+        specifier: ^17.7.2
+        version: 17.7.2
 
   apps/storybook-host: {}
 
