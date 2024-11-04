@@ -1,3 +1,13 @@
+## 2.8.1 (2024-11-04)
+
+### 🩹 Fixes
+
+- **rhf-adapters:** update mui-chips-input as optional peerDependency ([1ba881e](https://github.com/sadik-malik/piplup/commit/1ba881e))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 2.8.0 (2024-11-03)
 
 ### 🚀 Features
