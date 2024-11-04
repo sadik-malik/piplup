@@ -21,6 +21,17 @@ const config: StorybookConfig = {
   },
   viteFinal: async (config) =>
     mergeConfig(config, {
+      build: {
+        rollupOptions: {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
+          onwarn(warning, warn) {
+            if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') {
+              warn(warning);
+            }
+          },
+        },
+      },
       plugins: [nxViteTsPaths()],
     }),
 };
