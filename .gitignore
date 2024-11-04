@@ -49,3 +49,4 @@ storybook-static
 build-storybook.log
 
 vite.config.*.timestamp*
+.vercel
