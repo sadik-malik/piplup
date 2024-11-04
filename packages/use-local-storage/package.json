@@ -19,7 +19,7 @@
   "peerDependencies": {
     "react": "^18.0.0",
     "@types/react": "^18.0.0",
-    "@piplup/use-event-listener": "^2.8.0"
+    "@piplup/use-event-listener": "^2.8.1"
   },
   "peerDependenciesMeta": {
     "@types/react": {
