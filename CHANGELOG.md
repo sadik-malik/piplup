@@ -1,3 +1,7 @@
+## 3.1.0 (2024-11-12)
+
+- Bump package version for "mui-chips-input", "mui-color-input" and "mui-tel-input"
+
 # 3.0.0 (2024-11-12)
 
 - Minimum version for packages from "@mui" is now v6.0.0

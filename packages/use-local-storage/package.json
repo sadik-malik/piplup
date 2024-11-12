@@ -1,6 +1,6 @@
 {
   "name": "@piplup/use-local-storage",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": false,
   "description": "React hook for reading values from the browser localStorage and listening to changes in it.",
   "keywords": [
