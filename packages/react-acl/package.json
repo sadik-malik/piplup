@@ -1,6 +1,6 @@
 {
   "name": "@piplup/react-acl",
-  "version": "2.8.1",
+  "version": "3.0.0",
   "private": false,
   "description": "A lightweight React library for managing access control lists (ACL) in your application",
   "keywords": [

@@ -1,6 +1,6 @@
 {
   "name": "@piplup/vite-plugin-cache-buster",
-  "version": "2.8.1",
+  "version": "3.0.0",
   "private": false,
   "description": "Vite plugin for integrating @piplup/cache-buster with vite",
   "keywords": [

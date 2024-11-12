@@ -1,6 +1,6 @@
 {
   "name": "@piplup/cache-buster",
-  "version": "2.8.1",
+  "version": "3.0.0",
   "private": false,
   "description": "React library that helps in busting cache",
   "keywords": [

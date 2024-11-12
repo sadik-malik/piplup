@@ -1,3 +1,7 @@
+# 3.0.0 (2024-11-12)
+
+This was a version bump only, there were no code changes.
+
 ## 2.8.1 (2024-11-04)
 
 ### 🩹 Fixes
