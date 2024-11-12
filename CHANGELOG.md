@@ -1,6 +1,6 @@
 # 3.0.0 (2024-11-12)
 
-This was a version bump only, there were no code changes.
+- Minimum version for packages from "@mui" is now v6.0.0
 
 ## 2.8.1 (2024-11-04)
 
@@ -8,7 +8,7 @@ This was a version bump only, there were no code changes.
 
 - **rhf-adapters:** update mui-chips-input as optional peerDependency ([1ba881e](https://github.com/sadik-malik/piplup/commit/1ba881e))
 
-### ❤️  Thank You
+### ❤️ Thank You
 
 - sadik-malik
 

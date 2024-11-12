@@ -31,7 +31,7 @@
     "README.md"
   ],
   "peerDependencies": {
-    "@piplup/use-event-listener": "^2.8.1",
+    "@piplup/use-event-listener": "3.0.0",
     "@types/react": "^18.2.0",
     "react": "^18.2.0"
   },

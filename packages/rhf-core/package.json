@@ -44,7 +44,7 @@
     "README.md"
   ],
   "dependencies": {
-    "@piplup/utils": "^3.0.0"
+    "@piplup/utils": "3.0.0"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",
