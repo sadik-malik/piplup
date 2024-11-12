@@ -15,7 +15,11 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ['../public'],
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../src/**/introduction.mdx',
+    '../src/**/*.mdx',
+    '../src/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },

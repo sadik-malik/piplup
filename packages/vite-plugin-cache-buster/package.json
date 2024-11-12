@@ -2,7 +2,6 @@
   "name": "@piplup/vite-plugin-cache-buster",
   "version": "2.8.1",
   "private": false,
-  "homepage": "https://www.piplupjs.com",
   "description": "Vite plugin for integrating @piplup/cache-buster with vite",
   "keywords": [
     "@piplup/cache-buster vite plugin",
@@ -11,18 +10,39 @@
     "vite cache buster plugin",
     "cache buster plugin"
   ],
+  "homepage": "https://www.piplupjs.com",
   "repository": {
     "url": "git+https://github.com/sadik-malik/piplup.git",
     "directory": "packages/vite-plugin-cache-buster"
   },
   "license": "MIT",
   "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "peerDependencies": {
-    "vite": "^5.0.0",
     "@piplup/cache-buster": "^2.8.1",
-    "react": "^18.0.0"
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "vite": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts"
 }

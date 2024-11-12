@@ -41,8 +41,12 @@ module.exports = [
             '@eslint/eslintrc',
             '@eslint/js',
             'jsonc-eslint-parser',
-            '@nx/rollup',
             '@nx/react',
+            '@vitejs/plugin-react',
+            'vite-plugin-dts',
+            '@nx/vite',
+            'vite',
+            '@piplup/utils', // This is already bundled with @piplup/rhf-core. So we do not needs its import
           ],
           ignoredFiles: ['eslint.config.js', 'rollup.config.js'],
           includeTransitiveDependencies: true,

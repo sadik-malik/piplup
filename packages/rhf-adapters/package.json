@@ -2,7 +2,6 @@
   "name": "@piplup/rhf-adapters",
   "version": "2.8.1",
   "private": false,
-  "homepage": "https://www.piplupjs.com",
   "description": "A library designed to streamline the integration of react-hook-form with UI frameworks by managing boilerplate code.",
   "keywords": [
     "react-hook-form",
@@ -13,42 +12,101 @@
     "react-hook-form @mui/x-date-pickers",
     "react-hook-form @mui/base"
   ],
+  "homepage": "https://www.piplupjs.com",
   "repository": {
     "url": "git+https://github.com/sadik-malik/piplup.git",
     "directory": "packages/rhf-adapters"
   },
   "license": "MIT",
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./mui-lab": {
+      "types": "./dist/mui/lab/mui-lab.d.ts",
+      "import": "./dist/mui-lab.mjs",
+      "require": "./dist/mui-lab.js"
+    },
+    "./mui-material": {
+      "types": "./dist/mui/material/mui-material.d.ts",
+      "import": "./dist/mui-material.mjs",
+      "require": "./dist/mui-material.js"
+    },
+    "./mui-x-date-pickers": {
+      "types": "./dist/mui/material/mui-x-date-pickers.d.ts",
+      "import": "./dist/mui-x-date-pickers.mjs",
+      "require": "./dist/mui-x-date-pickers.js"
+    },
+    "./mui-chips-input": {
+      "types": "./dist/mui-chips-input/mui-chips-input.d.ts",
+      "import": "./dist/mui-chips-input.mjs",
+      "require": "./dist/mui-chips-input.js"
+    },
+    "./mui-color-input": {
+      "types": "./dist/mui-color-input/mui-color-input.d.ts",
+      "import": "./dist/mui-color-input.mjs",
+      "require": "./dist/mui-color-input.js"
+    },
+    "./mui-file-input": {
+      "types": "./dist/mui-file-input/mui-file-input.d.ts",
+      "import": "./dist/mui-file-input.mjs",
+      "require": "./dist/mui-file-input.js"
+    },
+    "./mui-one-time-password-input": {
+      "types": "./dist/mui-one-time-password-input/mui-one-time-password-input.d.ts",
+      "import": "./dist/mui-one-time-password-input.mjs",
+      "require": "./dist/mui-one-time-password-input.js"
+    },
+    "./mui-tel-input": {
+      "types": "./dist/mui-tel-input/mui-tel-input.d.ts",
+      "import": "./dist/mui-tel-input.mjs",
+      "require": "./dist/mui-tel-input.js"
+    },
+    "./react-number-format": {
+      "types": "./dist/react-number-format/react-number-format.d.ts",
+      "import": "./dist/react-number-format.mjs",
+      "require": "./dist/react-number-format.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "peerDependencies": {
-    "@mui/material": ">=5.0.0 <7.0.0",
-    "@mui/lab": "^5.0.0-alpha.173",
-    "@types/react": ">=18.0.0",
-    "react": ">=18.0.0",
-    "react-hook-form": ">=7.51.0 <8.0.0",
+    "@mui/lab": "^6.0.0-beta.14",
+    "@mui/material": "^6.0.0",
+    "@mui/x-date-pickers": "^7.19.0",
     "@piplup/rhf-core": "^2.8.1",
-    "@mui/x-date-pickers": ">=7.19.0 <8.0.0",
-    "react-number-format": "^5.4.2",
+    "@types/react": "^18.2.0",
+    "mui-chips-input": "^3.1.1",
     "mui-color-input": "^4.0.2",
     "mui-file-input": "^6.0.0",
-    "mui-one-time-password-input": "^2.0.3",
+    "mui-one-time-password-input": "^3.0.1",
     "mui-tel-input": "^6.0.1",
-    "mui-chips-input": "^3.1.1",
-    "@piplup/utils": "^2.8.1"
+    "react": "^18.2.0",
+    "react-hook-form": "^7.51.5",
+    "react-number-format": "^5.4.2"
   },
   "peerDependenciesMeta": {
-    "@types/react": {
+    "@mui/lab": {
       "optional": true
     },
     "@mui/material": {
       "optional": true
     },
-    "@mui/lab": {
-      "optional": true
-    },
     "@mui/x-date-pickers": {
       "optional": true
     },
-    "react-number-format": {
+    "@types/react": {
+      "optional": true
+    },
+    "mui-chips-input": {
       "optional": true
     },
     "mui-color-input": {
@@ -60,7 +118,7 @@
     "mui-one-time-password-input": {
       "optional": true
     },
-    "mui-chips-input": {
+    "react-number-format": {
       "optional": true
     }
   },

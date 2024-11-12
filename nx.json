@@ -48,18 +48,23 @@
     },
     {
       "options": {
-        "buildTargetName": "build"
-      },
-      "plugin": "@nx/rollup/plugin"
-    },
-    {
-      "options": {
         "buildStorybookTargetName": "build-storybook",
         "serveStorybookTargetName": "storybook",
         "staticStorybookTargetName": "static-storybook",
         "testStorybookTargetName": "test-storybook"
       },
       "plugin": "@nx/storybook/plugin"
+    },
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static",
+        "typecheckTargetName": "typecheck"
+      }
     }
   ],
   "release": {
@@ -73,15 +78,9 @@
     }
   },
   "targetDefaults": {
-    "@nx/rollup:rollup": {
-      "dependsOn": ["^build"],
-      "inputs": ["default", "^default"]
-    },
     "nx-release-publish": {
       "dependsOn": ["^build"],
-      "options": {
-        "packageRoot": "{projectRoot}/dist"
-      }
+      "options": {}
     }
   }
 }

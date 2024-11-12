@@ -14,12 +14,27 @@
   },
   "license": "MIT",
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "bin": {
     "piplup-cache-buster": "./bin/generate-release-id.js"
   },
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
   "peerDependencies": {
-    "@types/react": "^18.0.0",
-    "react": "^18.0.0"
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

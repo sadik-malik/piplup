@@ -7,19 +7,19 @@ This package contains a set of useful components, hooks and adapter for integrat
 ## Installation
 
 ```bash
-npm install @piplup/rhf-core @piplup/utils react-hook-form
+npm install @piplup/rhf-core react-hook-form
 ```
 
 or
 
 ```bash
-yarn add @piplup/rhf-core @piplup/utils react-hook-form
+yarn add @piplup/rhf-core react-hook-form
 ```
 
 or
 
 ```bash
-pnpm add @piplup/rhf-core @piplup/utils react-hook-form
+pnpm add @piplup/rhf-core react-hook-form
 ```
 
 ## Hooks

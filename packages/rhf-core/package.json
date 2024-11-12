@@ -2,7 +2,6 @@
   "name": "@piplup/rhf-core",
   "version": "2.8.1",
   "private": false,
-  "homepage": "https://www.piplupjs.com",
   "description": "Core library containing hooks and utility functions designed to streamline the integration of react-hook-form with UI frameworks, by managing boilerplate code.",
   "keywords": [
     "react-hook-form",
@@ -13,17 +12,44 @@
     "rhf-adapters",
     "rhf-core"
   ],
+  "homepage": "https://www.piplupjs.com",
   "repository": {
     "url": "git+https://github.com/sadik-malik/piplup.git",
     "directory": "packages/rhf-core"
   },
   "license": "MIT",
   "sideEffects": false,
-  "peerDependencies": {
-    "@types/react": "^18.0.0",
-    "react": "^18.0.0",
-    "react-hook-form": "^7.51.5",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils.mjs",
+      "require": "./dist/utils.js",
+      "types": "./dist/utils.d.ts"
+    },
+    "./html": {
+      "import": "./dist/html.mjs",
+      "require": "./dist/html.js",
+      "types": "./dist/html.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
     "@piplup/utils": "^2.8.1"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.2.0",
+    "react": "^18.2.0",
+    "react-hook-form": "^7.51.5"
   },
   "peerDependenciesMeta": {
     "@types/react": {
