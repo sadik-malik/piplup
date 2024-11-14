@@ -1,3 +1,14 @@
+## 3.1.1 (2024-11-14)
+
+### 🩹 Fixes
+
+- type definitions export ([ec9f5a5](https://github.com/sadik-malik/piplup/commit/ec9f5a5))
+- typo in @piplup/rhf-core/utils path ([a02e614](https://github.com/sadik-malik/piplup/commit/a02e614))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 3.1.0 (2024-11-12)
 
 - Bump package version for "mui-chips-input", "mui-color-input" and "mui-tel-input"

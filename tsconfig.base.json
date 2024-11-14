@@ -38,8 +38,8 @@
         "packages/rhf-adapters/src/react-number-format/index.ts"
       ],
       "@piplup/rhf-core": ["packages/rhf-core/src/index.ts"],
-      "@piplup/rhf-core/utils": ["packages/rhf-core/src/utils/index.ts"],
       "@piplup/rhf-core/html": ["packages/rhf-core/src/html/index.ts"],
+      "@piplup/rhf-core/utils": ["packages/rhf-core/src/utils/index.ts"],
       "@piplup/storybook-host": ["apps/storybook-host/src/index.ts"],
       "@piplup/use-event-listener": ["packages/use-event-listener/src/index.ts"],
       "@piplup/use-local-storage": ["packages/use-local-storage/src/index.ts"],

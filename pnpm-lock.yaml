@@ -273,7 +273,7 @@ importers:
         version: 7.22.1(@emotion/react@11.13.3(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@6.1.6(@emotion/react@11.13.3(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mui/system@6.1.6(@emotion/react@11.13.3(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(dayjs@1.11.13)(luxon@3.5.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@piplup/rhf-core':
         specifier: 3.1.0
-        version: link:../rhf-core
+        version: 3.1.0(@types/react@18.3.1)(react-hook-form@7.53.1(react@18.3.1))(react@18.3.1)
       '@types/react':
         specifier: ^18.2.0
         version: 18.3.1
@@ -305,7 +305,7 @@ importers:
   packages/rhf-core:
     dependencies:
       '@piplup/utils':
-        specifier: 3.1.0
+        specifier: 3.1.1
         version: link:../utils
       '@types/react':
         specifier: ^18.2.0
@@ -351,7 +351,7 @@ importers:
     dependencies:
       '@piplup/cache-buster':
         specifier: 3.1.0
-        version: link:../cache-buster
+        version: 3.1.0(@types/react@18.3.1)(react@18.3.1)
       '@types/react':
         specifier: ^18.2.0
         version: 18.3.1
@@ -2144,8 +2144,37 @@ packages:
     peerDependencies:
       typescript: ^3 || ^4 || ^5
 
+  '@piplup/cache-buster@3.1.0':
+    resolution: {integrity: sha512-cjJ5ascH82STFLC4AgVDYD/RGiFeM7016RONOBAmiD2CmK/I9vhBX7MC3IKC/+gKK9TFWWQqoeVK7cHl8BCISw==}
+    hasBin: true
+    peerDependencies:
+      '@types/react': ^18.2.0
+      react: ^18.2.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@piplup/rhf-core@3.1.0':
+    resolution: {integrity: sha512-+doJykNTYNh7GxvHTS2qwF//KfXbRRNP4yA0FkJE+B8zYbLKYESYLnoox3yjijZQaUvNiznNxEErGz7dQiTHOQ==}
+    peerDependencies:
+      '@types/react': ^18.2.0
+      react: ^18.2.0
+      react-hook-form: ^7.51.5
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
   '@piplup/use-event-listener@3.0.0':
     resolution: {integrity: sha512-Y3TQSR8scZXzMGoG4Nnuy/zSZVpCiJRy+NmeAaGbVjaRJqO9Cne+1PAWs81Efvqx+6H4J7XDdylEWkGZNLRPAg==}
+    peerDependencies:
+      '@types/react': ^18.2.0
+      react: ^18.2.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@piplup/utils@3.1.0':
+    resolution: {integrity: sha512-vfZAcMttDFGpXrjYx4GDLSHZ7buCbz/urRrKruIvRyR/mRvZs7GJJXIbQDRfj1K0Gi7s2zneq8bpkG7Ze+h7XA==}
     peerDependencies:
       '@types/react': ^18.2.0
       react: ^18.2.0
@@ -9700,7 +9729,27 @@ snapshots:
       esquery: 1.6.0
       typescript: 5.5.4
 
+  '@piplup/cache-buster@3.1.0(@types/react@18.3.1)(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.1
+
+  '@piplup/rhf-core@3.1.0(@types/react@18.3.1)(react-hook-form@7.53.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@piplup/utils': 3.1.0(@types/react@18.3.1)(react@18.3.1)
+      react: 18.3.1
+      react-hook-form: 7.53.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.1
+
   '@piplup/use-event-listener@3.0.0(@types/react@18.3.1)(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.1
+
+  '@piplup/utils@3.1.0(@types/react@18.3.1)(react@18.3.1)':
     dependencies:
       react: 18.3.1
     optionalDependencies:
