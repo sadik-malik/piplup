@@ -9,7 +9,7 @@ import {
   useComposeModifierState,
   type UseComposeStyleProps,
   useComposeStyle,
-} from './internals/internals';
+} from './internals';
 import { useFieldState, type UseFieldStateProps } from './use-field-state';
 
 /**
@@ -17,7 +17,7 @@ import { useFieldState, type UseFieldStateProps } from './use-field-state';
  */
 export interface UseFieldStateAdapterProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends UseFieldStateProps<TFieldValues, TName>,
     Omit<UseComposeModifierStateProps<TFieldValues>, 'fieldError' | 'isSubmitting' | 'name'>,
     Omit<UseComposeClassNameProps, 'modifierState'>,
@@ -34,7 +34,7 @@ export interface UseFieldStateAdapterProps<
 export function useFieldStateAdapter<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  RefType = unknown
+  RefType = unknown,
 >(props: UseFieldStateAdapterProps<TFieldValues, TName>, ref?: React.Ref<RefType>) {
   const {
     classes,

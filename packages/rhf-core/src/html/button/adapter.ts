@@ -16,7 +16,7 @@ export interface UseHtmlButtonAdapterProps<TFieldValues extends FieldValues = Fi
 
 export function useHtmlButtonAdapter<
   TFieldValues extends FieldValues = FieldValues,
-  RefType = unknown
+  RefType = unknown,
 >(props: UseHtmlButtonAdapterProps<TFieldValues>, ref?: React.Ref<RefType>) {
   const { control, onClick, type } = props;
 
@@ -35,7 +35,7 @@ export function useHtmlButtonAdapter<
       if (type === 'reset' && !event.defaultPrevented) {
         reset();
       }
-    }
+    },
   );
 
   return {

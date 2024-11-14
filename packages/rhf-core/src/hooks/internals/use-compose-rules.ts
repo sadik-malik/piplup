@@ -85,7 +85,7 @@ export function getMessage(
  */
 export type UseComposeRulesProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
   /**
    * Maximum value allowed.
@@ -141,7 +141,7 @@ export type UseComposeRulesProps<
  */
 export function useComposeRules<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: UseComposeRulesProps<TFieldValues, TName>) {
   const { max, maxLength, messages, min, minLength, pattern, required, rules = {}, title } = props;
 

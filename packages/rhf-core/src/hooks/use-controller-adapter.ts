@@ -21,7 +21,7 @@ import {
   useComposeStyle,
   type UseComposeStyleProps,
   useTransform,
-} from './internals/internals';
+} from './internals';
 
 /**
  * Type for the props of the controller adapter hook.
@@ -29,7 +29,7 @@ import {
 export interface UseControllerAdapterProps<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends UseComposeRulesProps<TFieldValues, TName>,
     Omit<UseComposeModifierStateProps<TFieldValues>, 'fieldError' | 'isSubmitting'>,
     Omit<UseComposeClassNameProps, 'modifierState'>,
@@ -111,10 +111,10 @@ export function useControllerAdapter<
   TTransformedValue,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-  RefType = unknown
+  RefType = unknown,
 >(
   props: UseControllerAdapterProps<TTransformedValue, TFieldValues, TName>,
-  ref?: React.Ref<RefType>
+  ref?: React.Ref<RefType>,
 ) {
   const {
     classes,
@@ -182,11 +182,11 @@ export function useControllerAdapter<
 
   const handleChange = React.useMemo(
     () => execSequentially(transformed.onChange, onChange),
-    [onChange, transformed.onChange]
+    [onChange, transformed.onChange],
   );
   const handleBlur = React.useMemo(
     () => execSequentially(field.onBlur, onBlur),
-    [field.onBlur, onBlur]
+    [field.onBlur, onBlur],
   );
 
   const modifierState = useComposeModifierState<TFieldValues>({

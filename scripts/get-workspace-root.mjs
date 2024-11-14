@@ -1,7 +1,7 @@
 // @ts-check
 
-import path from 'path';
-import url from 'url';
+import path from 'node:path';
+import url from 'node:url';
 
 /**
  * Returns the full path of the root directory of this repository.
@@ -12,4 +12,4 @@ function getWorkspaceRoot() {
   return workspaceRoot;
 }
 
-export default getWorkspaceRoot
+export default getWorkspaceRoot;

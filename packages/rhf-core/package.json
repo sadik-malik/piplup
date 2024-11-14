@@ -20,20 +20,21 @@
   "license": "MIT",
   "sideEffects": false,
   "exports": {
+    "./package.json": "./dist/package.json",
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
     "./utils": {
-      "import": "./dist/utils.mjs",
-      "require": "./dist/utils.js",
-      "types": "./dist/utils.d.ts"
+      "import": "./dist/utils/index.mjs",
+      "require": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
     },
     "./html": {
-      "import": "./dist/html.mjs",
-      "require": "./dist/html.js",
-      "types": "./dist/html.d.ts"
+      "import": "./dist/html/index.mjs",
+      "require": "./dist/html/index.js",
+      "types": "./dist/html/index.d.ts"
     }
   },
   "main": "./dist/index.js",

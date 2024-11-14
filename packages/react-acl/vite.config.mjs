@@ -1,7 +1,7 @@
 /// <reference types='vitest' />
 
 // @ts-check
-import { existsSync, unlinkSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import * as path from 'path';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
@@ -9,18 +9,36 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import packageJSON from './package.json';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import modifyOutputPackageJson from '../../scripts/modify-output-package-json.mjs';
 
 const license = readFileSync(path.resolve('./LICENSE'), {
   encoding: 'utf-8',
 });
 const banner = ['/*', '@license', license, '*/', "'use client';"].join('\n');
 
-const external = new Set([
-  ...Object.keys(packageJSON.peerDependencies),
-  'react',
-  'react-dom',
-  'react/jsx-runtime',
-]);
+const external = [
+  ...new Set([
+    ...Object.keys(packageJSON.peerDependencies),
+    'react',
+    'react-dom',
+    'react/jsx-runtime',
+  ]),
+];
+
+const globals = {
+  react: 'React',
+  'react/jsx-runtime': 'jsxRuntime',
+};
+
+external.forEach((pkg) => {
+  globals[pkg] = pkg
+    .replace(/@/g, '')
+    .replace(/\//g, '-')
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+});
 
 export default defineConfig({
   // Uncomment this if you are using workers.
@@ -43,13 +61,16 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       name: 'test',
     },
+    minify: true,
     outDir: './dist',
     reportCompressedSize: true,
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: [...external],
+      external,
       output: {
         banner,
+        globals,
+        sourcemapExcludeSources: true,
       },
     },
   },
@@ -57,18 +78,9 @@ export default defineConfig({
   plugins: [
     react(),
     nxViteTsPaths(),
-    nxCopyAssetsPlugin([]),
+    nxCopyAssetsPlugin(['README.md', 'LICENSE']),
     dts({ entryRoot: 'src', tsconfigPath: path.join(__dirname, 'tsconfig.lib.json') }),
-    {
-      name: 'remove-package-json',
-      writeBundle() {
-        const distDir = path.resolve(__dirname, 'dist');
-        const packageJsonPath = path.join(distDir, 'package.json');
-        if (existsSync(packageJsonPath)) {
-          unlinkSync(packageJsonPath);
-        }
-      },
-    },
+    modifyOutputPackageJson(),
   ],
   root: __dirname,
 });

@@ -15,6 +15,7 @@
   "license": "MIT",
   "sideEffects": false,
   "exports": {
+    "./package.json": "./dist/package.json",
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
@@ -27,11 +28,6 @@
   "bin": {
     "piplup-cache-buster": "./bin/generate-release-id.js"
   },
-  "files": [
-    "dist",
-    "bin",
-    "README.md"
-  ],
   "peerDependencies": {
     "@types/react": "^18.2.0",
     "react": "^18.2.0"
@@ -46,5 +42,8 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

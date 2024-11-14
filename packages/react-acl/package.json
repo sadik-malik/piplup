@@ -16,6 +16,7 @@
   "license": "MIT",
   "sideEffects": false,
   "exports": {
+    "./package.json": "./dist/package.json",
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
@@ -26,8 +27,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "README.md"
+    "dist"
   ],
   "peerDependencies": {
     "@types/react": "^18.2.0",

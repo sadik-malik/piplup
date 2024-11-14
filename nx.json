@@ -80,7 +80,9 @@
   "targetDefaults": {
     "nx-release-publish": {
       "dependsOn": ["^build"],
-      "options": {}
+      "options": {
+        "packageRoot": "{projectRoot}/dist"
+      }
     }
   }
 }

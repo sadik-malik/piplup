@@ -9,7 +9,7 @@ import {
   type UseComposeModifierStateProps,
   useComposeStyle,
   type UseComposeStyleProps,
-} from './internals/internals';
+} from './internals';
 
 /**
  * Defines the properties for the `useFormStateAdapter` hook, including component-specific props.
@@ -30,7 +30,7 @@ export interface UseFormStateAdapterProps<TFieldValues extends FieldValues = Fie
  */
 export function useFormStateAdapter<
   TFieldValues extends FieldValues = FieldValues,
-  RefType = unknown
+  RefType = unknown,
 >(props: UseFormStateAdapterProps<TFieldValues>, ref?: React.Ref<RefType>) {
   const {
     classes,
