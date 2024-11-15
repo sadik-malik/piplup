@@ -1,3 +1,13 @@
+## 3.1.2 (2024-11-15)
+
+### 🩹 Fixes
+
+- imports from nested path for @piplup/rhf-adapters and @piplup/rhf-core ([ecfdb53](https://github.com/sadik-malik/piplup/commit/ecfdb53))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 3.1.1 (2024-11-14)
 
 ### 🩹 Fixes
