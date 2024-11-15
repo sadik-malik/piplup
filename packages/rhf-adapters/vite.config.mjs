@@ -23,22 +23,11 @@ const external = [
     'react',
     'react-dom',
     'react/jsx-runtime',
+    '@mui/x-date-pickers/internals',
+    '@piplup/rhf-core/utils',
+    '@piplup/rhf-core/html',
   ]),
 ];
-
-const globals = {
-  react: 'React',
-  'react/jsx-runtime': 'jsxRuntime',
-};
-
-external.forEach((pkg) => {
-  globals[pkg] = pkg
-    .replace(/@/g, '')
-    .replace(/\//g, '-')
-    .split('-')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join('');
-});
 
 export default defineConfig({
   // Uncomment this if you are using workers.
@@ -75,7 +64,6 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       name: 'test',
     },
-    minify: true,
     outDir: './dist',
     reportCompressedSize: true,
     rollupOptions: {
@@ -83,7 +71,6 @@ export default defineConfig({
       external,
       output: {
         banner,
-        globals,
         sourcemapExcludeSources: true,
       },
     },
@@ -93,7 +80,10 @@ export default defineConfig({
     react(),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['README.md', 'LICENSE']),
-    dts({ entryRoot: 'src', tsconfigPath: path.join(__dirname, 'tsconfig.lib.json') }),
+    dts({
+      entryRoot: 'src',
+      tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+    }),
     modifyOutputPackageJson(),
   ],
   root: __dirname,
