@@ -48,9 +48,9 @@
     "@piplup/utils": "3.1.2"
   },
   "peerDependencies": {
-    "@types/react": "^18.2.0",
-    "react": "^18.2.0",
-    "react-hook-form": "^7.51.5"
+    "@types/react": ">=18.2.0 <20.0.0",
+    "react": ">=18.2.0 <20.0.0",
+    "react-hook-form": ">=7.51.5 <8.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {

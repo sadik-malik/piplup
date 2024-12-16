@@ -33,8 +33,8 @@
   ],
   "peerDependencies": {
     "@piplup/use-event-listener": "3.1.2",
-    "@types/react": "^18.2.0",
-    "react": "^18.2.0"
+    "@types/react": ">=18.2.0 <20.0.0",
+    "react": ">=18.2.0 <20.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
