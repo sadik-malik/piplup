@@ -1,6 +1,6 @@
 {
   "name": "@piplup/vite-plugin-cache-buster",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "private": false,
   "description": "Vite plugin for integrating @piplup/cache-buster with vite",
   "keywords": [
@@ -33,7 +33,7 @@
     "README.md"
   ],
   "peerDependencies": {
-    "@piplup/cache-buster": "3.1.2",
+    "@piplup/cache-buster": "3.2.0",
     "@types/react": ">=18.2.0 <20.0.0",
     "react": ">=18.2.0 <20.0.0",
     "vite": "^5.0.0"

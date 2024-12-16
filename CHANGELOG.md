@@ -1,3 +1,13 @@
+## 3.2.0 (2024-12-16)
+
+### 🚀 Features
+
+- updated react version for react 19 support ([c7a9353](https://github.com/sadik-malik/piplup/commit/c7a9353))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 3.1.2 (2024-11-15)
 
 ### 🩹 Fixes
