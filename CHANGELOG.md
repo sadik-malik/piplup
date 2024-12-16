@@ -1,3 +1,13 @@
+## 3.2.2 (2024-12-16)
+
+### 🩹 Fixes
+
+- **rhf-adapters:** exports fields path for package import ([1362c33](https://github.com/sadik-malik/piplup/commit/1362c33))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 3.2.1 (2024-12-16)
 
 This was a version bump only, there were no code changes.
