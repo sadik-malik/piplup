@@ -58,15 +58,18 @@ export type UseComposeModifierStateResult = {
  * @returns The composed modifier state object containing `error` and `disabled` flags.
  */
 export function useComposeModifierState<TFieldValues extends FieldValues = FieldValues>(
-  props: UseComposeModifierStateProps<TFieldValues>
+  props: UseComposeModifierStateProps<TFieldValues>,
 ): UseComposeModifierStateResult {
   const { disabled, disableOnError, disableOnIsSubmitting, error, fieldError, isSubmitting } =
     props;
 
   return React.useMemo<UseComposeModifierStateResult>(() => {
     const hasError =
-      !!error ||
-      (typeof fieldError === 'object' && fieldError !== null && Object.keys(fieldError).length > 0);
+      typeof error !== 'undefined'
+        ? error
+        : typeof fieldError === 'object' &&
+          fieldError !== null &&
+          Object.keys(fieldError).length > 0;
     return {
       disabled: !!(
         disabled ||
