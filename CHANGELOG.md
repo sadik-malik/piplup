@@ -1,3 +1,21 @@
+## 3.2.3 (2025-05-18)
+
+### 🚀 Features
+
+- updated react version for react 19 support ([c7a9353](https://github.com/sadik-malik/piplup/commit/c7a9353))
+
+### 🩹 Fixes
+
+- type definitions export ([ec9f5a5](https://github.com/sadik-malik/piplup/commit/ec9f5a5))
+- typo in @piplup/rhf-core/utils path ([a02e614](https://github.com/sadik-malik/piplup/commit/a02e614))
+- imports from nested path for @piplup/rhf-adapters and @piplup/rhf-core ([ecfdb53](https://github.com/sadik-malik/piplup/commit/ecfdb53))
+- **rhf-adapters:** exports fields path for package import ([1362c33](https://github.com/sadik-malik/piplup/commit/1362c33))
+- **rhf-core:** do not override error value if provided ([f94eb1a](https://github.com/sadik-malik/piplup/commit/f94eb1a))
+
+### ❤️  Thank You
+
+- sadik-malik
+
 ## 3.2.2 (2024-12-16)
 
 ### 🩹 Fixes
