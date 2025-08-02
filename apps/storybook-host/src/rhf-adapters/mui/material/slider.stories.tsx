@@ -3,7 +3,7 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
 import { Box, Stack } from '@mui/material';
 import { MuiButtonElement, MuiSliderElement } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer, type FormContainerProps } from '@piplup/rhf-core';
-import { type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
 
 /**
  * A wrapper around the `<Slider>` component pre-configured with `useMuiSliderAdapter`.

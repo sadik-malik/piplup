@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
 import { AclProvider, HasAccess } from '@piplup/react-acl';
-import { type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
 
 /**
  * HasAccess is a component that renders its children only if the user's specified permissions and roles match those provided in the AclProvider.

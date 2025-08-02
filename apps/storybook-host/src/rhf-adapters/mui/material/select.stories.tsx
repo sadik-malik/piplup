@@ -1,8 +1,8 @@
 import { Box, FormControl, InputLabel, MenuItem, OutlinedInput } from '@mui/material';
 import { MuiButtonElement, MuiSelectElement } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer, type FormContainerProps } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the `<Select>` component pre-configured with `useMuiSelectAdapter`.

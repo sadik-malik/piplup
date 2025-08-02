@@ -1,8 +1,8 @@
 import { Box, MenuItem, textFieldClasses } from '@mui/material';
 import { MuiButtonElement, MuiTextFieldElement } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the `<TextField>` component pre-configured with `useMuiTextFieldAdapter`.

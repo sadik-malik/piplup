@@ -7,8 +7,8 @@ import SaveIcon from '@mui/icons-material/Save';
 import { Stack } from '@mui/material';
 import { MuiFabElement, MuiTextFieldElement } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the `<Fab>` component pre-configured with `useMuiFabAdapter`.

@@ -1,9 +1,9 @@
 import { MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
 import { MuiTelInputElement } from '@piplup/rhf-adapters/mui-tel-input';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryFn, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryFn, type StoryObj } from '@storybook/react-vite';
 import { matchIsValidTel } from 'mui-tel-input';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<MuiTelInput /\>](https://viclafouch.github.io/mui-tel-input/) component pre-configured with `useMuiTelInputAdapter`.
@@ -113,8 +113,8 @@ FocusOnSelectCountry.args = {
 /**
  * [Country codes](https://viclafouch.github.io/mui-tel-input/docs/country-codes/) to be included in the list of countries.
  */
-export const onlyCountries = Template.bind({});
-onlyCountries.args = {
+export const OnlyCountries = Template.bind({});
+OnlyCountries.args = {
   defaultCountry: 'FR',
   name: 'only-countries-mui-tel-input',
   onlyCountries: ['FR', 'BE'],
@@ -123,8 +123,8 @@ onlyCountries.args = {
 /**
  * [Country codes](https://viclafouch.github.io/mui-tel-input/docs/country-codes/) to be excluded of the list of countries.
  */
-export const excludeCountries = Template.bind({});
-excludeCountries.args = {
+export const ExcludeCountries = Template.bind({});
+ExcludeCountries.args = {
   defaultCountry: 'FR',
   excludedCountries: ['CA', 'PT'],
   name: 'exclude-countries-mui-tel-input',
@@ -133,8 +133,8 @@ excludeCountries.args = {
 /**
  * [Country codes](https://viclafouch.github.io/mui-tel-input/docs/country-codes/) to be highlighted to the top of the list of countries.
  */
-export const preferredCountries = Template.bind({});
-preferredCountries.args = {
+export const PreferredCountries = Template.bind({});
+PreferredCountries.args = {
   name: 'preferred-countries-mui-tel-input',
   preferredCountries: ['BE', 'FR'],
 };
@@ -142,8 +142,8 @@ preferredCountries.args = {
 /**
  * [Continent codes](https://viclafouch.github.io/mui-tel-input/docs/continent-codes/) to include a group of countries.
  */
-export const continents = Template.bind({});
-continents.args = {
+export const Continents = Template.bind({});
+Continents.args = {
   continents: ['EU', 'OC'],
   name: 'continents-mui-tel-input',
 };
@@ -151,8 +151,8 @@ continents.args = {
 /**
  * No country list / The current flag is a span instead of a button.
  */
-export const disableDropdown = Template.bind({});
-disableDropdown.args = {
+export const DisableDropdown = Template.bind({});
+DisableDropdown.args = {
   defaultCountry: 'FR',
   disableDropdown: true,
   name: 'disable-dropdown-mui-tel-input',
@@ -161,8 +161,8 @@ disableDropdown.args = {
 /**
  * Remove format (spaces..) from the input value.
  */
-export const disableFormatting = Template.bind({});
-disableFormatting.args = {
+export const DisableFormatting = Template.bind({});
+DisableFormatting.args = {
   defaultCountry: 'FR',
   disableFormatting: true,
   name: 'disable-formatting-mui-tel-input',
@@ -171,8 +171,8 @@ disableFormatting.args = {
 /**
  * An Intl locale to translate country names (see [Intl locales](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames/DisplayNames)). All countries will be translated in this language.
  */
-export const langOfCountryName = Template.bind({});
-langOfCountryName.args = {
+export const LangOfCountryName = Template.bind({});
+LangOfCountryName.args = {
   defaultCountry: 'BE',
   langOfCountryName: 'fr',
   name: 'lang-of-country-name-mui-tel-input',
@@ -188,7 +188,7 @@ MenuProps.args = {
   name: 'menu-props-mui-tel-input',
 };
 
-export const getFlagElement: Story = {
+export const GetFlagElement: Story = {
   render() {
     return (
       <FormContainer onError={action('onError')} onSubmit={action('onSubmit')}>
@@ -225,8 +225,8 @@ export const getFlagElement: Story = {
 /**
  * This prop let you to customize the unknown flag, changed the width or height, use CDN or SVG component, etc..
  */
-export const unknownFlagElement = Template.bind({});
-unknownFlagElement.args = {
+export const UnknownFlagElement = Template.bind({});
+UnknownFlagElement.args = {
   name: 'unknown-flag-element-mui-tel-input',
   unknownFlagElement: '❓',
 };

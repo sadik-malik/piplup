@@ -1,9 +1,9 @@
 import { MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
 import { NumberFormatBaseElement } from '@piplup/rhf-adapters/react-number-format';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
 import { type NumberFormatBaseProps } from 'react-number-format';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<NumberFormatBase /\>](https://s-yadav.github.io/react-number-format/docs/customization) component pre-configured with `useNumberFormatBaseAdapter`.

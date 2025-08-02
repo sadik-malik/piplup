@@ -1,13 +1,17 @@
-const { FlatCompat } = require('@eslint/eslintrc');
-const js = require('@eslint/js');
-const baseConfig = require('../../eslint.config.js');
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
+import js from '@eslint/js';
+import jsonParser from 'jsonc-eslint-parser';
+import baseConfig from '../../eslint.config.mjs';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
 });
 
-module.exports = [
+export default [
   ...baseConfig,
   ...compat.extends('plugin:@nx/react'),
   {
@@ -27,7 +31,7 @@ module.exports = [
   },
   {
     files: ['{package,project}.json'],
-    languageOptions: { parser: require('jsonc-eslint-parser') },
+    languageOptions: { parser: jsonParser },
     rules: {
       '@nx/dependency-checks': [
         'error',

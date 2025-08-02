@@ -4,11 +4,7 @@ import { type StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
-  addons: [
-    {
-      name: getAbsolutePath('@storybook/addon-essentials'),
-    },
-  ],
+  addons: [getAbsolutePath("@storybook/addon-docs")],
   docs: {},
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),

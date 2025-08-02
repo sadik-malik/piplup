@@ -1,8 +1,8 @@
 import { MuiButtonElement, MuiFormHelperTextElement } from '@piplup/rhf-adapters/mui-material';
 import { MuiOtpInputElement } from '@piplup/rhf-adapters/mui-one-time-password-input';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<MuiOtpInput /\>](https://viclafouch.github.io/mui-otp-input/) component pre-configured with `useMuiOtpInputAdapter`.

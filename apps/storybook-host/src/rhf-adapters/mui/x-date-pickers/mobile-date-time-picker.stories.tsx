@@ -3,9 +3,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
 import { MuiXMobileDateTimePickerElement } from '@piplup/rhf-adapters/mui-x-date-pickers';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<MobileDateTimePicker /\>](https://mui.com/x/api/date-pickers/mobile-date-time-picker/) component pre-configured with `useMuiXMobileDateTimePickerAdapter`.

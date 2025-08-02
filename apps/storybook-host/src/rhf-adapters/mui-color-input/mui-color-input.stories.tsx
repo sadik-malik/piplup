@@ -1,9 +1,9 @@
 import { MuiColorInputElement } from '@piplup/rhf-adapters/mui-color-input';
 import { MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryFn, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryFn, type StoryObj } from '@storybook/react-vite';
 import { matchIsValidColor } from 'mui-color-input';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<MuiColorInput /\>](https://viclafouch.github.io/mui-color-input/) component pre-configured with `useMuiColorInputAdapter`.

@@ -1,19 +1,23 @@
-const { FlatCompat } = require('@eslint/eslintrc');
-const js = require('@eslint/js');
-const nxEslintPlugin = require('@nx/eslint-plugin');
-const typescriptEslintPlugin = require('@typescript-eslint/eslint-plugin');
-const eslintPluginImport = require('eslint-plugin-import');
-const eslintPluginJsxA11y = require('eslint-plugin-jsx-a11y');
-const eslintPluginPerfectionist = require('eslint-plugin-perfectionist');
-const eslintPluginPrettier = require('eslint-plugin-prettier');
-const eslintPluginUnusedImports = require('eslint-plugin-unused-imports');
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { FlatCompat } from '@eslint/eslintrc';
+import js from '@eslint/js';
+import nxEslintPlugin from '@nx/eslint-plugin';
+import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
+import eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
+import eslintPluginPerfectionist from 'eslint-plugin-perfectionist';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
+import eslintPluginUnusedImports from 'eslint-plugin-unused-imports';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: js.configs.recommended,
 });
 
-module.exports = [
+export default [
   ...compat.extends(
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
@@ -171,7 +175,7 @@ module.exports = [
   },
   ...compat.config({ extends: ['plugin:@nx/typescript'] }).map((config) => ({
     ...config,
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
     rules: {
       ...config.rules,
       '@typescript-eslint/comma-dangle': 'off',
@@ -199,7 +203,7 @@ module.exports = [
   })),
   ...compat.config({ extends: ['plugin:@nx/javascript'] }).map((config) => ({
     ...config,
-    files: ['**/*.js', '**/*.jsx', '**/*.mjs'],
+    files: ['**/*.js', '**/*.jsx', '**/*.mjs', '**/*.cjs'],
     rules: {
       ...config.rules,
     },
@@ -213,6 +217,8 @@ module.exports = [
       '**/node_modules/',
       '**/dist/',
       '**/storybook-static',
+      '**/vite.config.*.timestamp*',
+      '**/vitest.config.*.timestamp*',
     ],
   },
 ];

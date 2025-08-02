@@ -4,8 +4,8 @@ import { InputAdornment } from '@mui/material';
 import { MuiFileInputElement } from '@piplup/rhf-adapters/mui-file-input';
 import { MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<MuiFileInput /\>](https://viclafouch.github.io/mui-file-input/) component pre-configured with `useMuiFieldInputAdapter`.

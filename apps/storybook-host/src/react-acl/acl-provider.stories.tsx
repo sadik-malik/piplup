@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
 import { AclProvider, HasAccess } from '@piplup/react-acl';
-import { type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
 
 /**
  * AclProvider is a component that needs to be placed at the top of your component tree to provide access control functionality to child components.

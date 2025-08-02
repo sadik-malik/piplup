@@ -1,8 +1,8 @@
 import { MuiChipsInputElement, validateChipValues } from '@piplup/rhf-adapters/mui-chips-input';
 import { MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryFn, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryFn, type StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<MuiChipsInput /\>](https://viclafouch.github.io/mui-chips-input/) component pre-configured with `useMuiChipsInputAdapter`.
@@ -52,8 +52,8 @@ Default.args = {
  *
  * > Note: See the storybook actions panel for onAddChip result in individual story.
  */
-export const onAddChip = Template.bind({});
-onAddChip.args = {
+export const OnAddChip = Template.bind({});
+OnAddChip.args = {
   defaultValue: ['foo'],
   name: 'on-add-chip-mui-chips-input',
   onAddChip: action('onAddChip'),
@@ -64,8 +64,8 @@ onAddChip.args = {
  *
  * > Note: See the storybook actions panel for onDeleteChip result in individual story.
  */
-export const onDeleteChip = Template.bind({});
-onDeleteChip.args = {
+export const OnDeleteChip = Template.bind({});
+OnDeleteChip.args = {
   defaultValue: ['foo'],
   name: 'on-delete-chip-mui-chips-input',
   onDeleteChip: action('onDeleteChip'),
@@ -76,8 +76,8 @@ onDeleteChip.args = {
  *
  * > Note: See the storybook actions panel for onEditChip result in individual story.
  */
-export const onEditChip = Template.bind({});
-onEditChip.args = {
+export const OnEditChips = Template.bind({});
+OnEditChips.args = {
   name: 'on-edit-chip-mui-chips-input',
   onEditChip: action('onEditChip'),
 };
@@ -87,8 +87,8 @@ onEditChip.args = {
  *
  * > Note: See the storybook actions panel for onInputChange result in individual story.
  */
-export const onInputChange = Template.bind({});
-onInputChange.args = {
+export const OnInputChange = Template.bind({});
+OnInputChange.args = {
   name: 'on-input-change-mui-chips-input',
   onInputChange: action('onInputChange'),
 };
@@ -96,8 +96,8 @@ onInputChange.args = {
 /**
  * Clear the input value when the user clicks outside the input.
  */
-export const clearInputOnBlur = Template.bind({});
-clearInputOnBlur.args = {
+export const ClearInputOnBlur = Template.bind({});
+ClearInputOnBlur.args = {
   clearInputOnBlur: true,
   name: 'clear-input-on-blur-mui-chips-input',
 };
@@ -105,8 +105,8 @@ clearInputOnBlur.args = {
 /**
  * Hide the "x" icon button to prevent the user from deleting all the chips.
  */
-export const hideClearAll = Template.bind({});
-hideClearAll.args = {
+export const HideClearAll = Template.bind({});
+HideClearAll.args = {
   hideClearAll: true,
   name: 'hide-clear-all-mui-chips-input',
 };
@@ -114,8 +114,8 @@ hideClearAll.args = {
 /**
  * Prevent the user from editing a chip when double click on it.
  */
-export const disableEdition = Template.bind({});
-disableEdition.args = {
+export const DisableEdition = Template.bind({});
+DisableEdition.args = {
   disableEdition: true,
   name: 'disable-edition-mui-chips-input',
 };
@@ -124,8 +124,8 @@ disableEdition.args = {
  * By default, if the input field is empty and the user presses the delete key,
  * the last chip will be deleted. You can disable this logic.
  */
-export const disableDeleteOnBackspace = Template.bind({});
-disableDeleteOnBackspace.args = {
+export const DisableDeleteOnBackspace = Template.bind({});
+DisableDeleteOnBackspace.args = {
   disableDeleteOnBackspace: true,
   name: 'disable-delete-on-backspace-mui-chips-input',
 };
@@ -133,8 +133,8 @@ disableDeleteOnBackspace.args = {
 /**
  * Enable this option to add a chip when the input element loses focus.
  */
-export const addOnBlur = Template.bind({});
-addOnBlur.args = {
+export const AddOnBlur = Template.bind({});
+AddOnBlur.args = {
   addOnBlur: true,
   name: 'add-on-blur-mui-chips-input',
 };
@@ -142,7 +142,7 @@ addOnBlur.args = {
 /**
  * Set a validation to your new chips, or when user is editing a chip.
  */
-export const validate: Story = {
+export const Validate: Story = {
   render() {
     const validate = (chipValue: string) => {
       return {

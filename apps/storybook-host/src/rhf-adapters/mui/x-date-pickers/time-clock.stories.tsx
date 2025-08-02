@@ -3,8 +3,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MuiButtonElement, MuiFormHelperTextElement } from '@piplup/rhf-adapters/mui-material';
 import { MuiXTimeClockElement } from '@piplup/rhf-adapters/mui-x-date-pickers';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<TimeClock /\>](https://mui.com/x/api/date-pickers/time-clock/) component pre-configured with `useMuiXTimeClockAdapter`.

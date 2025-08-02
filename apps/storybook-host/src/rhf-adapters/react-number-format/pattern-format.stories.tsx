@@ -1,8 +1,8 @@
 import { MuiButtonElement } from '@piplup/rhf-adapters/mui-material';
 import { PatternFormatElement } from '@piplup/rhf-adapters/react-number-format';
 import { FormContainer } from '@piplup/rhf-core';
-import { action } from '@storybook/addon-actions';
-import { type Meta, type StoryFn } from '@storybook/react';
+import { type Meta, type StoryFn } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 /**
  * A wrapper around the [\<PatternFormat /\>](https://s-yadav.github.io/react-number-format/docs/pattern_format/) component pre-configured with `usePatternFormatAdapter`.

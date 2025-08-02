@@ -50,3 +50,7 @@ build-storybook.log
 
 vite.config.*.timestamp*
 .vercel
+
+vitest.config.*.timestamp*
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
