@@ -36,6 +36,8 @@
     "@nx/storybook": "21.3.11",
     "@nx/vite": "21.3.11",
     "@nx/web": "21.3.11",
+    "@piplup/rhf-adapters": "^4.0.2",
+    "@piplup/rhf-core": "^4.0.2",
     "@storybook/addon-docs": "9.1.0",
     "@storybook/jest": "^0.2.3",
     "@storybook/react-vite": "9.1.0",
